@@ -1,0 +1,1204 @@
+{
+    "Header": {
+        "home": "Home",
+        "about": "About Us",
+        "services": "Services",
+        "sampleShipping": "Sample Shipping",
+        "strength": "Strength",
+        "orderFlow": "Order Flow",
+        "contact": "Contact",
+        "temp": ""
+    },
+    "Footer": {
+        "aboutUs": "About Us",
+        "service": "Services",
+        "sampleShipping": "Sample Shipping",
+        "strength": "Strength",
+        "orderFlow": "Order Flow",
+        "privacyPolicy": "Privacy Policy",
+        "personalInfo": "Handling of Personal Information",
+        "cancellationPolicy": "Cancellation Policy",
+        "sitePolicy": "Site Policy"
+    },
+    "HomePage": {
+        "HeroSection1": {
+            "title1": "Unlock the Power of Next-",
+            "title2": "Generation Sequencing",
+            "title3": "with Medbank",
+            "description1": "Gain deeper insights into genes, RNA, and",
+            "description2": "genomes for breakthrough discoveries",
+            "contactUs": "Discover Our Services"
+        },
+        "AboutUs": {
+            "description": "Welcome to Medbank, your trusted partner in genetic analysis. Learn more about our company’s mission, values, and commitment to excellence.",
+            "img1": "/Images/Home/aboutUsHome.jpg"
+        },
+        "OurStrength": {
+            "description": "At Medbank, we take pride in our strengths and capabilities that set us apart as a leader in genetic analysis. Discover how our expertise and specialized services can benefit your research projects.",
+            "expertise1": "Comprehensive Next Generation Sequencing Processes",
+            "expertise2": "Specialized Environment for DNA/RNA Analysis",
+            "expertise3": "Customer-Centric Approach to Analysis Results",
+            "expertise4": "Automation of Processes",
+            "expertise5": "State-of-the-Art NGS Platform"
+        },
+        "OurServices": {
+            "description": "\"At Medbank, we offer a comprehensive range of genetic analysis services tailored to meet your research needs. Our state-of-the-art laboratory facilities and experienced team ensure accurate and reliable results. Explore our service offerings below to discover how we can support your genetic analysis projects.\"",
+            "service1": "DNA Sequencing",
+            "service2": "RNA Sequencing",
+            "service3": "Amplicon Sequencing"
+        },
+        "PriceTable": {
+            "description": "\"Explore our reference prices to gain insight into the cost structure of our genetic analysis services. While actual prices may vary depending on specific project requirements, our reference prices provide an estimate of the costs involved.\"",
+            "table1": "Read Length",
+            "table2": "Plan",
+            "table3": "Data Volume",
+            "table4": "Reference Price",
+            "table5": "Delivery Time",
+            "data1": "DNA<br></br> Sequencing",
+            "data2": "RNA<br></br> Sequencing",
+            "data3": "Amplicon<br></br> Sequencing",
+            "data4": "Human Genome<br></br> Sequencing",
+            "row11": "",
+            "row12": "10GB",
+            "row13": "500SGD",
+            "row14": "2 weeks",
+            "row21": "",
+            "row22": "4GB",
+            "row23": "400SGD",
+            "row24": "2 weeks",
+            "row31": "30-50K",
+            "row32": "",
+            "row33": "70SGD",
+            "row34": "2 weeks",
+            "row41": "",
+            "row42": "90GB",
+            "row43": "1500SGD",
+            "row44": "2 weeks"
+        },
+        "Process": {
+            "description": "At Medbank, we strive to make the process of ordering testing services as seamless and straightforward as possible. From initial inquiry to result delivery, our order flow is designed to ensure clarity, efficiency, and satisfaction at every step. Whether you're a seasoned researcher or new to genetic analysis, our team is here to guide you through the process and provide personalized support tailored to your specific project needs. Explore the following steps to learn more about how to place an order with Medbank and experience the benefits of our comprehensive genetic analysis services.",
+            "process1": "1. Registration",
+            "process2": "2. Complete Profile on My Page",
+            "process3": "3. Create New Order",
+            "process4": "4. Create Request Sheet",
+            "process5": "5. Confirmation of Quotation",
+            "process6": "6. Place a Formal Order",
+            "process7": "7. Sending Samples",
+            "process8": "8. Quality Check",
+            "process9": "9. Library Adjustment",
+            "process10": "10. Inspection and Analysis",
+            "process11": "11. Sending of Original Data and Analysis",
+            "process12": "12. Sending of Invoice",
+            "process13": "13. Sending of Receipt"
+        },
+        "RecentAnnouncement": {
+            "description": "\"Stay updated with the latest announcements and news from Medbank. Explore our recent articles and media coverage to learn more about our company's activities, achievements, and advancements in genetic analysis.\"",
+            "service1": "徹底した次世代シーケンス解析管理",
+            "service2": "徹底した精度管理を実施",
+            "service3": "研究者の皆様に寄り添った対応"
+        },
+        "FAQ": {
+            "description": "\"Have questions about Medbank' genetic analysis services? Explore our frequently asked questions to find answers to common queries. If you can't find what you're looking for, feel free to reach out to our team for personalized assistance.\"",
+            "faq1": "Do I need to register to my page?",
+            "faq2": "How long does it take to deliver the products?",
+            "faq3": "How long do you keep samples and analysis results?",
+            "faq4": "What sequencer do you use?",
+            "faq1a": "Yes, registration is required to place an order.",
+            "faq2a": "Delivery time is 2 weeks. Analysis dates are predetermined and may vary slightly depending on the number of samples and the date of order. Please contact us for details.",
+            "faq3a": "Samples are stored for one month and analysis results are stored for three months.",
+            "faq4a": "We mainly use AVITI, a next-generation sequencer."
+        },
+        "ContactUs": {
+            "description": "Connect with Medbank's team for inquiries, support, and collaboration opportunities. We're here to assist you with your genetic analysis needs and provide personalized guidance every step of the way.",
+            "name": "Full Name",
+            "number": "Phone Number",
+            "email": "Email Address",
+            "confirmEmail": "Confirm Email Address",
+            "query": "Inquiry Details",
+            "confirmation": "By clicking checkbox, I authorize Medbank to call me and send text messages and emails to me about Medbank and services at the phone number or email address I entered above. You can opt out anytime. You also agree to our",
+            "termOfService": "Terms of Service",
+            "privacyPolicy": " Privacy Policy.",
+            "getGuide": "Get Guide",
+            "img1": "/Images/Home/contactUsBg.jpg"
+        },
+        "CreateAccount": {
+            "description": "Signup or Login to your account for sending samples and getting your sample sequenced."
+        }
+    },
+    "AboutUs": {
+        "heroTitle": "Company Philosophy",
+        "description": "\"At Medbank, our philosophy is centered around delivering accurate, reliable, and innovative genetic analysis solutions to researchers worldwide. We are dedicated to advancing scientific knowledge and empowering our clients with valuable insights to drive discoveries and advancements in various fields.\"",
+        "principles": {
+            "title": "Key Principles",
+            "p1": "Quality : ",
+            "p2": "Innovation : ",
+            "p3": "Collaboration : ",
+            "p4": "Ethics ：",
+            "p5": "Customer Focus :",
+            "d1": "\"We uphold the highest standards of quality and precision in all our services and processes, ensuring reproducible and trustworthy results.\"",
+            "d2": "\"We continuously strive to innovate and adopt cutting-edge technologies and methodologies to stay at the forefront of genetic analysis.\"",
+            "d3": "\"We believe in fostering span partnerships and collaborations with researchers, institutions, and industry partners to achieve common goals and mutual success.\"",
+            "d4": "\"We conduct our business with integrity, honesty, and transparency, adhering to ethical standards and regulatory requirements at all times.\"",
+            "d5": "\"We prioritize customer satisfaction and strive to exceed expectations by providing personalized solutions, exceptional service, and timely support.\""
+        },
+        "goal": "GOAL in genetic analysis of Medbank",
+        "goalDescription": "At Medbank, our overarching goal in genetic analysis is to become a world-leading hub for genetic research and analysis. We aim to contribute significantly to scientific advancements and discoveries by providing state-of-the-art genetic analysis services, driving innovation, and fostering collaborations.",
+        "details_name": "Name :",
+        "details_established": "Establishment :",
+        "details_representative_employee": "Representative employee :",
+        "lab": "3-7-12 Shoji, Ikuno-ku, Osaka-shi, Osaka Japan",
+        "project1": "Genetic analysis service ",
+        "project2": "Genetic testing (tests related to evidence-based medicine, not DTC) ",
+        "project3": "Ultra-early detection of cancer",
+        "analysisDescription": "The Inspection and Analysis section provides customers with detailed insights into Medbanks testing and analysis procedures, highlighting the laboratory's capabilities, equipment, and strengths in genetic analysis.",
+        "machineDescription": "Medbank utilizes state-of-the-art machines and equipment for genetic analysis testing, ensuring accurate and reliable results.",
+        "m1": "We have introduced a new next-generation sequencer 'AVITI' from Element Biosciences, which is capable of developing highly accurate and efficient analyses. AVITI' employs rolling circle amplification (RCA) to minimize amplification errors, and the use of the latest reagents enables high quality (Q50) sequence decoding. In addition, 'AVITI' has better running costs than conventional products, enabling lower costs and shorter delivery times.",
+        "m2": "The Illumina MiSeq platform is employed for smaller-scale sequencing projects, providing accurate and reliable results with fast turnaround times.",
+        "m3": "Medbank also plans to begin Novaseq X plus analysis on an outsourced basis in 2025. This platform offers scalability, flexibility, and exceptional data quality, making it suitable for a wide range of research projects."
+    },
+    "OurStrength": {
+        "strength1": {
+            "title": "Comprehensive Next Generation Sequencing Processes",
+            "description": "At Medbank, we have the capability to conduct all Next Generation Sequencing (NGS) processes from sample preparation to data analysis in our state-of-the-art laboratory facilities. Our team of specialized staff is equipped to handle every step of the NGS workflow, including DNA extraction, library preparation, sequencing, and bio-informatics analysis.",
+            "benefit": {
+                "b1": "Streamlined and integrated NGS workflow for efficiency and consistency.",
+                "b2": "Expert guidance and support throughout the entire sequencing process.",
+                "b3": "Customized solutions tailored to meet the specific needs of each research project."
+            }
+        },
+        "strength2": {
+            "title": "Specialized Environment for DNA/RNA Analysis",
+            "description": " To ensure the integrity and reliability of our genetic analysis, Medbank maintains a specialized environment for DNA and RNA analysis. Our laboratory facilities are equipped with advanced technologies and adhere to strict quality control measures to minimize contamination and ensure the accuracy of our results.",
+            "benefit": {
+                "b1": "Clean and controlled laboratory environment for sensitive molecular analysis.",
+                "b2": "Minimized risk of contamination and sample degradation.",
+                "b3": "Consistent and reliable results for high-quality genetic analysis."
+            }
+        },
+        "strength3": {
+            "title": "Customer-Centric Approach to Analysis Results",
+            "description": "At Medbank, we prioritize the needs and preferences of our clients when delivering analysis results. We provide comprehensive support and guidance on data handling and analysis methods, ensuring that results are presented in an easy-to-understand format tailored to the specific requirements of each client.",
+            "benefit": {
+                "b1": "Personalized support and guidance throughout the analysis process.",
+                "b2": "Clear and concise presentation of analysis results for enhanced understanding.",
+                "b3": "Empowerment of clients with actionable insights for their research projects."
+            }
+        },
+        "strength4": {
+            "title": "Automation of Processes",
+            "description": "We have implemented automation technologies for DNA and RNA extraction, purification, and library preparation, streamlining and standardizing these critical processes. By automating repetitive tasks, we ensure accuracy, reproducibility, and scalability, enabling us to deliver high-quality results efficiently.",
+            "benefit": {
+                "b1": "Reduced risk of human error and variability.",
+                "b2": "Increased throughput and faster turnaround times.",
+                "b3": "Consistent and reliable results across experiments."
+            }
+        },
+        "strength5": {
+            "title": "State-of-the-Art NGS Platform",
+            "description": "Medbank utilizes the latest Next Generation Sequencing (NGS) platforms, including the AVITI system from Element Biosciences. This advanced platform offers high precision, rapid sequencing, and cost-effectiveness, allowing us to deliver accurate and timely results to our clients.",
+            "benefit": {
+                "b1": "High-quality sequencing data with improved accuracy and coverage.",
+                "b2": "Reduced sequencing costs and shorter project timelines.",
+                "b3": "Access to cutting-edge technologies for innovative research applications."
+            }
+        }
+    },
+    "OurServices": {
+        "service1": "Analyze DNA samples using next-generation sequencing technologies to uncover genetic information crucial for various research applications. \n \n DNA sequencing is a service that analyzes the provided DNA samples using a next-generation sequencer such as Novaseq X plus. The obtained fastq format sequence data can be used as sources for re-seq, genome assembly, etc. In addition, we have introduced Element Biosciences' new NGS platform, AVITI (this service is scheduled to start in the fall, 2024). If you choose this service, you will be able to achieve higher precision, lower cost, and shorter delivery times than conventional service plans.",
+        "service2": "Comprehensive analysis of transcriptomes to study gene expression patterns, identify regulatory elements, and elucidate biological pathways. \n \n This is a service that comprehensively obtains transcript information by analyzing cDNA fragmented into short read lengths using a next-generation sequencer (RNA-seq). The obtained fastq format sequence data can be used as a source for quantifying gene expression levels, etc",
+        "service3": "Targeted sequencing of specific DNA regions (e.g., microbial barcode regions) for metagenomic analysis, environmental DNA analysis, and more. \n \n This service amplifies barcode regions such as the 16S rRNA gene of microbes by PCR and analyzes them using a next-generation sequencer. This makes it possible to evaluate the types and composition of biological species contained in samples and the environment (so-called metagenomic analysis and environmental DNA analysis).",
+        "table1": "Read Length",
+        "table2": "Plan",
+        "table3": "Data Volume",
+        "table4": "Reference Price",
+        "table5": "Delivery Time",
+        "data1": "DNA<br></br> Sequencing",
+        "data2": "RNA<br></br> Sequencing",
+        "data3": "Amplicon<br></br> Sequencing",
+        "data4": "Human Genome<br></br> Sequencing",
+        "row11": "",
+        "row12": "10GB",
+        "row13": "500SGD",
+        "row14": "2 weeks",
+        "row21": "",
+        "row22": "4GB",
+        "row23": "400SGD",
+        "row24": "2 weeks",
+        "row31": "30-50K",
+        "row32": "",
+        "row33": "70SGD",
+        "row34": "2 weeks",
+        "row41": "",
+        "row42": "90GB",
+        "row43": "1500SGD",
+        "row44": "2 weeks"
+    },
+    "Cancellation Policy": {
+        "title": "Cancellation Policy",
+        "section1": {
+            "title": "About Cancellation",
+            "content": "Cancellation will be accepted if the cancellation request is received before the fee is incurred.",
+            "content1": "Cancellation requests made after the analysis has started will be charged up to the experiment that has progressed. Basically, the quality check of the sample and the quality check after library adjustment is the timing of the midway settlement.",
+            "content2": "  If the quality check of the sample and the library-adjusted sample does not provide the level of evaluation required for NGS analysis, and if there is no reaction from the client within 3 months of notification of the results, the request will be cancelled and the client will be billed for the costs up to the experiment that has already progressed.",
+            "content3": "If you request us to proceed with an experiment on a sample for which sufficient quality cannot be guaranteed by the sample quality check and library adjustment, we will charge you the costs up to the experiment that has already proceeded, regardless of the results."
+        },
+        "section2": {
+            "title": ". Loss of samples",
+            "content": "If a sample is lost during transportation or due to unforeseen problems at the experimental site, we may ask you to resend the sample. Please note that we will not compensate for any loss of samples."
+        },
+        "section3": {
+            "title": "・Cancellation",
+            "content": "Please contact us via chat on mypage if you wish to cancel your order."
+        }
+    },
+    "SampleShipping": {
+        "step1": {
+            "title": "Sample Preparation",
+            "subStep1": "Sample Tubes",
+            "subStep2": "Labeling",
+            "subStep3": "Secure Closure",
+            "description1": "Customers are instructed to place their <span>pre-adjusted DNA/RNA/PCR</span> samples in individual tubes.<br></br> For larger sample quantities (approximately 16 samples or more), 8-strip tubes or similar containers are recommended.",
+            "description2": "Each sample tube should be <span>clearly labeled</span> with the sample name using a permanent marker directly on the tube' surface.If the tube has a detachable cap, the label should be placed on both the cap and the tube side to ensure proper identification.",
+            "description3": "Customers are reminded to securely close the tube caps to prevent sample leakage or contamination during transportation.",
+            "img1":"/Images/Home/SampleShipping1.png"
+        },
+        "step2": {
+            "title": "Tube Packaging",
+            "subStep1": "Method 1 : Tube Box or Container",
+            "subStep2": "Method 2 : Falcon Tubes or Similar",
+            "subStep3": "Freezing Samples",
+            "description1": "Samples should be placed in a tube box or similar container to prevent spillage. The box should be securely taped or sealed to prevent the lid from coming off during transit.",
+            "description2": "If using Falcon tubes, customers should insert cushioning material or paper to secure the tubes and prevent movement. Tubes should be adequately secured to prevent damage during shipping.",
+            "description3": "If samples require freezing, customers are advised to freeze the tubes vertically to prevent accidental cap opening.",
+            "img2":"/Images/Home/SampleShipping2.png"
+        },
+        "step3": {
+            "title": "Packaging",
+            "subStep1": "Recommended Conditions",
+            "subStep2": "Request Sheet",
+            "subStep3": "Scaling",
+            "description1": {
+                "subDes1": "Customers should use a shipping box with cushioning material (e.g., Styrofoam cooler box) and include ice packs for temperature-sensitive samples. The packaged tubes should be wrapped in additional cushioning material to prevent movement and maintain temperature control.",
+                "subDes2": "",
+                "subDes3": "",
+                "subDes4": ""
+            },
+            "description2": "Customers are instructed to print and include a request sheet with the packaged samples, specifying the expected arrival date declared at the time of ordering.",
+            "description3": "The shipping box should be securely sealed with tape or similar material to prevent tampering and ensure sample integrity during transit.",
+            "img3":"/Images/Home/SampleShipping3.png"
+        },
+        "shippingAddr": "Shipping Address",
+        "addr": "Medbank Pte. Ltd. ( Singapore ) <br> </br> 11 Mandalay Road #16-01 Co11ab Singapore 308232 ",
+        "tempRange": "Transportation Temperature Range",
+        "tempRangeDes": "Customers are reminded to ship samples under refrigerated or frozen conditions",
+        "shippingCost": "Shipping Costs",
+        "shippingCostDes": "Shipping charges are prepaid by the customer (payment upon shipping) and may vary depending on the shipping method and destination.",
+        "contactInfo": "Contact Information",
+        "contactInfoDes": "Customers are encouraged to contact Setolabo's customer support team for any questions or concerns related to sample shipping."
+    },
+    "OrderFlow": {
+        "step1": "Registration",
+        "des1": "Please register as a member when you decide to place an order. <br></br> You can view your order history on My Page.",
+        "button": "Sign Up",
+        "step2": "Enter your information in My Page",
+        "des2": "Please click the “Setup” button on “My page” and enter detailed information about your research institute.",
+        "step3": "Create a new order page",
+        "des3": "Click the New Order button on My page to create a new order page and follow the steps to place an order.",
+        "step4": "Create a request sheet",
+        "des4": "Download the request sheet from the New Order page, create and upload the request sheet.",
+        "step5": "Confirmation of Quotation",
+        "des5": "Once the request sheet has been received without any problems, you will receive a quotation. Please check the quotation.",
+        "step6": "Place a formal order",
+        "des6": "After confirming the quotation, please place a formal order by clicking the “Place a formal order” button on the “New Order” page. After placing a formal order, the formal order will be automatically accepted by Medbank.",
+        "step7": "Sending samples",
+        "des7": "When you are ready to send samples, please prepare samples and request sheets (our form) and send them to the address below. Please refer to the page of each analysis service you request for the required sample volume. For packing instructions, please refer to this page.<br> </br> <br> </br> <Link>Sending Samples</Link> <br></br><br></br> Sample delivery address <br></br> To Medbank Pte. Ltd. ( Singapore ) <br></br> 11 Mandalay Road #16-01 Co11ab Singapore 308232 <br></br>",
+        "step8": "Quality Check",
+        "des8": "Medbank will perform a quality check. The results of the quality check will be sent to you via Mypage. <br></br> If there is no problem, please proceed to the next step. If there is a problem and you wish to <br></br> resend or dispose of the sample, please contact us via chat.",
+        "step9": "Library Adjustment",
+        "des9": "Library adjustment will be performed by Medbank. <br></br> If there is no problem, please proceed to the next step. If there is a problem and you wish to <br></br> resend or dispose of the sample, please contact us via chat.",
+        "step10": "Inspection and Analysis",
+        "des10": "After the quality check and library adjustment are completed, Medbank will perform the analysis. Mypage will be notified of the start and end of the analysis.",
+        "step11": "Sending of original data and analysis specifications",
+        "des11": "After the analysis is completed, the original data and analysis specifications will be available for download from Mypage. <br></br> The original data will be shared in the cloud and will be stored for 3 months.",
+        "step12": "Sending of invoice",
+        "des12": "After the original data and analysis specifications have been sent, an invoice will be available for download from Mypage. Please make a bank transfer after confirming the invoice.",
+        "step13": "Sending of Receipt",
+        "des13": "You will be able to download the receipt after confirming the transfer of funds. <br></br> Please note that it may take some time to confirm the transfer of funds.",
+        "img1": "/Images/Home/Orderflow1.png",
+        "img2": "/Images/Home/Orderflow2.png",
+        "img3": "/Images/Home/Orderflow3.png",
+        "img4": "/Images/Home/Orderflow4.png",
+        "img5": "/Images/Home/Orderflow5.png",
+        "img6": "/Images/Home/Orderflow6.png",
+        "img7": "/Images/Home/Orderflow7.png",
+        "img8": "/Images/Home/Orderflow8.png",
+        "img9": "/Images/Home/Orderflow9.png",
+        "img10": "/Images/Home/Orderflow10.png",
+        "img11": "/Images/Home/Orderflow11.png",
+        "img12": "/Images/Home/Orderflow12.png",
+        "img13": "/Images/Home/Orderflow13.png"
+    },
+    "PersonalInformation": {
+        "header": "Handling of Personal Information",
+        "description": "Medbank Pte. Ltd. has established the following privacy policy with respect to your personal information. Medbank Pte. Ltd. has determined the following privacy policy regarding the handling of customers' personal information in the services we provide.",
+        "section1": {
+            "title": "The Service Provider",
+            "description": "Name: Medbank <br></br> Address: 20 Collyer Quay #23-01 Singapore 049319 <br></br> Representative: Yuki Okada <br></br>"
+        },
+        "section2": {
+            "title": "Purpose of use of personal information",
+            "description": "Medbank acquires personal information through legal and fair means and handles personal information for the following purposes of use. <br></br>1 To respond to and answer inquiries made by customers to the Company. <br></br>2 To contact and present quotations in response to quotations <br></br>3 For business communication and smooth response to inquiries after receiving analysis requests <br></br>4 For smooth execution of business operations, such as meetings, contracts, communication regarding business operations, and payment, etc., entrusted by the Company. <br></br>5 To determine and analyze DNA sequences <br></br>6 To send you information about new features, updates, campaigns, etc. of our services and other services provided by us. <br></br>7 To contact customers as necessary for maintenance, important notices, etc. <br></br>8 For purposes incidental to the above purposes of use. <br></br> <br></br>If a purpose of use arises that is outside the scope of the purposes of use, we will explainthe purpose of use to the person in question and obtain his/her consent before using theinformation. <br></br>However, this does not apply in the following cases <br></br>(1) When required by law <br></br>(2) When it is necessary for the protection of the life, body, or property of an individual and itis difficult to obtain the consent of the person in question. <br></br>(3) Cases in which the provision of personal information is particularly necessary forimproving public health or promoting the sound growth of children and in which it is difficultto obtain the consent of the person in question <br></br>(4) Cases in which the provision of personal information is necessary for cooperating with anational agency, a local government, or an individual or entity entrusted by either a nationalagency or local government to execute affairs prescribed by law, and in which obtaining yourconsent is likely to impede the execution of such affairs. <br></br>"
+        },
+        "section3": {
+            "title": "Joint Use of Personal Data",
+            "description": " We will share personal data with our business partner, Setolabo."
+        },
+        "section4": {
+            "title": "Provision of Personal Data to Third Parties",
+            "description": "We will not provide personal information to third parties without your consent, except as otherwise provided by law or guidelines."
+        },
+        "section5": {
+            "title": "Disclosure of Personal Information",
+            "description": "We will respond to the following requests regarding the personal information we handle. <br></br> <br></br> In addition, if the individual whose personal data is being used requests disclosure of records of provision of his/her personal data to third parties, we will respond to such request without delay. <br></br> (1) Notification of purpose of use <br></br> (2) Disclosure (including disclosure of records provided to third parties) <br></br> (3) Correction, addition, or deletion <br></br> (4) Suspension of use, deletion, or cessation of provision to third parties <br></br> The above (1) through (4) will be handled in accordance with the following procedures. <br></br> However, with respect to disclosure, “personal information entrusted by business partners” is excluded. <br></br> <br></br> 1. Contact for requests for disclosure and for complaints <br></br> Address stated 20 Collyer Quay #23-01 Singapore 049319 <br></br> Medbank Personal Information Protection Manager <br></br> <br></br> 2. Form of documents to be submitted upon request for Disclosure and other methods of requesting Disclosure. <br></br> There are no particular requirements regarding the form of documents to be submitted or the method of requesting disclosure. <br></br> However, in the case of an application by a representative, the application must be made in writing in order to confirm the authority of the representative. <br></br> <br></br> 3. Method of confirming that the person making the request for disclosure is the principal or representative. <br></br> Verified by one of the following methods <br></br> (1) The applicant must send us by mail or bring and present a document (such as a copy of his/her driver's license) that proves that he/she is the person in question. <br></br> (2) We will verify your personal information (telephone number, etc.) that we have in our possession by comparing it with the personal information that we confirmed when we received your inquiry. If a representative is applying on your behalf, please submit a document evidencing your authority of representation. <br></br> <br></br> 4. Method of collecting fees <br></br> A fee of 11,000 yen including tax will be collected per personal information disclosure request."
+        },
+        "section6": {
+            "title": "Voluntary nature of providing personal information",
+            "description": "Whether or not you provide us with your personal information is at your discretion. However, if you do not provide us with the required items, we may not be able to provide you with our various services (e.g., request for quotation or analysis) or respond to your inquiries in an appropriate manner."
+        },
+        "section7": {
+            "title": "Acquisition of personally identifiable information by methods that are not easily recognizable by the person in question",
+            "description": "Cookies and cell phone identification numbers (solid identification numbers) are used to make it more convenient for you to browse our site when you visit it again, and do not infringe on your privacy or have any adverse effect on your computer. <br></br> <br></br> The Company' website uses an SSL (Secure Sockets Layer) data encryption system in areas where personal information is input, and other measures are taken to ensure security."
+        }
+    },
+    "Site Policy": {
+        "title": "Site Polciy",
+        "content": " Customers using the website (https://medbank.sg/) provided by Medbank (hereinafter referred to as “we” or “us”) are requested to fully read the following.",
+        "section1": {
+            "title": "・Disclaimer",
+            "content": "Although we take the utmost care in posting information on Medbank's website, Medbank does not guarantee the accuracy or completeness of this information.",
+            "content1": " Medbank reserves the right to change the information on its website at any time without notice.",
+            "content2": "Medbank and its affiliates shall not be liable for any direct or indirect loss incurred by you as a result of your use of the information or content contained in the Medbank website."
+        },
+        "section2": {
+            "title": "・Copyrights and Trademarks",
+            "content": "All text, illustrations, logos, photographs, videos, software, and all other information on this website are the copyrighted property of Medbank or third parties.",
+            "content1": "  Except for personal use or other use permitted by copyright law, you may not use (including copying, modifying, distributing, or publicly transmitting) any of this information without the prior permission of the copyright holder.",
+            "content2": "The names of our products and services appearing on our website are our trademarks."
+        },
+        "section3": {
+            "title": "・Governing Law and Court of Jurisdiction",
+            "content": " Unless otherwise provided herein, the use of this website shall be governed by and construed in accordance with the laws of Japan.",
+            "content1": "Access to Medbank website is at the discretion of the user, and the user assumes all responsibility for the use of Medbank website.",
+            "content2": " Unless otherwise specified, the Hiroshima District Court shall be the court of first jurisdiction for all disputes related to the use of this website."
+        },
+        "section4": {
+            "title": "【Links to our website】",
+            "content": "In principle, you are free to link to our website, regardless of whether it is for profit or not. However, please refrain from setting up links that fall under any of the following or may fall under any of the following.",
+            "content1": " Websites that include content that defames or slanders Medbank, other companies (or persons), or other organizations, or that is intended to discredit them.",
+            "content2": " Websites that infringe or may infringe intellectual property rights such as copyrights, trademarks, property, privacy, portrait rights, or other rights of Medbank, other companies (or persons), or other organizations."
+        },
+        "section5": {
+            "content": " Websites that make it unclear that the contents are those of Medbank website and may cause misunderstanding to third parties, such as when Medbank website is displayed within a frame.",
+            "content1": " In addition to the above items, websites that may violate laws, ordinances, regulations including rules and regulations, or public order and morals, or may interfere with the operation of Medbank website services.",
+            "content2": " It is not permitted to link to the Website by using registered trademarks such as logos and marks owned by Medbank without permission. It is not permitted to create a link in such a way as to misidentify the source of the information.",
+            "content3": " Please note that the URL of Medbank website is subject to change without notice.",
+            "content4": " 【Others】",
+            "content5": " Please note that Medbank shall not be liable for any compensation, complaints, etc. related to the link.",
+            "content6": " ・Prohibited Matters",
+            "content7": " The following actions are prohibited when using this website.",
+            "content8": "   ・Actions that cause or may cause annoyance, disadvantage, or damage to other users, third parties, or Medbank.",
+            "content9": " . Actions that infringe or may infringe on the property or privacy of other users, third parties, or Medbank.",
+            "content10": " ・Actions that are or may be offensive to public order and morals.",
+            "content11": "   ・Actions that violate or may violate laws, regulations, or ordinances.",
+            "content12": "   ・Any other actions that the Company deems inappropriate."
+        }
+    },
+    "Privacy Policy": {
+        "title": "Privacy Policy (Personal Information Protection Policy)",
+        "content": "Medbank Pte. Ltd. has established the following privacy policy with respect to your personal information. Medbank Pte. Ltd. has determined the following privacy policy regarding the handling of customers' personal information in the services we provide.",
+        "section1": {
+            "title": "The Service Provider",
+            "content": "Name: Medbank",
+            "content1": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977) ",
+            "content2": " Representative: Yuki Okada"
+        },
+        "section2": {
+            "title": "Method of obtaining personal information",
+            "content": " We obtain the name of the person in charge, telephone number, e-mail address, and information about the contents of the analysis when you inquire about our genetic analysis service.",
+            "content1": " After that, we will obtain the name of the person in charge (including Kanji, Kana, and English), name of the facility/school, telephone number, cell phone number, email, zip code, and address at the time of mypage registration when the order is officially placed. Personal information related to sequencing and analysis may also be obtained at the time of test analysis. ",
+            "content2": " Other personal information that is necessary to provide services will be obtained."
+        },
+        "section3": {
+            "title": "Safe Management of Personal Data",
+            "content": "We will take reasonable and necessary safety control measures to prevent risks (unauthorized access, falsification, loss, destruction, and leakage) to personal information and specific personal information, and will strive to manage such information appropriately."
+        },
+        "section4": {
+            "title": "Use of Personal Information",
+            "content": " Please refer to the details page regarding the handling of personal information."
+        },
+        "section5": {
+            "title": "Compliance with Laws and Regulations Concerning Personal Information and Specified Personal Information",
+            "content": " We will always be aware of and comply with laws, national guidelines, and other norms regarding the handling of personal information and specified personal information."
+        },
+        "section6": {
+            "title": "SSL (Secure Socket Layer)",
+            "content": "Our website is SSL-compatible, which encrypts communications between web browsers and web servers. Personal information such as name, address, and telephone number entered by the user is automatically encrypted."
+        },
+        "section7": {
+            "title": "About Cookies",
+            "content": "  Some pages on this site use cookies. Cookies are a function that sends data from a web server to a visitor's browser and refers to the contents of that data, but they do not collect personal information about the visitor. The cookie function can be disabled through your browser settings."
+        },
+        "section8": {
+            "title": "Continuous Improvement of Personal Information Protection Management System",
+            "content": "  In order to properly protect personal information and specified personal information, we will review, continuously improve, and enhance our management system for the protection of personal information, taking into consideration changes in our business activities and the social and technological environment in which we operate."
+        },
+        "section9": {
+            "title": "Access history of this site",
+            "content": " When you access this site, an access history (access log) is automatically kept. The purpose of this is to statistically analyze how the site is used and to use this information to improve future convenience. No personal information will remain in this access history."
+        },
+        "section10": {
+            "title": "Opinions and inquiries regarding the protection of personal information and specified personal information",
+            "content": "  With regard to complaints, opinions, and inquiries about the handling of personal information and specified personal information, we will make a sincere effort to respond promptly, including fact-finding investigations. Please use My Page for complaints, opinions, and inquiries."
+        },
+        "section11": {
+            "title": "Disclosure of Personal Information",
+            "content": "    The Company will respond to the following matters regarding the personal information it handles:",
+            "content1": "In addition, we will respond without delay to requests from the owner of personal data to disclose records of his/her personal data to third parties. ",
+            "content2": "(1) Notification of purpose of use",
+            "content3": "(2) Disclosure (including disclosure of records provided to third parties)",
+            "content4": "(3) Correction, addition, or deletion",
+            "content5": "(4) Suspension of use, deletion, or cessation of provision to third parties",
+            "content6": "The above (1) through (4) will be handled in accordance with the following procedures.",
+            "content7": "1. Contact for requests for disclosure and for complaints",
+            "content8": " Address: 20 Collyer Quay #23-01 Singapore 049319",
+            "content9": "Medbank Personal Information Protection Manager",
+            "content10": "2. Forms of Documents to be Submitted upon Request for Disclosure",
+            "content11": "There are no particular requirements regarding the form of documents to be submitted or the method of requesting disclosure.",
+            "content12": " However, in the case of an application by a representative, the application must be made in writing in order to confirm the authority of the representative.",
+            "content13": "3. Method of confirming that the person making the request for disclosure is the principal or agent The identity of the person making the request for disclosure will be confirmed by one of the following methods ",
+            "content14": "(1) The applicant must send us by mail or bring and present a document that proves that he/she is the person in question.",
+            "content15": "  (2) We will verify your personal information (telephone number, etc.) that we have in our possession by comparing it with the personal information that we confirmed when we received your inquiry. If a representative is applying on your behalf, please submit a document evidencing your authority of representation.",
+            "content16": "4. Method of collecting fees",
+            "content17": "  A fee of 11,000 yen including tax will be collected per request for disclosure of personal information."
+        }
+    },
+    "SignUp": {
+        "back": "Back",
+        "title": "Get Started",
+        "subTitle": "Create an account to continue!",
+        "name": "Name",
+        "email": "Email",
+        "password": "Create Password",
+        "weakPassword": "Password too weak",
+        "confirmPassword": "Confirm Password",
+        "misMatchPassword": "Password don't match",
+        "errorPassword": "<span1>Your password must contain:</span1><span2> At least 8 characters</span2><span3> Use a mix of uppercase and lowercase letters, numbers, and special characters.</span3>",
+        "acknowledgement": "By signing up, I accept all of Medbank's terms and conditions, <personalInfo>Personal Information</personalInfo>, <cancellationPolicy>Cancellation Policy</cancellationPolicy>, <sitePolicy>Site Policy</sitePolicy> and acknowledge their <privacyPolicy>Privacy Policy</privacyPolicy>.",
+        "register": "Register",
+        "signUpText": "Already have an Account ?  <Link> Sign-In </Link>"
+    },
+    "SignIn": {
+        "back": "Back",
+        "title": "Welcome Back!",
+        "subTitle": "Login account to continue!",
+        "email": "Email",
+        "password": "Create Password",
+        "acknowledgement": "By signing up, I accept all of Medbank's terms and conditions, <personalInfo>Personal Information</personalInfo>, <cancellationPolicy>Cancellation Policy</cancellationPolicy>, <sitePolicy>Site Policy</sitePolicy> and acknowledge their <privacyPolicy>Privacy Policy</privacyPolicy>.",
+        "login": "Login",
+        "signInText": "Don’t have an Account ?  <Link> Register </Link>",
+        "forgotPassword": "Forgot Password?"
+    },
+    "UserSideBar": {
+        "dashboard": "Dashboard",
+        "orders": "Orders",
+        "newOrder": "New Order",
+        "chats": "Chats",
+        "payments": "Payments",
+        "archive": "Archive",
+        "settings": "Settings",
+        "logout": "Logout"
+    },
+    "TopNavBar": {
+        "welcomeMsg": "Welcome User!",
+        "newOrder": "New Order",
+	"settings": "Settings",
+        "logout": "Logout"
+    },
+    "DashBoard": {
+        "orderOverView": {
+            "orderOverView": "Order Overview!",
+            "pending": "Pending Orders",
+            "progress": "Orders In-Progress",
+            "completed": "Completed"
+        }
+    },
+    "Settings": {
+        "settings": "Settings",
+        "personalInfo": {
+            "personalInfo": "Personal Information",
+            "userName": "Username",
+            "name": "Name",
+            "school": "School/Organization Name",
+            "faculty": "Faculty/Department",
+            "field": "Field/Group",
+            "others": "Others",
+            "invoice": "Name on quotation, invoice, receipt"
+        },
+        "contactInfo": {
+            "contactInfo": "Contact  Information",
+            "country": "Country",
+            "phone": "Phone Number",
+            "email": "Email Address",
+            "confirmEmail": "Confirm Email Address",
+            "postalCode": "Postal Code",
+            "perfecture": "Perfecture",
+            "city": "City/Town Address",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        }
+    },
+    "Logout": {
+        "title": "Logout Account",
+        "cancelConfirm": "Are you sure you want to logout ?",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+    },
+    "AdminSideBar": {
+        "dashboard": "Dashboard",
+        "orders": "Orders",
+        "newOrder": "New Order",
+        "chats": "Chats",
+        "payments": "Payments",
+        "archive": "Archive",
+        "settings": "Settings",
+        "logout": "Logout"
+    },
+    "AdminTopNavBar": {
+        "welcomeMsg": "Welcome, Admin!",
+        "newOrder": "New Order",
+	"settings": "Settings",
+        "logout": "Logout"
+    },
+    "AdminDashBoard": {
+        "orderOverView": {
+            "orderOverView": "Order Overview!",
+            "pending": "Pending Orders",
+            "progress": "Orders In-Progress",
+            "completed": "Completed"
+        }
+    },
+    "AdminSettings": {
+        "settings": "Settings",
+        "personalInfo": {
+            "personalInfo": "Personal Information",
+            "userName": "Username",
+            "name": "Name",
+            "school": "School/Organization Name",
+            "faculty": "Faculty/Department",
+            "field": "Field/Group",
+            "others": "Others",
+            "invoice": "Name on quotation, invoice, receipt"
+        },
+        "contactInfo": {
+            "contactInfo": "Contact  Information",
+            "country": "Country",
+            "phone": "Phone Number",
+            "email": "Email Address",
+            "confirmEmail": "Confirm Email Address",
+            "postalCode": "Postal Code",
+            "perfecture": "Perfecture",
+            "city": "City/Town Address",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        }
+    },
+    "AdminLogout": {
+        "title": "Logout Account",
+        "cancelConfirm": "Are you sure you want to logout ?",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+    },
+    "UserDashboard": {
+        "requestSheet": {
+            "title": "Order Creation",
+            "step1": {
+                "title": "Order Details",
+                "title1": "Step 1: Order Details",
+                "label": " Order Title :",
+                "button": "Next"
+            },
+            "step2": {
+                "title": "Upload Request Sheet",
+                "title1": "Step 2: Upload Request Sheet",
+                "note": " Note: Please use the request sheet designated by Medbank.",
+                "link": " Download here",
+                "drag": "Drag and drop or",
+                "drag1": "Choose file",
+                "drag2": "to upload",
+                "file": "File Uploaded",
+                "back": "Back",
+                "next": "Next"
+            },
+            "step3": {
+                "title": "Review & Submit",
+                "title1": "Step 3: Review & Submit",
+                "summary": "Order Summary",
+                "orderTitle": " Order Title :",
+                "requestSheet": "Request Sheet",
+                "noFile": "No file uploaded",
+                "edit": "Edit",
+                "submit": "Submit"
+            }
+        },
+        "costEstimation": {
+            "title": "Download Cost Estimation",
+            "pdfTitle": "CostEstimation.pdf",
+            "pdfSize": "1.2MB",
+            "back": "Back",
+            "download": "Download"
+        },
+        "formalRequest": {
+            "confirmation": "Confirmation Message",
+            "message": "Please confirm the Formal Request.",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        },
+        "sampleShippingSend": {
+            "title": "Sample Send",
+            "message": {
+                "desktopMsg": "The sample has been sent.",
+                "mobileMsg": "The sample has been sent by the Customer."
+            },
+            "message1": "Check how to send a sample.",
+            "website": " Visit Website",
+            "checkbox1": "I have carefully read the shipping and sending instructions.",
+            "checkbox2": "Samples are labelled.",
+            "checkbox3": " Did you enclose a signed request sheet?",
+            "mobileOk": "Ok",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        },
+        "sampleShippingDefect": {
+            "title": "Sample Delete Notification",
+            "message": "Dear User,",
+            "message1": "We have received your sample, but there is an issue with its condition. Please contact us for further instructions on how to proceed.",
+            "message2": "Thank you",
+            "message3": "  Medbank Genetic Analysis Team",
+            "button": "Ok"
+        },
+        "sampleShippingOk": {
+            "title": "Sample Receipt Confirmation",
+            "message": "Dear User,",
+            "message1": "  We have received your sample in good condition. Our team will begin the analysis process immediately.",
+            "message2": "Thank you",
+            "message3": "  Medbank Genetic Analysis Team",
+            "button": "Ok"
+        },
+        "qualityCheck": {
+            "title": "Quality Check report",
+            "message": "Please review and acknowledge the quality check report file.",
+            "message1": "Download quality report.",
+            "pdfName": "QualityCheckReport",
+            "checkbox1Mob": "I have reviewed the Quality Check Report.",
+            "checkbox1Desk": "I have reviewed the contents of the quality check report and found no problems. I agree to proceed to the next step.",
+            "note": "Note :For resending or cancelling the sample contact us via   chat.",
+            "mobButton": "Proceed to library preparation",
+            "cancel": "Cancel",
+            "proceed": "Proceed"
+        },
+        "libraryPrep": {
+            "title": "Library Preparation Report",
+            "message": "Please review and acknowledge the library preparation report.",
+            "message1": "Download library preparation report.",
+            "pdfName": "LibraryPrepReport",
+            "checkbox1Mob": " I have reviewed the Library Preparation Report.",
+            "checkbox1Desk": "I have reviewed the contents of the library preparation report and found no problems. I agree to proceed to the next step.",
+            "note": " Note :For resending or cancelling the sample contact us via   chat.",
+            "mobButton": "Proceed",
+            "cancel": "Cancel",
+            "proceed": "Proceed"
+        },
+        "analysisRawData": {
+            "title": "Raw Data",
+            "link": "RawDataLink",
+            "checkbox1Mob": "I have reviewed the Data Link.",
+            "checkbox1Desk": "I have reviewed the Data Link.",
+            "checkbox2Mob": " I agree that Raw Data will be deleted in 3 months.",
+            "checkbox2Desk": " I agree that Raw Data will be deleted in 3 months.",
+            "proceedMob": "Proceed",
+            "proceed": "Proceed",
+            "cancel": "Cancel"
+        },
+        "analysisSpecification": {
+            "title": "Analysis Specification Report",
+            "message": "Please review and acknowledge the analysis specification report.",
+            "message1": "Download report.",
+            "pdfName": "Analysis Specification",
+            "checkbox1Mob": " I have reviewed the Analysis Specification Report",
+            "checkbox1Desk": "I have reviewed the contents of the analysis specification report and found no problems.",
+            "mobButton": "Proceed",
+            "cancel": "Cancel",
+            "proceed": "Proceed"
+        },
+        "invoice": {
+            "title": "Invoice",
+            "message": "Download invoice.",
+            "pdfTitle": "Receipt.pdf",
+            "checkboxMob": "I have reviewed the Invoice.",
+            "checkboxDesk": "I have reviewed the Invoice.",
+            "mobButton": "Proceed",
+            "cancel": "Cancel",
+            "proceed": "Confirm"
+        },
+        "payment": {
+            "title": "Download Receipt",
+            "pdfTitle": "Receipt.pdf",
+            "pdfSize": "1.2MB",
+            "back": "Back",
+            "download": "Download"
+        },
+        "buttons": {
+            "requestSheet": "Request sheet sent",
+            "costEstimation": "Cost estimation",
+            "formalRequest": "Formal request",
+            "sampleShipment": "Sample Shipment",
+            "qualityCheck": "Quality check",
+            "libraryPrep": "Library report",
+            "analysisStart": "Analysis start",
+            "analysisDone": "Analysis completed",
+            "rawData": "Raw data",
+            "analysisSpecification": "Analysis Specification",
+            "invoice": "Invoice",
+            "receipt": "Receipt"
+        },
+        "chat": {
+            "title": "MedBank Team",
+            "online": "Online"
+        },
+        "orderList": {
+            "archiveTitle": "Completed Orders",
+            "title": "Order List",
+            "orderId": "Order ID",
+            "school": "Affiliation Institute",
+            "username": "Username",
+            "orderTitle": "Order Title",
+            "requestSheet": "Request Sheet",
+            "costEstimate": "Cost Estimate",
+            "formalRequest": "Formal request",
+            "sampleShipping": "Sample Shipping",
+            "qualityCheck": "Quality Check",
+            "libraryPrep": "Library Prep",
+            "analysisProgress": "Analysis Progress",
+            "analysisDone": "Analysis Done",
+            "rawData": "Raw data",
+            "analysisSpecification": "Analysis Specification",
+            "invoice": "Invoice",
+            "payment": "Payment",
+            "requestSheetIsPending": "Request Sheet",
+            "requestSheetInProgress": "Request Sheet",
+            "requestSheetIsCompleted": "Request Sheet Sent",
+            "costEstimationIsPending": "Cost Estimate",
+            "costEstimationInProgress": "Cost Estimate",
+            "costEstimationIsCompleted": "Cost Estimate",
+            "formalRequestIsPending": "Formal Request",
+            "formalRequestInProgress": "Formal Request",
+            "formalRequestIsCompleted": "Formal Request Completed",
+            "sampleShippingIsPending": "Sample Shipping",
+            "sampleShippingInProgress": "Sample Shipping",
+            "sampleShippingIsCompleted": "Sample Arrival Confirmed",
+            "qualityCheckIsPending": "Quality Check Report",
+            "qualityCheckInProgress": "Quality Check Report",
+            "qualityCheckIsCompleted": "Quality Check Report",
+            "libraryPrepIsPending": "Library Preparation",
+            "libraryPrepInProgress": "Library Preparation",
+            "libraryPrepIsCompleted": "Library Preparation ",
+            "analysisProgressIsPending": "Analysis in Progress",
+            "analysisProgressInProgress": "Analysis in Progress",
+            "analysisProgressIsCompleted": "Analysis In Progress",
+            "analysisDoneIsPending": "Analysis Done",
+            "analysisDoneInProgress": "Analysis Done",
+            "analysisDoneIsCompleted": "Analysis Completed",
+            "rawDataIsPending": "Raw Data",
+            "rawDataInProgress": "Raw Data",
+            "rawDataIsCompleted": "Raw Data",
+            "analysisSpecificationIsPending": "Analysis Specification",
+            "analysisSpecificationInProgress": "Analysis Specification",
+            "analysisSpecificationIsCompleted": "Analysis Specification",
+            "invoiceIsPending": "Invoice",
+            "invoiceInProgress": "Invoice",
+            "invoiceIsCompleted": "Invoice",
+            "paymentIsPending": "Payment",
+            "paymentInProgress": "Payment",
+            "paymentIsCompleted": "Payment"
+        },
+        "paymentList": {
+            "orderId": "Order ID",
+            "title": "Title",
+            "invoice": "Invoice Amount",
+            "payment": "Payment",
+            "receipt": "Receipt"
+        },
+        "chatMessage": {
+            "requestSheet": "The request sheet has been uploaded. Please check it out. Thank you.",
+            "costEstimate": "Hello. I checked the quotation.",
+            "formalRequest": "Hello. Based on the quotation, we would like to request a genetic analysis officially. Thank you.",
+            "sampleShipping": "Hello. I have sent samples. Thank you.",
+            "qualityCheck": "Hello. Sample check has been completed. Please review the sample check report and press the confirm button to proceed to the next step. Thank you.",
+            "libraryPrep": "Hello. Library adjustment has been completed. Please review the library adjustment report and press the confirm button to proceed to the next step. Thank you.",
+            "rawData": "Hello.The raw data has been uploaded. Please note the expiration date of the original data. Please check back from Mypage.Thank you.",
+            "analysisSpecification": "Hello.The analysis specification has been uploaded. Please check back from Mypage.Thank you.",
+            "invoice": "Hello.We will send you an invoice, please confirm it via Mypage. We will send you a receipt after confirming your payment. If you are in a hurry to receive the receipt, please contact us via chat.Thank you.",
+            "payment": "Hello.Thank you very much for using MEDBANK's genetic analysis service. We have confirmed your payment and sent you a receipt. Please check the receipt from Mypage. If you have any further questions, please feel free to contact us. We look forward to seeing you again. Thank you."
+        },
+        "notification": {
+            "requestSheet": "The request sheet has been uploaded.",
+            "formalRequest": "We have received a formal request for genetic analysis.",
+            "sampleShipping": "Sample is now shipping.",
+            "qualityCheck": "Sample check report confirmed.Please proceed to the next step.",
+            "libraryPrep": "Library adjustment report confirmed.Please proceed to the next step.",
+            "error": "System error. The Internet is not connected. Please check your connection."
+        }
+    },
+    "AdminDashboard": {
+        "requestSheet": {
+            "title": "Request Sheet",
+            "message": "Click to download the Request Sheet. Once done, review the sheet and click confirm to proceed further.",
+            "download": "Download",
+            "confirm": "Confirm",
+            "downloading": "Downloading"
+        },
+        "costEstimation": {
+            "title": "Calculate Cost",
+            "sampleId": "Sample ID",
+            "sampleName": "Sample Name",
+            "qfees": "Quality check fees",
+            "lfees": "Library adjustment fees",
+            "afees": "Next gen. sequencer analysis fees",
+            "tax": "Tax",
+            "others": "Others",
+            "total": "Total Amount",
+            "grandTotal": "Total",
+            "checkbox1": "Click to enter tax percent.",
+            "checkbox2": "Click to enter other amount.",
+            "note": " Note: The tax amount is subjected to the country and region. Other charges may include shipping or handling fees.",
+            "back": "Back",
+            "generate": "Generate"
+        },
+        "costEstimationConfirm": {
+            "title": "Success!",
+            "message": "You have successfully sent the Cost Estimate Sheet.",
+            "button": "OK"
+        },
+        "formalRequest": {
+            "confirmation": "Confirmation Message",
+            "message": "Your formal request has been received and an automated confirmation message has been sent to your email.",
+            "ok": "OK"
+        },
+        "sampleShipping": {
+            "title": "Confirmation Message",
+            "message": "Please confirm the condition of the received sample",
+            "defectDesk": "Sample Defect Notification",
+            "confirmDesk": "Sample Receipt Confirmation",
+            "defectMob": "Sample Defect",
+            "confirmMob": "Sample Receipt"
+        },
+        "deletePopup": {
+            "title": "Sample Delete Notification",
+            "message": "Dear User,",
+            "message1": "We have received your sample, but there is an issue with its condition. Please contact us for further instructions on how to proceed.",
+            "message2": "Thank you",
+            "message3": "  Medbank Genetic Analysis Team",
+            "button": "Ok"
+        },
+        "confirmPopup": {
+            "title": "Sample Receipt Confirmation",
+            "message": "Dear User,",
+            "message1": "  We have received your sample in good condition. Our team will begin the analysis process immediately.",
+            "message2": "Thank you",
+            "message3": "  Medbank Genetic Analysis Team",
+            "button": "Ok"
+        },
+        "qualityCheck": {
+            "title": "Upload Quality Check Report",
+            "drag": "Drag and drop or",
+            "drag1": "Choose file",
+            "drag2": "to upload",
+            "file": "File Selected",
+            "uploading": "Uploading",
+            "back": "Back",
+            "upload": "Upload"
+        },
+        "libraryPrep": {
+            "title": "Upload Library Preparation Report",
+            "drag": "Drag and drop or",
+            "drag1": "Choose file",
+            "drag2": "to upload",
+            "file": "File Selected",
+            "uploading": "Uploading",
+            "back": "Back",
+            "upload": "Upload"
+        },
+        "analysisProgress": {
+            "title": "Confirmation Message",
+            "message": "Start the Analysis.",
+            "cancel": "Cancel",
+            "start": "Start"
+        },
+        "analysisDone": {
+            "title": "Confirmation Message",
+            "message": "Analysis has completed.",
+            "cancel": "Cancel",
+            "submit": "Submit"
+        },
+        "analysisRawData": {
+            "title": "Raw Data",
+            "link": " Paste data link",
+            "back": "Back",
+            "send": "Send"
+        },
+        "analysisSpecification": {
+            "title": "Analysis Specification",
+            "drag": "Drag and drop or",
+            "drag1": "Choose file",
+            "drag2": "to upload",
+            "file": "File Selected",
+            "uploading": "Uploading",
+            "back": "Back",
+            "upload": "Upload"
+        },
+        "invoice": {
+            "title": "Calculate Cost",
+            "sampleId": "Sample ID",
+            "sampleName": "Sample Name",
+            "qfees": "Quality check fees",
+            "lfees": "Library adjustment fees",
+            "afees": "Next gen. sequencer analysis fees",
+            "tax": "Tax",
+            "others": "Others",
+            "total": "Total Amount",
+            "grandTotal": "Total",
+            "checkbox1": "Click to enter tax percent.",
+            "checkbox2": "Click to enter other amount.",
+            "note": " Note: The tax amount is subjected to the country and region. Other charges may include shipping or handling fees.",
+            "back": "Back",
+            "generate": "Generate"
+        },
+        "invoice1": {
+            "title": "Success!",
+            "message": "You have successfully sent the Invoice.",
+            "ok": "OK"
+        },
+        "payment": {
+            "title": "Upload Receipt",
+            "drag": "Drag and drop or",
+            "drag1": "Choose file",
+            "drag2": "to upload",
+            "file": "File Selected",
+            "uploading": "Uploading",
+            "back": "Back",
+            "upload": "Upload"
+        },
+        "buttons": {
+            "request": "request",
+            "sheetSent": "Sheet Sent",
+            "requestSheet": "Request sheet sent",
+            "costEstimation": "Cost estimation",
+            "formalRequest": "Formal request",
+            "sampleRecieved": "Sample recieved",
+            "qualityCheck": "Quality check",
+            "libraryPrep": "Library report",
+            "analysisStart": "Analysis start",
+            "analysisDone": "Analysis completed",
+            "rawData": "Raw data",
+            "analysisSpecification": "Analysis Specification",
+            "invoice": "Invoice",
+            "receipt": "Receipt"
+        },
+        "chat": {
+            "title": "MedBank Team",
+            "online": "Online"
+        },
+        "paymentBox": {
+            "heading": "Payment Status",
+            "orderId": "Order ID",
+            "title": "Title",
+            "affiliation": "Affiliation of Customer",
+            "userName": "Username",
+            "invoice": "Invoice Amount",
+            "receipt": "Receipt"
+        },
+        "orderList": {
+            "title": "Order List",
+            "orderId": "OrderId",
+            "orderTitle": "Order Title",
+            "requestSheet": "Request Sheet",
+            "costEstimate": "Cost Estimate",
+            "formalRequest": "Formal request",
+            "sampleShipping": "Sample Shipping",
+            "requestSheetIsPending": "Request Sheet",
+            "requestSheetInProgress": "Request Sheet",
+            "requestSheetIsCompleted": "Request Sheet Confirmed",
+            "qualityCheck": "Quality Check",
+            "libraryPrep": "Library Prep",
+            "analysisProgress": "Analysis Progress",
+            "analysisDone": "Analysis Done",
+            "rawData": "Raw data",
+            "analysisSpecification": "Analysis Specification",
+            "invoice": "Invoice",
+            "payment": "Payment",
+            "costEstimationIsPending": "Cost Estimate",
+            "costEstimationInProgress": "Cost Estimate Sent",
+            "costEstimationIsCompleted": "Cost Estimate Sent",
+            "formalRequestIsPending": "Formal Request",
+            "formalRequestInProgress": "Formal Request",
+            "formalRequestIsCompleted": "Formal Request",
+            "sampleShippingIsPending": "Sample Shipping",
+            "sampleShippingInProgress": "Sample Shipping",
+            "sampleShippingIsCompleted": "Sample Receipt Notification Sent",
+            "qualityCheckIsPending": "Quality Check",
+            "qualityCheckInProgress": "Quality Check Report Sent",
+            "qualityCheckIsCompleted": "Confirmation Received ",
+            "libraryPrepIsPending": "Library Prep",
+            "libraryPrepInProgress": "Library Prep Sent",
+            "libraryPrepIsCompleted": "Confirmation Received ",
+            "analysisProgressIsPending": "Analysis Start",
+            "analysisProgressInProgress": "Analysis In Progress",
+            "analysisProgressIsCompleted": "Analysis In Progress",
+            "analysisDoneIsPending": "Is Pending",
+            "analysisDoneInProgress": "In Progress",
+            "analysisDoneIsCompleted": "Analysis Completed",
+            "rawDataIsPending": "Raw Data",
+            "rasDataInProgress": "Raw Data",
+            "rawDataIsCompleted": "Raw Data",
+            "analysisSpecificationIsPending": "Analysis Specification",
+            "analysisSpecificationInProgress": "Analysis Specification",
+            "analysisSpecificationIsCompleted": "Analysis Specification",
+            "invoiceIsPending": "Invoice",
+            "invoiceInProgress": "Invoice",
+            "invoiceIsCompleted": "Invoice",
+            "paymentIsPending": "Payment",
+            "paymentInProgress": "Payment",
+            "paymentIsCompleted": "Payment"
+        },
+        "paymentList": {
+            "mainTitle": "Payment Status",
+            "orderId": "Order ID",
+            "title": "Title",
+            "affiliation": "Affiliation of Customer",
+            "userName": "Username",
+            "invoice": "Invoice Amount",
+            "payment": "Payment",
+            "receiptPending": "Send Receipt",
+            "receiptCompleted": "Receipt Sent Completed"
+        },
+        "customerList": {
+            "title": "Customer List",
+            "memberId": "Member ID",
+            "affiliation": "Affiliation",
+            "userName": "Username",
+            "country": "Country",
+            "address": "Address"
+        },
+        "sampleList": {
+            "title": "Sample List",
+            "sampleNumber": "Sample Number",
+            "sampleName": "Sample Name",
+            "affiliation": "Affiliation of Customer",
+            "userName": "Username",
+            "qualityCheck": "Quality Check",
+            "libraryPrep": "Library Preparation",
+            "analysisReport": "Analysis Report",
+            "qualityPending": "Quality Check Report",
+            "qualityProgress": "Quality Check Report",
+            "qualityCompleted": "Confirmation Received",
+            "libraryPending": "Library Preparation",
+            "libraryProgress": "Library Preparation",
+            "libraryCompleted": "Confirmation Received",
+            "analysisPending": "Analysis Start",
+            "analysisProgress": "Analysis Start",
+            "analysisCompleted": "Analysis Progress"
+        },
+        "chatMessage": {
+            "requestSheet": "Thank you for uploading the request sheet. Please be patient while we prepare a quotation for you.",
+            "costEstimate": "Thank you for your patience. We have prepared a quotation for you. After reviewing it, if you have any questions about the contents, please feel free to contact us via chat. If you are satisfied with the quotation, please click the formal request button to complete your request. After that, we will ask you to send us the samples.",
+            "formalRequest": "Thank you very much for your support. We have officially accepted your request for genetic analysis. Thank you very much for your request. As for the next steps, we will ask you to send us the samples. Please refer to this page for more information about sending samples. ＜URL> For those who have ordered packing materials for the samples with the request form, we will send them within two business days from the date of receipt of this message.Please be patient for a while until they arrive. If you have any questions, please feel free to contact us. Thank you.",
+            "sampleDefect": "Hello. We would like to confirm some issues regarding the samples we have received. Thank you.",
+            "sampleGood": "Hello. We have received the samples without any problems. We will now conduct the quality check. We will tell you again after the quality check process. Thank you.",
+            "qualityCheck": "Hello. Sample check has been completed. Please review the sample check report and press the confirm button to proceed to the next step. Thank you.",
+            "libraryPrep": "Hello. Library adjustment has been completed. Please review the library adjustment report and press the confirm button to proceed to the next step. Thank you.",
+            "rawData": "Hello.The raw data has been uploaded. Please note the expiration date of the original data. Please check back from Mypage.Thank you.",
+            "analysisSpecification": "Hello.The analysis specification has been uploaded. Please check back from Mypage.Thank you.",
+            "invoice": "Hello.We will send you an invoice, please confirm it via Mypage. We will send you a receipt after confirming your payment. If you are in a hurry to receive the receipt, please contact us via chat.Thank you.",
+            "payment": "Hello.Thank you very much for using MEDBANK's genetic analysis service. We have confirmed your payment and sent you a receipt. Please check the receipt from Mypage. If you have any further questions, please feel free to contact us. We look forward to seeing you again. Thank you."
+        },
+        "notification": {
+            "costEstimation": "The quotation has been uploaded.",
+            "formalRequest": "Your request has been received. Please send your samples.",
+            "qualityCheck": "Sample check report uploaded.",
+            "libraryPrep": "Library adjustment report uploaded.",
+            "analysisStart": "Analysis has started.",
+            "analysisDone": "Analysis has been completed.",
+            "rawData": "The raw data has been received. It is available for download.",
+            "analysisSpecification": "The analysis specification has been received. It is available for download.",
+            "invoice": "The invoice has been received. It is available for download.",
+            "payment": "Receipt received. Thank you very much for using our services."
+        }
+    },
+    "tutorial": {
+        "message1": "Welcome to Medbank",
+        "message1-2": "Hello User!",
+        "message2": "Click on the button to create a new order.",
+        "message3": "Number of Order Pending.",
+        "message4": "Number of Orders that are In progress.",
+        "message5": "Number of Orders that are successfully completed.",
+        "back": "Back",
+        "next": "Next",
+        "finish": "Finish"
+    },
+    "quotation": {
+        "title": "Quotation",
+        "sampleNumber": "Sample ID",
+        "sampleName": "Sample Name",
+        "sampleCheckPrice": "Sample check price",
+        "libraryPrepPrice": "library preparation price",
+        "analysisFees": "NGS fee",
+        "tax": "Tax",
+        "others": "Others",
+        "total": "Total Amount",
+        "overAllTotal": "Overall Total",
+        "invoiceNumber": "Invoice Number",
+        "name": "Name",
+        "city": "City/Town Address",
+        "postalCode": "Postal Code",
+        "date": "Date",
+        "companyName1": "MEDBANK PTE.LTD.",
+        "companyAddress1": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",
+        "payee1": "DBS Bank code7171 Account number 0721214571",
+        "companyName2": "MEDBANK PTE.LTD.",
+        "companyAddress2": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",
+        "payee2": "OCBC Bank code7339 Account number 601892219001"
+    },
+    "quotationInvoice": {
+        "title": "Receipt",
+        "sampleNumber": "Sample ID",
+        "sampleName": "Sample Name",
+        "sampleCheckPrice": "Sample check price",
+        "libraryPrepPrice": "library preparation price",
+        "analysisFees": "NGS fee",
+        "tax": "Tax",
+        "others": "Others",
+        "total": "Total Amount",
+        "overAllTotal": "Overall Total",
+        "invoiceNumber": "Invoice Number",
+        "name": "Name",
+        "city": "City/Town Address",
+        "postalCode": "Postal Code",
+        "date": "Date",
+        "companyName1": "MEDBANK PTE.LTD.",
+        "companyAddress1": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",
+        "payee1": "Mitsubishi UFJ bank Osaka branch Futsu 1234567",
+        "companyName2": "MEDBANK PTE.LTD.",
+        "companyAddress2": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",
+        "payee2": "OCBC Bank code7339 Account number 601892219001"
+    }
+}

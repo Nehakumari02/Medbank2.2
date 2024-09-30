@@ -1,0 +1,10 @@
+{
+    "Header": {
+        "home":"ホーム",
+        "about":"About Us",
+        "services":"Services",
+        "sampleShipping":"Sample Shipping",
+        "strength":"Strength",
+        "contact":"Contact"
+    }
+}

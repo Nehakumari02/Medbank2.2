@@ -2140,7 +2140,7 @@ const NewOrderBox = () => {
                             <td className="py-[12px] md:w-[98px] pr-[20px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2"
+                                className="border rounded-md lg:w-full p-2"
                                 onChange={(e) => handleInputChangeInvoice(index, 'id', e.target.value)}
                                 placeholder={`10${index + 1}`}
                                 value={samples1[index].id}
@@ -2149,13 +2149,13 @@ const NewOrderBox = () => {
                             <td className="md:w-[108px] py-[12px] pr-[20px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2"
+                                className="border rounded-md lg:w-full p-2"
                                 onChange={(e) => handleInputChangeInvoice(index, 'name', e.target.value)}
                                 value={samples1[index].name}
                                 placeholder={`${index === 0 ? 'Red' : index === 1 ? 'White' : 'Yellow'} mouse`}
                               />
                             </td>
-                            <td className="md:w-[156px] py-[12px]">
+                            <td className="md:w-[156px] py-[12px] pr-[10px]">
                               <div className='flex gap-[2px]'>
                                 <div className="w-[108px] flex-shrink-0 group">
                                   <input
@@ -2178,7 +2178,7 @@ const NewOrderBox = () => {
                                 </div>
                               </div>
                             </td>
-                            <td className="md:w-[156px] py-[12px]">
+                            <td className="md:w-[156px] py-[12px] pr-[10px]">
                               <div className='flex gap-[2px]'>
                                 <div className="w-[108px] flex-shrink-0 group">
                                   <input
@@ -2201,7 +2201,7 @@ const NewOrderBox = () => {
                                 </div>
                               </div>
                             </td>
-                            <td className="md:w-[156px] py-[12px]">
+                            <td className="md:w-[156px] py-[12px] pr-[10px]">
                               <div className='flex gap-[2px]'>
                                 <div className="w-[108px] flex-shrink-0 group">
                                   <input
@@ -2224,7 +2224,7 @@ const NewOrderBox = () => {
                                 </div>
                               </div>
                             </td>
-                            <td className="md:w-[108px] py-[12px] md:pr-[20px]">
+                            <td className="md:w-[108px] py-[12px] md:pr-[20px] pr-[10px]">
                               <input
                                 type="text"
                                 className="border rounded-md w-full p-2 bg-[#33333314]"
@@ -2233,10 +2233,10 @@ const NewOrderBox = () => {
                                 placeholder="%"
                               />
                             </td>
-                            <td className="md:w-[108px] py-[12px] md:pr-[20px]">
+                            <td className="md:w-[108px] py-[12px] md:pr-[20px] pr-[10px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2 bg-[#33333314]"
+                                className="border rounded-md lg:w-full p-2 bg-[#33333314]"
                                 onChange={(e) => handleInputChangeInvoice(index, 'other', e.target.value)}
                                 placeholder=""
                                 value={samples1[index].others}
@@ -2245,7 +2245,7 @@ const NewOrderBox = () => {
                             <td className="md:w-[108px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2"
+                                className="border rounded-md lg:w-full p-2"
                                 placeholder="JPY"
                                 onChange={(e) => handleInputChangeInvoice(index, 'total', e.target.value)}
                                 value={samples1[index].total}

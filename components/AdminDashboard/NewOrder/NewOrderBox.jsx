@@ -1727,7 +1727,7 @@ const NewOrderBox = () => {
                             <td className="py-[12px] md:w-[98px] pr-[20px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2"
+                                className="border rounded-md lg:w-full p-2"
                                 onChange={(e) => handleInputChange(index, 'id', e.target.value)}
                                 value={samples[index].id}
                                 placeholder={`10${index + 1}`}
@@ -1736,13 +1736,13 @@ const NewOrderBox = () => {
                             <td className="md:w-[108px] py-[12px] pr-[20px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2"
+                                className="border rounded-md lg:w-full p-2"
                                 onChange={(e) => handleInputChange(index, 'name', e.target.value)}
                                 value={samples[index].name}
                                 placeholder={`${index === 0 ? 'Red' : index === 1 ? 'White' : 'Yellow'} mouse`}
                               />
                             </td>
-                            <td className="md:w-[156px] py-[12px]">
+                            <td className="md:w-[156px] py-[12px] pr-[10px]">
                               <div className='flex gap-[2px]'>
                                 <div className="w-[108px] flex-shrink-0 group">
                                   <input
@@ -1764,7 +1764,7 @@ const NewOrderBox = () => {
                                 </div>
                               </div>
                             </td>
-                            <td className="md:w-[156px] py-[12px]">
+                            <td className="md:w-[156px] py-[12px] pr-[10px]">
                               <div className='flex gap-[2px]'>
                                 <div className="w-[108px] flex-shrink-0 group">
                                   <input
@@ -1786,7 +1786,7 @@ const NewOrderBox = () => {
                                 </div>
                               </div>
                             </td>
-                            <td className="md:w-[156px] py-[12px]">
+                            <td className="md:w-[156px] py-[12px] pr-[10px]">
                               <div className='flex gap-[2px]'>
                                 <div className="w-[108px] flex-shrink-0 group">
                                   <input
@@ -1808,7 +1808,7 @@ const NewOrderBox = () => {
                                 </div>
                               </div>
                             </td>
-                            <td className="md:w-[108px] py-[12px] md:pr-[20px]">
+                            <td className="md:w-[108px] py-[12px] md:pr-[20px] pr-[10px]">
                               <input
                                 type="text"
                                 className="border rounded-md w-full p-2 bg-[#33333314]"
@@ -1817,10 +1817,10 @@ const NewOrderBox = () => {
                                 placeholder=""
                               />
                             </td>
-                            <td className="md:w-[108px] py-[12px] md:pr-[20px]">
+                            <td className="md:w-[108px] py-[12px] md:pr-[20px] pr-[10px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2 bg-[#33333314]"
+                                className="border rounded-md lg:w-full p-2 bg-[#33333314]"
                                 onChange={(e) => handleInputChange(index, 'others', e.target.value)}
                                 placeholder=""
                               />
@@ -1828,7 +1828,7 @@ const NewOrderBox = () => {
                             <td className="md:w-[108px]">
                               <input
                                 type="text"
-                                className="border rounded-md w-full p-2"
+                                className="border rounded-md lg:w-full p-2"
                                 onChange={(e) => handleInputChange(index, 'total1', e.target.value)}
                                 placeholder=""
                                 value={samples[index].total}

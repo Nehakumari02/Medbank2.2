@@ -64,18 +64,18 @@ const authOptions = {
       
       return session;
     },
-    async redirect({ url, baseUrl, user }) {
-      const language = user?.language || 'en'; // Fallback to 'en' if language is not set
+    // async redirect({ url, baseUrl, user }) {
+    //   const language = user?.language || 'en'; // Fallback to 'en' if language is not set
     
-      if (user) {
-        if (user.role === "admin") {
-          return `${baseUrl}/${language}/Admin_Restricted/Dashboard`;
-        }
-        return `${baseUrl}/${language}/${user.id}/Dashboard`; // Default redirect for regular users
-      }
+    //   if (user) {
+    //     if (user.role === "admin") {
+    //       return `${baseUrl}/${language}/Admin_Restricted/Dashboard`;
+    //     }
+    //     return `${baseUrl}/${language}/${user.id}/Dashboard`; // Default redirect for regular users
+    //   }
       
-      return baseUrl; // Fallback redirect if user is not defined
-    }
+    //   return baseUrl; // Fallback redirect if user is not defined
+    // }
     
   },
   session: {

@@ -48,6 +48,7 @@ const NewOrderBox = () => {
   const [xhr, setXhr] = useState(null);
   const [downloadStatus, setDownloadStatus] = useState(false);
   const [abortController, setAbortController] = useState(null);
+  const [name,setName] = useState("")
 
   const { token, notificationPermissionStatus } = useFcmToken("66ea96cbb87b8baa2f3a1117");
 
@@ -1608,6 +1609,12 @@ const NewOrderBox = () => {
     }
   };
 
+  const getInitials = (name) => {
+    const names = name.split(' ');
+    const initials = names.map(n => n[0]).join('');
+    return initials.toUpperCase();
+  };
+
   useEffect(() => {
     if (sampleShippingStatus == "isPending" && formalRequestStatus == "isCompleted") {
       setActivePopup("sampleShipping");
@@ -1643,7 +1650,7 @@ const NewOrderBox = () => {
         const order = await response.json();
         const orderData = order.data
         console.log(orderData.userId)
-        setUserIdDB(orderData.userId);
+        setUserIdDB(orderData.userId._id);
         setOrderId(orderData.orderId);
         setOrderTitle(orderData.orderTitle);
         setRequestSheetStatus(orderData.requestSheetStatus);
@@ -1667,6 +1674,7 @@ const NewOrderBox = () => {
         setInvoiceLink(orderData.invoiceLink);
         setPaymentStatus(orderData.paymentStatus);
         setPaymentRecieptLink(orderData.paymentRecieptLink);
+        setName(orderData.userId.name)
         console.log(orderData)
       } catch (error) {
         console.log("fetch order error ", error)
@@ -2377,12 +2385,13 @@ const NewOrderBox = () => {
             <button onClick={handleConfirmPayment} disabled={!(paymentStatus == "inAdminProgress" || paymentStatus == "isUserCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${paymentStatus == "isPending" || paymentStatus == "inUserProgress" ? "text-[#333333]" : "text-white"} ${paymentStatus == "isPending" || paymentStatus == "inUserProgress" ? "bg-[#E2E8F0]" : paymentStatus == "inAdminProgress" || paymentStatus == "isUserCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.receipt")}</button>
           </div>
         </div>
-        <div className="w-full h-[92px] md:px-[40px] flex flex-col justify-center border-[1px] border-[#E2E8F0] rounded-md shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]">
+        <div className="w-full h-[92px] px-4 md:px-[40px] flex flex-col justify-center border-[1px] border-[#E2E8F0] rounded-md shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]">
           <div className='w-full flex items-center justify-between h-[46px] gap-[12px] font-DM-Sans font-normal text-[18px] leading-[24px] tracking-tracking-0.5'>
             <div className="flex items-start gap-[10px]">
-              <Image src={Logo} alt="logo" className="h-[46px] w-[46px]"></Image>
+              {/* <Image src={Logo} alt="logo" className="h-[46px] w-[46px]"></Image> */}
+              <div className="h-[35px] md:h-[46px] w-[35px] md:w-[46px] bg-gray-400 rounded-full text-center text-white flex items-center justify-center">{getInitials(name)}</div>
               <div className="flex flex-col items-start justify-between">
-                <span className="font-DM-Sans font-medium text-[16px] leading-[24px]">MedBank Team</span>
+                <span className="font-DM-Sans font-medium text-[16px] leading-[24px]">{name}</span>
                 <span className="font-DM-Sans font-medium text-[14px] leading-[22px] text-[#333333CC]">Online</span>
               </div>
             </div>

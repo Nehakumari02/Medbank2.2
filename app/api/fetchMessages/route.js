@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import dbConnect from "../../../lib/dbConnect";
 import Conversation from "../../../models/conversation";
 import Message from "../../../models/message";
+import User from "../../../models/user";
 
 export async function POST(req) {
   const { userId } = await req.json();
-
+  console.log("user id from frontend",userId)
   try {
     // Connect to the database
     await dbConnect();
@@ -14,6 +15,12 @@ export async function POST(req) {
     const conversation = await Conversation.findOne({
       participants: userId,
     });
+
+    const userDetails = await User.findOne({
+      _id:userId
+    })
+    .select('name')
+    .exec();
 
     if (!conversation) {
       return new NextResponse(JSON.stringify({ error: 'Conversation not found' }), {
@@ -31,7 +38,7 @@ export async function POST(req) {
     // console.log("Messages found:", messages);
 
     // Return the conversationId and messages
-    return new NextResponse(JSON.stringify({ conversationId: conversation._id, messages }), {
+    return new NextResponse(JSON.stringify({ conversationId: conversation._id, messages, userDetails }), {
       status: 200,
     });
   } catch (error) {

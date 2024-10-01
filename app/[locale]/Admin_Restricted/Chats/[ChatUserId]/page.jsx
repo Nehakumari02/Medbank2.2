@@ -17,6 +17,7 @@ const Chats = () => {
   const [chatId,setChatId] = useState("");
   const conversationIdRef = useRef(""); // Use ref to persist conversationId
   const userIdDB = "66e055de6ddc7825fbd8a103";
+  const [name,setName] = useState("")
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -45,6 +46,7 @@ const Chats = () => {
         setChatId(data.conversationId)
         conversationIdRef.current = data.conversationId; // Persist conversationId
         setMessages(data.messages)
+        setName(data.userDetails.name)
         console.log(data)
       }catch(error){
         console.log(error)
@@ -138,6 +140,12 @@ const Chats = () => {
     router.back();
   };
 
+  const getInitials = (name) => {
+    const names = name.split(' ');
+    const initials = names.map(n => n[0]).join('');
+    return initials.toUpperCase();
+  };
+
   return (
     <div className="w-full h-full p-[13px] text-[#333333]">
       <div className="bg-white w-full h-full flex flex-col md:border-[1px] py-[20px] md:border-[#E2E8F0] md:rounded-md md:shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]">
@@ -148,9 +156,10 @@ const Chats = () => {
              {backIcon} 
             </button> 
             <div className="flex items-center md:items-start gap-[10px]">
-              <Image src={Logo} alt="logo" className="h-[35px] md:h-[46px] w-[35px] md:w-[46px]"></Image>
+              {/* <Image src={Logo} alt="logo" className="h-[35px] md:h-[46px] w-[35px] md:w-[46px]"></Image> */}
+              <div className="h-[35px] md:h-[46px] w-[35px] md:w-[46px] bg-gray-400 rounded-full text-center text-white flex items-center justify-center">{getInitials(name)}</div>
               <div className="flex flex-col items-start justify-between">
-                <span className="font-DM-Sans font-medium text-[14px] md:text-[16px] leading-[24px]">MedBank Team</span>
+                <span className="font-DM-Sans font-medium text-[14px] md:text-[16px] leading-[24px]">{name}</span>
                 <span className="font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[22px] text-[#333333CC]">Online</span>
               </div>
             </div>

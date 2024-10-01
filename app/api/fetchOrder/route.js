@@ -9,7 +9,10 @@ export async function POST(req) {
     await dbConnect();
 
     // Fetch the order by orderId
-    const order = await Order.findOne({ _id:orderId }).exec();
+    const order = await Order.findOne({ _id: orderId })
+      .populate('userId', 'name') // Populate userId and select only the name field
+      .exec();
+
 
     if (!order) {
       return new NextResponse(

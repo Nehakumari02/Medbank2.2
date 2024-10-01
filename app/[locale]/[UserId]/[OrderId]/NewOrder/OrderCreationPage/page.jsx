@@ -279,7 +279,7 @@ const OrderCreationPage = () => {
                 <p className="">
                 {t("requestSheet.step2.note")}
 
-                  <a href="/MedbankSampleOrderSheet.xlsx" download  disabled={disabled} className={`${disabled ? "opacity-75" : ""} text-transparent bg-clip-text bg-gradient-to-b from-[#60b7cf] via-[#3e8da7] to-[rgba(0,62,92,0.6)] underline`}>
+                  <a href="/MedbankSampleOrderSheet.csv" download  disabled={disabled} className={`${disabled ? "opacity-75" : ""} text-transparent bg-clip-text bg-gradient-to-b from-[#60b7cf] via-[#3e8da7] to-[rgba(0,62,92,0.6)] underline`}>
                   {t("requestSheet.step2.link")}
                   </a>
                 </p>

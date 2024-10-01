@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { withAuth } from 'next-auth/middleware';
+import { NextFetchEvent, NextResponse } from 'next/server';
+import { withAuth, NextRequestWithAuth } from 'next-auth/middleware';
 
 const locales = ["en", "jn"];
 const publicPages = [
@@ -31,12 +31,7 @@ const authMiddleware = withAuth({
   },
 });
 
-// Extend NextRequest to include nextauth
-type NextRequestWithAuth = NextRequest & {
-  nextauth?: any; // Specify the type based on your authentication payload if needed
-};
-
-export default async function middleware(req: NextRequestWithAuth, event) {
+export default async function middleware(req: NextRequestWithAuth, event: NextFetchEvent) {
   const { pathname } = req.nextUrl;
 
   // Check if the path includes the locale

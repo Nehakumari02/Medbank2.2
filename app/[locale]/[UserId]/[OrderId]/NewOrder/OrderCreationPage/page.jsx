@@ -15,6 +15,7 @@ import { useTranslations } from 'next-intl'
 import useFcmToken from '@/hooks/useFCMToken'
 
 
+
 const OrderCreationPage = () => {
   const {
     orderTitle, setOrderTitle,
@@ -54,6 +55,8 @@ const OrderCreationPage = () => {
   const handleBack = () => {
     setCurrentStep((prev) => prev - 1);
   };
+
+  
 
   const handleSubmit = async () => {
     toast;
@@ -244,7 +247,7 @@ const OrderCreationPage = () => {
         </div>
         <div className="bg-[#FFFFFF] w-[90%] md:w-auto mx-[10px] md:mx-0  p-4 md:p-8 rounded-lg shadow pt-[24px] border-[#E2E8F0] border-[1px] mb-12 mt-[12px] md:mt-5">
           {currentStep === 1 && (
-            <div className='w-auto md:w-[660px]'>
+            <div className='w-auto md:w-[560px] lg:w-[660px]'>
               <div className="text-2xl font-semibold mb-4 flex items-center justify-center">{t("requestSheet.step1.title1")}</div>
               <div className="flex flex-col items-start gap-[10px] md:flex-row md:items-center justify-center md:gap-[24px]  pt-[12px] md:pt-[41px]">
                 <label htmlFor="name" className="font-DM-Sans font-normal text-[10px] md:text-lg whitespace-nowrap">
@@ -270,12 +273,13 @@ const OrderCreationPage = () => {
             </div>
           )}
           {currentStep === 2 && (
-            <div className='rounded-lg w-auto md:w-[660px]'>
+            <div className='rounded-lg w-auto md:w-[560px] lg:w-[660px]'>
               <div className="text-[16px] md:text-[22px] font-medium text-center">{t("requestSheet.step2.title1")}</div>
               <div className="text-center text-[12px] md:text-sm font-normal pt-[16px] md:pt-[41px]">
                 <p className="">
                 {t("requestSheet.step2.note")}
-                  <a href='https://docs.google.com/spreadsheets/d/1NfqRFhh0pfXbc_PYe3qFPMk6rbMxu_Frhz2QosIuZys/edit?usp=sharing'  className="text-transparent bg-clip-text bg-gradient-to-b from-[#60b7cf] via-[#3e8da7] to-[rgba(0,62,92,0.6)] underline">
+
+                  <a href="/MedbankSampleOrderSheet.xlsx" download  disabled={disabled} className={`${disabled ? "opacity-75" : ""} text-transparent bg-clip-text bg-gradient-to-b from-[#60b7cf] via-[#3e8da7] to-[rgba(0,62,92,0.6)] underline`}>
                   {t("requestSheet.step2.link")}
                   </a>
                 </p>
@@ -306,7 +310,7 @@ const OrderCreationPage = () => {
             </div>
           )}
           {currentStep === 3 && (
-            <div className="rounded-lg w-[100%] md:w-[660px]">
+            <div className="rounded-lg w-[100%] md:w-[560px] lg:w-[660px]">
               <h2 className="w-full text-[16px] md:text-[22px] font-medium md:[16px] md:mb-6 text-center">
               {t("requestSheet.step3.title1")}
               </h2>

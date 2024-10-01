@@ -37,13 +37,37 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import PaymentsSkeleton from "./PaymentsSkeleton"
+import { usePathname, useRouter } from "next/navigation"
 
 export type Payments = {
-  id: string
+  _id: string
+  userId: string
   title:string,
   invoice:string,
   payment:boolean|"inProgress"
 }
+
+interface OrderTitleCellProps {
+  userId: string;
+  orderId: string;
+  orderTitle: string;
+}
+
+const OrderTitleCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderTitle }) => {
+  const router = useRouter();
+  const language = usePathname().split("/")[1];
+
+  return (
+    <button
+      onClick={() => {
+        router.push(`/${language}/${userId}/${orderId}/OrderDetails`);
+      }}
+      className="font-DM-Sans font-medium text-[14px] leading-[24px] text-center"
+    >
+      {orderTitle === "" ? "Order..." : orderTitle}
+    </button>
+  );
+};
 
 export const columns: ColumnDef<Payments>[] = [
   // {
@@ -92,7 +116,17 @@ export const columns: ColumnDef<Payments>[] = [
         </Button>
       )
     },
-    cell: function Cell({ row }) {return( <div className="font-DM-Sans font-medium text-[14px] leading-[24px] text-center">{row.getValue("orderTitle")}</div>)},
+    cell: function Cell({ row }) {
+      console.log(row.original)
+      return( 
+    // <div className="font-DM-Sans font-medium text-[14px] leading-[24px] text-center">{row.getValue("orderTitle")}</div>
+    
+    <OrderTitleCell
+        userId={row.original.userId}
+        orderId={row.original._id}
+        orderTitle={row.getValue("orderTitle")}
+      />
+    )},
   },
   {
     accessorKey: "grandTotal1",

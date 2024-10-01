@@ -173,7 +173,6 @@ const NewOrderBox = () => {
     setOrderPopVisible(false);
     setOrderPopVisible(false);
     setSampleShippingStatus("isCompleted");
-    setQualityCheckStatus('inAdminProgress')
     updateDataInDB({
       sampleShippingStatus: "isCompleted"
     })

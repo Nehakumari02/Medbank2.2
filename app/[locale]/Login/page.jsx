@@ -52,7 +52,7 @@ const SignInPage = () => {
 
     try {
       const res = await signIn("credentials",{
-        email,password,redirect:false
+        email,password,language,redirect:false
       })
 
       console.log(res)

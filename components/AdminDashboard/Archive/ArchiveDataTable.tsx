@@ -634,14 +634,19 @@ export const ArchiveDataTable: React.FC<OrdersDataTableProps> = ({ data=[], load
           <TableHeader className="sticky">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="md:h-[54px] border-t-[1px] border-b-[1px] border-dashed text-[#333333] font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[24px] text-center">
-                {headerGroup.headers.map((header) => {
+                {headerGroup.headers.map((header,index) => {
                   return (
                     <TableHead key={header.id}
-                    className="text-center"
+                    className={`${index===1?"md:sticky md:left-[140px]":""} ${index===0?"sticky left-0":""} text-center`}
                     style={{ width: `${header.getSize()}px`,
-                    minWidth: `${header.getSize()}px`,
-                    maxWidth: `${header.getSize()}px`,
-                    flexGrow: 0}}
+                      minWidth: `${header.getSize()}px`,
+                      maxWidth: `${header.getSize()}px`,
+                      flexGrow: 0,
+                      ...(index === 0 || index === 1 ? {
+                        top: 0,
+                        background:'white'
+                      } : {})
+                    }}
                     >
                       {header.isPlaceholder
                         ? null
@@ -678,14 +683,24 @@ export const ArchiveDataTable: React.FC<OrdersDataTableProps> = ({ data=[], load
                   data-state={row.getIsSelected() && "selected"}
                   className="border-none"
                 >
-                  {row.getVisibleCells().map((cell) => (
+                  {row.getVisibleCells().map((cell,index) => (
                     <TableCell key={cell.id} 
-                    className="border-r-[1px] font-DM-Sans font-normal text-[14px] leading-[24px] text-center"
+                    className={`${index===1?"border-r-0 md:sticky md:left-[140px]":"border-r-[1px]"} ${index===0?"border-r-0 sticky left-0":""} font-DM-Sans font-normal text-[14px] leading-[24px] text-center`}
                     style={{
                       width: `${cell.column.getSize()}px`,
                       minWidth: `${cell.column.getSize()}px`,
                       maxWidth: `${cell.column.getSize()}px`,
-                      flexGrow: 0
+                      flexGrow: 0,
+                      ...(index === 0 || index === 1 ? {
+                        top: 0,
+                        background:'white',
+                      } : {}),
+                      ...(index===0?{
+                        boxShadow: "inset -1px 0 0 #EAEAEA, inset 1px 0 0 0 #EAEAEA",
+                      }:{}),
+                      ...(index===1?{
+                          boxShadow: "inset -1px 0 0 #EAEAEA, inset 0 0 0 0 #EAEAEA",
+                        }:{})
                     }}
                     >
                       {flexRender(

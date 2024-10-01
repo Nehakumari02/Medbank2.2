@@ -37,9 +37,11 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import PaymentsSkeleton from "./PaymentsSkeleton"
+import { usePathname, useRouter } from "next/navigation"
 
 export type PaymentList = {
   _id: string
+  userId: string
   orderId: string
   orderTitle: string
   paymentStatus: string
@@ -47,6 +49,28 @@ export type PaymentList = {
   Username: string
   school: string
 }
+
+interface OrderTitleCellProps {
+  userId: string;
+  orderId: string;
+  orderTitle: string;
+}
+
+const OrderTitleCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderTitle }) => {
+  const router = useRouter();
+  const language = usePathname().split("/")[1];
+
+  return (
+    <button
+      onClick={() => {
+        router.push(`/${language}/Admin_Restricted/${orderId}/NewOrder`);
+      }}
+      className="font-DM-Sans font-medium text-[14px] leading-[24px] text-center"
+    >
+      {orderTitle === "" ? "Order..." : orderTitle}
+    </button>
+  );
+};
 
 export const columns: ColumnDef<PaymentList>[] = [
   {
@@ -72,9 +96,14 @@ export const columns: ColumnDef<PaymentList>[] = [
       return(<span>{t("paymentBox.title")}</span>)
     },
     cell: function Cell({ row }) {return(
-      <div className="font-DM-Sans font-medium text-[14px] leading-[24px]">
-        {row.getValue('orderTitle')}
-      </div>
+      // <div className="font-DM-Sans font-medium text-[14px] leading-[24px]">
+      //   {row.getValue('orderTitle')}
+      // </div>
+      <OrderTitleCell
+        userId={row.original.userId}
+        orderId={row.original._id}
+        orderTitle={row.getValue("orderTitle")}
+      />
     )},
     size: 140,
     minSize: 140,

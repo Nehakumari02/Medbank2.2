@@ -172,12 +172,12 @@ const Chats = () => {
           <div className="h-[54px] pb-[10px] flex items-center gap-[10px]">
             <input
               type="text"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault()
-                  handleSendMessage()
-                }
-              }}
+              // onKeyDown={(e) => {
+              //   if (e.key === 'Enter' && !e.shiftKey) {
+              //     e.preventDefault()
+              //     handleSendMessage()
+              //   }
+              // }}
               value={message}
               onChange={handleChange}
               placeholder="Type your message"

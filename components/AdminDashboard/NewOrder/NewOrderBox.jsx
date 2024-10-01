@@ -539,7 +539,7 @@ const NewOrderBox = () => {
         const sampleNames = [];
         
         // Loop through the rows, starting from the eighth row
-        for (let i = 7; i < rows.length; i++) {
+        for (let i = 8; i < rows.length; i++) {
             const cells = rows[i].split(',');
             
             // Check if the row is not empty and has more than one cell
@@ -614,14 +614,29 @@ const NewOrderBox = () => {
   const handleInvoiceClick = async() => {
     setOrderPopVisible(true);
     setActivePopup('invoice');
-    const namesArray = await fetchSampleNames(requestSheetLink);
-    console.log("samples",namesArray)
-    const updatedSamples = namesArray.map((_, index) => {
+    // const namesArray = await fetchSampleNames(requestSheetLink);
+    // console.log("samples",namesArray)
+
+        const response = await fetch('/api/fetchQuotation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ orderId: orderIdDB }),
+        });
+
+        const costEstimationSamples = await response.json();
+        console.log(costEstimationSamples)
+
+    const updatedSamples = costEstimationSamples.data.map((costEstimationSample, index) => {
+      // console.log(costEstimationSample)
       return { 
-        name: namesArray[index] || "" , id: orderId, qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
-  });
+        name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityFees, libraryFees: costEstimationSample.libraryFees, analysisFees: costEstimationSample.analysisFees, tax: costEstimationSample.tax, others: costEstimationSample.others, total: costEstimationSample.total };
+    });
 
     setSamples1(updatedSamples);
+    const grandTotal1 = calculateGrandTotal(updatedSamples);
+    setGrandTotal1(grandTotal1);
   };
 
   const handlePaymentClick = () => {
@@ -1661,6 +1676,7 @@ const NewOrderBox = () => {
         setInvoiceLink(orderData.invoiceLink);
         setPaymentStatus(orderData.paymentStatus);
         setPaymentRecieptLink(orderData.paymentRecieptLink);
+        console.log(orderData)
       } catch (error) {
         console.log("fetch order error ", error)
       }
@@ -2154,6 +2170,7 @@ const NewOrderBox = () => {
                                   <input
                                     type="text"
                                     className="border rounded-md w-full p-2"
+                                    value={samples1[index].qualityFees}
                                     onChange={(e) => handleInputChangeInvoice(index, 'qualityFees', e.target.value)}
                                     placeholder=""
                                   />
@@ -2178,6 +2195,7 @@ const NewOrderBox = () => {
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChangeInvoice(index, 'libraryFees', e.target.value)}
                                     placeholder=""
+                                    value={samples1[index].libraryFees}
                                   />
                                 </div>
                                 <div className="w-[66px] flex-shrink-0">
@@ -2200,6 +2218,7 @@ const NewOrderBox = () => {
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChangeInvoice(index, 'analysisFees', e.target.value)}
                                     placeholder=""
+                                    value={samples1[index].analysisFees}
                                   />
                                 </div>
                                 <div className="w-[66px] flex-shrink-0">
@@ -2229,6 +2248,7 @@ const NewOrderBox = () => {
                                 className="border rounded-md w-full p-2 bg-[#33333314]"
                                 onChange={(e) => handleInputChangeInvoice(index, 'other', e.target.value)}
                                 placeholder=""
+                                value={samples1[index].others}
                               />
                             </td>
                             <td className="md:w-[108px]">

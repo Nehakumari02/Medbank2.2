@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import HomePageSectionHeader2 from '../../../../components/HomePageSectionHeader2'
 import Orderflow2 from '../../../../public/Images/Home/Orderflow2.png'
@@ -18,10 +19,12 @@ import Link from 'next/link'
 import SnackBar from '../../../../components/SnackBar'
 import { useTranslations } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
+import { usePathname, useRouter } from 'next/navigation';
 
 const OrderFlow = ({params:{locale}}) => {
-    unstable_setRequestLocale(locale);
+    //unstable_setRequestLocale(locale);
     const t = useTranslations("OrderFlow");
+    const language = usePathname().split("/")[1];
     return (
         <section className='pl-[38px] pr-[24px] md:pl-[156px] md:pr-[95px] w-full flex flex-col justify-center items-center'>
             <div className='max-w-[1056px] w-full flex flex-col items-start'>
@@ -44,7 +47,7 @@ const OrderFlow = ({params:{locale}}) => {
                             br: () => <br />
                         })}
                         <div className='pt-[6px] md:pt-[12px]'>
-                        <Link href="/Signup" className="h-[40px] w-[117px] rounded-[6px] flex items-center justify-center gradient-primary text-white">{t("button")}</Link>
+                        <Link href={`/${language}/Signup`} className="h-[40px] w-[117px] rounded-[6px] flex items-center justify-center gradient-primary text-white">{t("button")}</Link>
                         </div>
                     </div>
                     <br />

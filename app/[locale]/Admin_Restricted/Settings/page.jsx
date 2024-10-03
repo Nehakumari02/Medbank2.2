@@ -89,25 +89,25 @@ const Settings = () => {
 
 
   return (
-    <div className='w-[356px] h-[386px] md:w-[708px] md:h-[526px] flex flex-col items-center justify-center p-[12px] md:p-[36px] m-auto bg-white border-[1px] border-[#D9D9D9] rounded-[10px] shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)] md:mt-9'>
+    <div className='w-[356px] h-[386px] lg:w-[708px] lg:h-[526px] flex flex-col items-center justify-center p-[12px] mt-5  lg:p-[36px] m-auto bg-white border-[1px] border-[#D9D9D9] rounded-[10px] shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)] lg:mt-9'>
       <div className='w-full text-[#333333]  text-[22px] font-DM-Sans leading-[28px] text-#333333 font-bold flex flex-col items-start'>
         {t("settings")}
       </div>
-      <div className='text-[#333333] bg-white mx-[9px] my-[12px] md:my-[24px] md:border-[1px] rounded-[10px] flex flex-col w-[322px] h-[270px] md:w-[636px] md:h-[422px]'>
-        <div className='flex flex-col md:border-r-[1px]'>
-          <div className='md:px-[24px] md:py-[15px] w-full md:border-b-[1px] font-DM-Sans text-[14px] md:text-base font-normal leading-6'>
+      <div className='text-[#333333] bg-white mx-[9px] my-[12px] lg:my-[24px] lg:border-[1px] rounded-[10px] flex flex-col w-[322px] h-[270px] lg:w-[636px] lg:h-[422px]'>
+        <div className='flex flex-col lg:border-r-[1px]'>
+          <div className='lg:px-[24px] lg:py-[15px] w-full lg:border-b-[1px] font-DM-Sans text-[14px] lg:text-base font-normal leading-6'>
             {t("personalInfo.personalInfo")}
           </div>
           <div className='flex flex-col'>
-            <div className='md:px-[24px] py-[12px] md:py-[29px] w-full flex flex-col gap-[6px] md:gap-[16px]'>
-              <div className='md:flex  gap-[21px] '>
+            <div className='lg:px-[24px] py-[12px] lg:py-[29px] w-full flex flex-col gap-[6px] lg:gap-[16px]'>
+              <div className='lg:flex  gap-[21px] '>
                 <div className="flex flex-col pb-[12px]">
-                  <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
+                  <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] lg:text-sm mb-[6px] lg:mb-4">
                     Full Name
                   </label>
-                  <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
-                    <div className={`w-[322px] md:w-[279px] rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
-                      <input className="w-full p-[10px] text-black md:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
+                  <div className='group w-full h-[35px] lg:h-[46px] flex items-center justify-center flex-col'>
+                    <div className={`w-[322px] lg:w-[279px] rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
+                      <input className="w-full p-[10px] text-black lg:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] lg:text-[16px] leading-[16px] lg:leading-[24px]"
                         placeholder="David John"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -119,12 +119,12 @@ const Settings = () => {
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <label htmlFor="phone" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
+                  <label htmlFor="phone" className="font-DM-Sans font-medium text-[10px] lg:text-sm mb-[6px] lg:mb-4">
                     {t("contactInfo.phone")}
                   </label>
-                  <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
-                    <div className={`w-[322px] md:w-[279px] rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
-                      <input className="w-full p-[10px] text-black md:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
+                  <div className='group w-full h-[35px] lg:h-[46px] flex items-center justify-center flex-col'>
+                    <div className={`w-[322px] lg:w-[279px] rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
+                      <input className="w-full p-[10px] text-black lg:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] lg:text-[16px] leading-[16px] lg:leading-[24px]"
                         placeholder="+990 3343 7865"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -136,13 +136,13 @@ const Settings = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col w-[322px] md:w-[580px]">
-                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
+              <div className="flex flex-col w-[322px] lg:w-[580px]">
+                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] lg:text-sm mb-[6px] lg:mb-4">
                   {t("contactInfo.email")}
                 </label>
-                <div className='group h-[35px] md:h-[46px] '>
+                <div className='group h-[35px] lg:h-[46px] '>
                   <div className={`rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
-                    <input className="w-full p-[10px] text-black md:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
+                    <input className="w-full p-[10px] text-black lg:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] lg:text-[16px] leading-[16px] lg:leading-[24px]"
                       placeholder="devidjond45@gmail.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -153,9 +153,9 @@ const Settings = () => {
                   </div>
                 </div>
               </div>
-              <div className='flex items-center justify-end gap-[10px] md:gap-[12px] pt-[12px] md:pt-11'>
-                <button className='h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] text-[#333333] font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px] '>{t("contactInfo.cancel")}</button>
-                <button onClick={handleSave} className='h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]'>Save</button>
+              <div className='flex items-center justify-end gap-[10px] lg:gap-[12px] pt-[12px] lg:pt-11'>
+                <button className='h-[40px] lg:h-[48px] w-[96px] lg:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] text-[#333333] font-DM-Sans font-medium text-[12px] lg:text-[16px] text-center leading-[24px] '>{t("contactInfo.cancel")}</button>
+                <button onClick={handleSave} className='h-[40px] lg:h-[48px] w-[96px] lg:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] lg:text-[16px] text-center leading-[24px]'>Save</button>
               </div>
             </div>
           </div>

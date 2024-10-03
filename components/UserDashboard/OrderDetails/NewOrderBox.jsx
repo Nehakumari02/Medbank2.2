@@ -2,7 +2,6 @@
 import { useOrder } from '@/contexts/OrderContext'
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from 'react'
-import { useSession } from "next-auth/react";
 import FolderIcon from "../../../public/dashboard/folder.png"
 import Image from 'next/image';
 import Logo from '@/public/Images/Home/logo.png'
@@ -16,7 +15,6 @@ const NewOrderBox = () => {
   const orderIdDB = usePathname().split("/")[3]
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
   const language = usePathname().split("/")[1];
-  const { data: session } = useSession();
   const orderPopUpBoxRef = useRef(null);
   const [orderPopVisible, setOrderPopVisible] = useState(false);
   const [activePopup, setActivePopup] = useState('');
@@ -42,7 +40,7 @@ const NewOrderBox = () => {
   } = useOrder();
 
   const handleOrderCreation = () => {
-    router.push(`/${language}/${session.user.id}/${orderIdDB}/OrderDetails/OrderCreationPage`)
+    router.push(`/${language}/${842508}/${orderIdDB}/OrderDetails/OrderCreationPage`)
   }
   const handleCostEstimateClick = () => {
     setOrderPopVisible(true);

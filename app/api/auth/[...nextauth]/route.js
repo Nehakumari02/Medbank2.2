@@ -66,8 +66,9 @@ const authOptions = {
     },
     // async redirect({ url, baseUrl, user }) {
     //   const language = user?.language || 'en'; // Fallback to 'en' if language is not set
-    
+    //   console.log(url,baseUrl,user)
     //   if (user) {
+        
     //     if (user.role === "admin") {
     //       return `${baseUrl}/${language}/Admin_Restricted/Dashboard`;
     //     }

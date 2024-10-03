@@ -5,7 +5,6 @@ import {dashboardIcon,dashboardSelectedIcon,newOrderIcon,newOrderSelectedIcon,or
 import { usePathname, useRouter } from "next/navigation";
 import { useSidebarContext } from "@/contexts/SidebarContext";
 import { useTranslations } from "next-intl";
-import { useSession } from "next-auth/react";
 
 const MobileBottomNav = () => {
   const [profilePicture, setProfilePicture] = useState('');
@@ -15,8 +14,7 @@ const MobileBottomNav = () => {
   const language = usePathname().split("/")[1];
   const userId = usePathname().split("/")[2];
   const t = useTranslations("UserSideBar");
-  const {data:session} = useSession();
-
+  
   const menuItems = [
     {
       text: t("dashboard"),

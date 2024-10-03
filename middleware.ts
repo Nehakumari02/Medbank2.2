@@ -1,5 +1,4 @@
-import { NextFetchEvent, NextResponse } from 'next/server';
-import { withAuth, NextRequestWithAuth } from 'next-auth/middleware';
+import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 
 const locales = ["en", "jn"];
 const publicPages = [
@@ -20,19 +19,12 @@ const publicPages = [
   '/Admin_Signup',
 ];
 
-// Create authorization middleware
-const authMiddleware = withAuth({
-  secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    authorized: async ({ token }) => !!token,
-  },
-  pages: {
-    signIn: '/en/Login',
-  },
-});
-
-export default async function middleware(req: NextRequestWithAuth, event: NextFetchEvent) {
+export default async function middleware(req: NextRequest, event: NextFetchEvent) {
   const { pathname } = req.nextUrl;
+
+  // Manually check for the presence of a token in the headers or cookies
+  const token = req.headers.get('Authorization')?.split(' ')[1] || req.cookies.get('medbank_user_token')?.value;
+  console.log("Token:", token);
 
   // Check if the path includes the locale
   const hasLocale = locales.some(locale => pathname.startsWith(`/${locale}`));
@@ -53,17 +45,13 @@ export default async function middleware(req: NextRequestWithAuth, event: NextFe
     return NextResponse.redirect(new URL('/en', req.url));
   }
 
-  // If path is not public and does not contain locale, redirect to /en
-  if (!isPublicPage && !hasLocale) {
-    return NextResponse.redirect(new URL('/en', req.url));
+  // If the page is not public and the user does not have a token, redirect to login
+  if (!isPublicPage && !token) {
+    console.log("no token found")
+    return NextResponse.redirect(new URL('/en/Login', req.url));
   }
 
-  // If not a public page, apply the auth middleware
-  if (!isPublicPage) {
-    return authMiddleware(req, event); // Pass event
-  }
-
-  // Allow the request to continue if it's a public page
+  // Allow the request to continue if it's a public page or if a valid token is present
   return NextResponse.next();
 }
 

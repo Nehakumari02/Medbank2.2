@@ -36,7 +36,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { usePathname, useRouter } from "next/navigation"
-import { useSession } from "next-auth/react"
 import { useTranslations } from 'next-intl'
 import ArchiveSkeleton from "./ArchiveSkeleton"
 

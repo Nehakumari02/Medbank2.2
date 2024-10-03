@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import {signIn, useSession} from 'next-auth/react';
+import {signIn} from 'next-auth/react';
 import { toast } from '@/hooks/use-toast';
 
 const SignInPage = () => {
@@ -19,7 +19,6 @@ const SignInPage = () => {
   const [password, setPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
-  const {data:session} = useSession();
   // console.log(session)
 
   const handleChange = (e) => {
@@ -51,12 +50,20 @@ const SignInPage = () => {
     e.preventDefault();
 
     try {
-      const res = await signIn("credentials",{
-        email,password,language,redirect:false
-      })
+      // const res = await signIn("credentials",{
+      //   email,password,language,redirect:false
+      // })
 
-      console.log(res)
-      if(res.error){
+      const res = await fetch('/api/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email,password}),
+      });
+
+      
+      if(res.status==401){
         toast({
           variant:'error',
           title:'Error',
@@ -64,13 +71,14 @@ const SignInPage = () => {
         })
         return;
       }
-      if(res.ok){
+      if(res.status==200){
+        const userData = await res.json();
+        router.push(`/${language}/${userData.userId}/Dashboard`);
         toast({
           variant:"success",
           title:"Success",
           description:"login Successfull..."
         })
-        router.push(`/${language}/${session.user.id}/Dashboard`)
       }
     } catch (error) {
       toast({

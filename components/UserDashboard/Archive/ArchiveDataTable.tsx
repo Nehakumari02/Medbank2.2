@@ -37,7 +37,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { usePathname, useRouter } from "next/navigation"
-import { useSession } from "next-auth/react"
 import ArchiveSkeleton from "./ArchiveSkeleton"
 
 interface OrderTitleCellProps {

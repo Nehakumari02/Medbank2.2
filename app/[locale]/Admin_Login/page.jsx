@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import {signIn, useSession} from 'next-auth/react'
+import {signIn} from 'next-auth/react'
 
 const SignInPage = () => {
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
@@ -18,7 +18,6 @@ const SignInPage = () => {
   const [password, setPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
-  const {data:session} = useSession();
   // console.log(session)
 
   const handleChange = (e) => {

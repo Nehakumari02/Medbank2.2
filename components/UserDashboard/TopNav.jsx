@@ -6,14 +6,12 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Logo from "../../public/Images/Home/logo.png";
-import { useSession } from 'next-auth/react';
 
 const TopNav = () => {
   const path = usePathname().split("/")[3];
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
   const language = usePathname().split("/")[1];
   const router = useRouter();
-  const {data:session} = useSession();
   const userIdDB = usePathname().split("/")[2];
   const t = useTranslations("TopNavBar");
   const [disabled, setDisabled] = useState(false);
@@ -75,7 +73,7 @@ const TopNav = () => {
           <ul className="flex flex-col items-start gap-[12px]">
           <li>
             <button
-              onClick={() => {router.push(`/${language}/${session.user.id}/Settings`);handleMenu()}}
+              onClick={() => {router.push(`/${language}/${userIdDB}/Settings`);handleMenu()}}
               className={`h-[40px] w-full flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px] ${path=="Settings"?"border-black border-b-[2px]":""}`}
             >
               {settingsIcon}
@@ -84,7 +82,7 @@ const TopNav = () => {
           </li>
           <li>
             <button
-              onClick={() => {router.push(`/${language}/${session.user.id}/Logout`);handleMenu()}}
+              onClick={() => {router.push(`/${language}/${userIdDB}/Logout`);handleMenu()}}
               className={`h-[40px] w-full flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px]  ${path=="Logout"?"border-black border-b-[2px]":""}`}
             >
               {logOutIcon}

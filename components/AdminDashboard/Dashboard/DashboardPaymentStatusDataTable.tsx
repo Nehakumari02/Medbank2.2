@@ -37,7 +37,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { usePathname, useRouter } from "next/navigation"
-import { useSession } from "next-auth/react"
 import Link from "next/link"
 import { stat } from "fs"
 import PaymentsSkeleton from "../Payments/PaymentsSkeleton"

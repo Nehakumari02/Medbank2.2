@@ -33,14 +33,14 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className={cn(locale === 'jn' ? JNFont.variable : DMSans.variable, "text-black")}>
-        <AuthProvider>
+        {/* <AuthProvider> */}
           <NextIntlClientProvider messages={messages}>
             <SidebarContextProvider>
               <main>{children}</main>
               <Toaster />
             </SidebarContextProvider>
           </NextIntlClientProvider>
-        </AuthProvider>
+        {/* </AuthProvider> */}
       </body>
     </html>
   );

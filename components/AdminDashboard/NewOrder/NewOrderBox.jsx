@@ -1196,7 +1196,7 @@ const NewOrderBox = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId: userIdDB, message: `Dear user\n Analysis has been started for your order ${orderId}` }),
+        body: JSON.stringify({ userId: userIdDB,  message: `${t("chatMessage.analysisStart")} ${orderId} ${t("chatMessage.analysisStart1")}` }),
       });
       const response2 = await fetch('/api/send-notification', {
         method: "POST",
@@ -1239,7 +1239,7 @@ const NewOrderBox = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId: userIdDB, message: `Dear user\n Analysis has been completed for your order ${orderId}` }),
+        body: JSON.stringify({ userId: userIdDB,   message: `${t("chatMessage.analysisDone")} ${orderId} ${t("chatMessage.analysisDone1")}` }),
       });
       console.log(res)
       const response2 = await fetch('/api/send-notification', {

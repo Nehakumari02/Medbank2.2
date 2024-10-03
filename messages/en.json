@@ -1120,13 +1120,17 @@
         },
         "chatMessage": {
             "requestSheet": "Thank you for uploading the request sheet. Please be patient while we prepare a quotation for you.",
-            "costEstimate": "Thank you for your patience. We have prepared a quotation for you. After reviewing it, if you have any questions about the contents, please feel free to contact us via chat. If you are satisfied with the quotation, please click the formal request button to complete your request. After that, we will ask you to send us the samples.",
+            "costEstimate": "Medbank send cost estimation Please check it",
             "formalRequest": "Formal request has been accepted. Thank you",
             "sampleDefect": "Hello. We would like to confirm some issues regarding the samples we have received. Thank you.",
             "sampleGood": "Hello. We have received the samples without any problems. We will now conduct the quality check. We will tell you again after the quality check process. Thank you.",
             "qualityCheck": "Hello. Sample check has been completed. Please review the sample check report and press the confirm button to proceed to the next step. Thank you.",
             "libraryPrep": "Hello. Library adjustment has been completed. Please review the library adjustment report and press the confirm button to proceed to the next step. Thank you.",
             "rawData": "Hello.The raw data has been uploaded. Please note the expiration date of the original data. Please check back from Mypage.Thank you.",
+            "analysisStart":"Hello! Your Order Id",
+            "analysisStart1":"Analysis has started.",
+            "analysisDone":"Hello! Your Order Id ",
+            "analysisDone1":" Analysis has completed.",
             "analysisSpecification": "Hello.The analysis specification has been uploaded. Please check back from Mypage.Thank you.",
             "invoice": "Hello.We will send you an invoice, please confirm it via Mypage. We will send you a receipt after confirming your payment. If you are in a hurry to receive the receipt, please contact us via chat.Thank you.",
             "payment": "Hello.Thank you very much for using MEDBANK's genetic analysis service. We have confirmed your payment and sent you a receipt. Please check the receipt from Mypage. If you have any further questions, please feel free to contact us. We look forward to seeing you again. Thank you."

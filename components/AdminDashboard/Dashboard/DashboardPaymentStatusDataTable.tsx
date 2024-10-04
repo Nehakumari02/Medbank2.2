@@ -368,7 +368,7 @@ export const DashboardPaymentListDataTable: React.FC<DashboardDataTableProps> = 
             )}
           </TableBody>
         </Table>
-        <div className="w-full border-t-[1px] flex items-center justify-center pt-[4px]"><Link href={`/${language}/Admin_Restricted/Payments`} className="font-DM-Sans font-normal text-[12px] text-[#3E8DA7] leading-[24px] text-center">View full table</Link></div>
+        <div className="w-full border-t-[1px] flex items-center justify-center pt-[4px]"><Link href={`/${language}/Admin_Restricted/Payments`} className="font-DM-Sans font-normal text-[12px] text-[#3E8DA7] leading-[24px] text-center">{t("viewFullTable")}</Link></div>
       </div>
     </div>
   )

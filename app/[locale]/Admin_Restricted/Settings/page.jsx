@@ -19,7 +19,7 @@ const Settings = () => {
   const [Perfecture, setPerfecture] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
-  const t = useTranslations("Settings");
+  const t = useTranslations("AdminSettings");
   const userId = "66ea96cbb87b8baa2f3a1117";
 
   const handleSave=async(e)=>{
@@ -103,7 +103,7 @@ const Settings = () => {
               <div className='lg:flex  gap-[21px] '>
                 <div className="flex flex-col pb-[12px]">
                   <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] lg:text-sm mb-[6px] lg:mb-4">
-                    Full Name
+                  {t("personalInfo.adminName")}
                   </label>
                   <div className='group w-full h-[35px] lg:h-[46px] flex items-center justify-center flex-col'>
                     <div className={`w-[322px] lg:w-[279px] rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >

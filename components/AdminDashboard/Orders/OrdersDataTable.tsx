@@ -619,7 +619,7 @@ export const OrdersDataTable: React.FC<OrdersDataTableProps> = ({ data=[],loadin
         <span className="font-DM-Sans font-bold text-[#333333] text-[14px] md:text-[22px] leading-[28px] pl-[18px] md:pl-[40px]">{t("orderList.title")}</span>
         <div className="flex items-center gap-[2px] md:gap-[12px] md:mr-[20px] pr-[5px]">
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           // value={(table.getColumn("orderTitle")?.getFilterValue() as string) ?? ""}
           value={searchQuery}
           onChange={(event) =>{

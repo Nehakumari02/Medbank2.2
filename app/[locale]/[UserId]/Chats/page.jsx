@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Logo from "../../../../public/Images/Home/logo.png"
 import Messages from "../../../../components/AdminDashboard/Chats/Messages";
+import { useTranslations } from 'next-intl'
 
 const Chats = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -16,6 +17,7 @@ const Chats = () => {
   const [chatId,setChatId] = useState();
   const userIdDB = usePathname().split("/")[2];
   const conversationIdRef = useRef(""); // Use ref to persist conversationId
+  const t = useTranslations("UserDashboard");
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -160,13 +162,13 @@ const Chats = () => {
               <Image src={Logo} alt="logo" className="h-[35px] md:h-[46px] w-[35px] md:w-[46px]"></Image>
               <div className="flex flex-col items-start justify-between">
                 <span className="font-DM-Sans font-medium text-[14px] md:text-[16px] leading-[24px]">MedBank Team</span>
-                <span className="font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[22px] text-[#333333CC]">Online</span>
+                <span className="font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[22px] text-[#333333CC]">{t("online")}</span>
               </div>
             </div>
           </div>
           <div className="relative h-[40px] hidden md:block">
           <Input
-            placeholder="Search"
+            placeholder={t("search")}
             className="max-w-sm md:max-w-[360px] md:w-[360px] pr-[30px]"
           />
           <span className="absolute right-[0px] top-[50%] translate-y-[-50%]">{searchIcon}</span>
@@ -189,7 +191,7 @@ const Chats = () => {
               // }}
               value={message}
               onChange={handleChange}
-              placeholder="Type your message"
+              placeholder={t("typeMsg")}
               className="w-full h-[54px] bg-[#EFF4FB] outline-none px-3 rounded-md border-[1px] border-[#E2E8F0]"
             />
             <button onClick={handleSendMessage} className="h-[48px] w-[48px] p-[12.5px] rounded-md bg-[#3E8DA7]">{sendIcon}</button>

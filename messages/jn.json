@@ -589,8 +589,8 @@
     "AdminSettings": {
         "settings": "設定",
         "personalInfo": {
-            "personalInfo": "ユーザー情報",
-            "userName": "ユーザーネーム",
+            "personalInfo": "個人情報",
+            "adminName": "お名前",
             "name": "氏名",
             "school": "大学名/組織名",
             "faculty": "学部/部署",
@@ -827,12 +827,16 @@
             "paymentIsCompleted": "領収書"
         },
         "paymentList": {
+            "mainTitle": "支払い状況",
             "receipt": "領収書",
             "orderId": "発注 ID",
             "title": "発注タイトル",
             "invoice": "請求金額",
             "payment": "お支払い"
         },
+        "search":"検索",
+        "typeMsg":"メッセージを入力する...",
+        "online":"オンライン中",
         "chat": {
             "title": "MedBank Team",
             "online": "Online"
@@ -997,6 +1001,13 @@
             "back": "キャンセル",
             "upload": "アップロード"
         },
+        "basicInfo":{
+            "title":"基本情報",
+            "orderTitle":" 発注タイトル ",
+            "affiliation":"大学/研究機関名 ",
+            "userName":"ユーザー名 "
+
+        },
         "buttons": {
             "request": "request",
             "sheetSent": "Sheet Sent",
@@ -1027,6 +1038,7 @@
             "receipt": "領収書"
         },
         "orderList": {
+            "archiveTitle": "顧客一覧",
             "title": "発注一覧",
             "orderId": "発注 ID",
             "orderTitle": "発注タイトル",
@@ -1117,6 +1129,9 @@
             "country": "国",
             "address": "住所"
         },
+        "search":"検索",
+        "typeMsg":"メッセージを入力する...",
+        "online":"オンライン中",
         "chatMessage": {
             "requestSheet": "いつも大変お世話になっております。依頼シートのアップロードありがとうございます。見積書を作成いたしますので、少々お待ちください。",
             "costEstimate": "見積書をお送りしました。ご確認よろしくお願い致します",
@@ -1145,7 +1160,8 @@
             "analysisSpecification": "解析仕様書が届きました。ダウンロード可能です。",
             "invoice": "請求書が届きました。ダウンロード可能です。",
             "payment": "領収書が届きました。ご利用ありがとうございました。"
-        }
+        },
+        "viewFullTable":"すべて見る"
     },
     "tutorial": {
         "message1": "Medbankへようこそ",

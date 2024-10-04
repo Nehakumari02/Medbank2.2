@@ -2373,11 +2373,11 @@ const NewOrderBox = () => {
             <span className='font-DM-Sans font-bold text-[14px] md:text-[20px] leading-[28px]'>{orderId}</span>
           </div>
           <div className='flex flex-col gap-[12px] mt-[9px] mb-[20px]'>
-            <h1 className='text-[18px] leading-[24px] font-medium'>Basic Information</h1>
+            <h1 className='text-[18px] leading-[24px] font-medium'>{t("basicInfo.title")}</h1>
             <div className='flex flex-col gap-[6px]'>
-              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>Order Title </span>: {orderTitle}</div>
-              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>Affiliated Institution </span>: {school}</div>
-              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>Username </span>: {username}</div>
+              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>{t("basicInfo.orderTitle")} </span>: {orderTitle}</div>
+              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>{t("basicInfo.affiliation")} </span>: {school}</div>
+              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>{t("basicInfo.userName")}</span>: {username}</div>
             </div>
           </div>
           <div className='flex items-center justify-center md:justify-start gap-x-[6px] gap-y-[6px]  md:gap-x-[32px] md:gap-y-[8px] flex-wrap'>

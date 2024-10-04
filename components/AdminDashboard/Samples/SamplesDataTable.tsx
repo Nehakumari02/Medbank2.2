@@ -329,7 +329,7 @@ export const SamplesDataTable: React.FC<OrdersDataTableProps> = ({ data=[], load
           </span>
         <div className="flex items-center gap-[12px] mr-[20px] pr-[5px]">
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           // value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           value={searchQuery}
           onChange={(event) =>

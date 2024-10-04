@@ -591,7 +591,7 @@
         "settings": "Settings",
         "personalInfo": {
             "personalInfo": "Personal Information",
-            "userName": "Username",
+            "adminName": "Full Name",
             "name": "Name",
             "school": "School/Organization Name",
             "faculty": "Faculty/Department",
@@ -771,6 +771,9 @@
             "invoice": "Invoice",
             "receipt": "Receipt"
         },
+        "search":"Search",
+        "typeMsg":"Type your message",
+        "online":"Online",
         "chat": {
             "title": "MedBank Team",
             "online": "Online"
@@ -832,6 +835,7 @@
             "paymentIsCompleted": "Payment"
         },
         "paymentList": {
+            "mainTitle": "Payment Status",
             "orderId": "Order ID",
             "title": "Title",
             "invoice": "Invoice Amount",
@@ -998,6 +1002,13 @@
             "back": "Back",
             "upload": "Upload"
         },
+        "basicInfo":{
+            "title":"Basic Information",
+            "orderTitle":" Order Title             :",
+            "affiliation":"Affiliated Institution  :",
+            "userName":"Username                   :"
+
+        },
         "buttons": {
             "request": "request",
             "sheetSent": "Sheet Sent",
@@ -1028,6 +1039,7 @@
             "receipt": "Receipt"
         },
         "orderList": {
+            "archiveTitle": "Completed Orders",
             "title": "Order List",
             "orderId": "OrderId",
             "orderTitle": "Order Title",
@@ -1118,6 +1130,9 @@
             "analysisProgress": "Analysis Start",
             "analysisCompleted": "Analysis Progress"
         },
+        "search":"Search",
+        "typeMsg":"Type your message",
+        "online":"Online",
         "chatMessage": {
             "requestSheet": "Thank you for uploading the request sheet. Please be patient while we prepare a quotation for you.",
             "costEstimate": "Medbank send cost estimation Please check it",
@@ -1146,7 +1161,8 @@
             "analysisSpecification": "The analysis specification has been received. It is available for download.",
             "invoice": "The invoice has been received. It is available for download.",
             "payment": "Receipt received. Thank you very much for using our services."
-        }
+        },
+        "viewFullTable":"View full table"
     },
     "tutorial": {
         "message1": "Welcome to Medbank",

@@ -255,7 +255,7 @@ export const PaymentsDataTable: React.FC<OrdersDataTableProps> = ({ data=[], loa
         <span className="font-DM-Sans font-bold text-[#333333] md:text-[22px] md:leading-[28px] pl-[40px]">{t("paymentBox.heading")}</span>
         <div className="flex items-center gap-[12px] mr-[20px] pr-[5px]">
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           // value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           value={searchQuery}
           onChange={(event) =>

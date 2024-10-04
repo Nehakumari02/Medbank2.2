@@ -255,6 +255,7 @@ export function PaymentsDataTable({ data=[],loading }: { data: Payments[], loadi
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
+  const t = useTranslations("UserDashboard");
 
   const table = useReactTable({
     data,
@@ -279,10 +280,10 @@ export function PaymentsDataTable({ data=[],loading }: { data: Payments[], loadi
     <div className="w-full">
       <div className="rounded-md border shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)] bg-white">
       <div className="flex items-center justify-between py-4">
-        <span className="font-DM-Sans font-bold text-[#333333] md:text-[22px] md:leading-[28px] pl-[40px]">Payment Status</span>
+        <span className="font-DM-Sans font-bold text-[#333333] md:text-[22px] md:leading-[28px] pl-[40px]">{t("paymentList.mainTitle")}</span>
         <div className="flex items-center gap-[12px] mr-[20px] pr-[5px]">
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={(table.getColumn("orderTitle")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("orderTitle")?.setFilterValue(event.target.value)

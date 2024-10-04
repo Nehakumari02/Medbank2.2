@@ -622,6 +622,7 @@
         "requestSheet": {
             "title": "Order Creation",
             "step1": {
+
                 "title": "Order Details",
                 "title1": "Step 1: Order Details",
                 "label": " Order Title :",
@@ -640,6 +641,7 @@
                 "next": "Next"
             },
             "step3": {
+                "label":"Genomic Sequence ",
                 "title": "Review & Submit",
                 "title1": "Step 3: Review & Submit",
                 "summary": "Order Summary",
@@ -1187,6 +1189,8 @@
         "total": "Total Amount",
         "overAllTotal": "Overall Total",
         "invoiceNumber": "Invoice Number",
+        "quotationNumber": "Quotation Number",
+        "userDetails":"User Details",
         "name": "Name",
         "city": "City/Town Address",
         "postalCode": "Postal Code",

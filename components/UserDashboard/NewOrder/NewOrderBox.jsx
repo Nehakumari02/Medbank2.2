@@ -1067,7 +1067,7 @@ const NewOrderBox = () => {
                 </div>
               )}
               {activePopup === 'qualityCheck' && (
-                <div className='font-DM-Sans flex flex-col w-[306px] h-[300px] md:h-[507px] md:w-[564px] p-[28px] md:p-12  items-center justify-center bg-white border-[1px] border-[#D9D9D9] rounded-[10px] shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]'>
+                <div className='font-DM-Sans flex flex-col w-[306px] h-[300px] md:h-[507px] md:w-[564px] p-[12px] md:p-12  items-center justify-center bg-white border-[1px] border-[#D9D9D9] rounded-[10px] shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]'>
                   <div className='text-[22px] md:text-[32px] font-bold font-DM-Sans pb-[6px] md:pb-8 leading-[40px]'>{t("qualityCheck.title")}</div>
                   <div className='flex flex-col gap-[6px] md:gap-[8px]'>
                     <div className='text-[14px] md:text-xl font-normal leading-[24px] md:leading-[34px]'>
@@ -1094,7 +1094,7 @@ const NewOrderBox = () => {
                         </div>
 
                       </div>
-                      <button onClick={() => handleDownload(qualityCheckReportLink.split("?")[0], `QualityCheckReport.pdf`)} disabled={disabled} className={`${disabled ? "opacity-75" : ""}`}>
+                      <button onClick={() => handleDownload(qualityCheckReportLink.split("?")[0], `QualityCheckReport.pdf`)} disabled={disabled} className={`text-sm md:text-base ${disabled ? "opacity-75" : ""}`}>
                         <div className="text-red-500 cursor-pointer">
                           <Image src={downloadIcon} className='h-[13px] w-[13px]'></Image>
                         </div>
@@ -1289,7 +1289,7 @@ const NewOrderBox = () => {
                           )}
                         </div>
                       </div>
-                      <button onClick={() => handleDownload(analysisSpecificationReportLink.split("?")[0], `AnalysiSpecification.pdf`)} disabled={disabled} className={`${disabled ? "opacity-75" : ""}`}>
+                      <button onClick={() => handleDownload(analysisSpecificationReportLink.split("?")[0], `AnalysiSpecification.pdf`)} disabled={disabled} className={` text-[12px] md:text-base ${disabled ? "opacity-75" : ""}`}>
                         <div className="text-red-500 cursor-pointer">
                           <Image src={downloadIcon} className='h-[13px] w-[13px]'></Image>
                         </div>
@@ -1396,7 +1396,7 @@ const NewOrderBox = () => {
                   <div className='w-[313px] h-[154px] md:w-[490px] md:h-[203px] flex items-center justify-center border-[0.4px] border-[#60b7cf] border-dashed rounded-[6px]'>
                     <div className='flex flex-col items-center justify-center gap-[14px]'>
                       <Image className='w-[32px] h-[24px] md:w-[51px] md:h-[51px]' src={FolderIcon} alt="File"></Image>
-                      <div className='font-DM-Sans font-normal text-[10px] md:text-[14px] md:leading-[18px] text-[#606060] text-center'>
+                      <div className='font-DM-Sans font-normal text-[10px] md:text-[14px] md:leading-[18px] text-[#606060] text-center pt-[4px]'>
                         <span>{t("payment.pdfTitle")}</span><br />
                       </div>
                     </div>

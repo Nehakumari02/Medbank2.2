@@ -639,6 +639,7 @@
                 "next": "次へ"
             },
             "step3": {
+                "label":"ゲノムシーケンス",
                 "title": "確認画面&提出",
                 "title1": "Step 3: 確認画面&提出",
                 "summary": "発注サマリー",
@@ -745,7 +746,7 @@
             "pdfTitle": "Receipt.pdf",
             "checkboxMob": "請求書を確認しました。",
             "checkboxDesk": "請求書を確認しました。",
-            "mobButton": "Proceed",
+            "mobButton": "確認した",
             "cancel": "キャンセル",
             "proceed": "確認した"
         },
@@ -902,8 +903,8 @@
             "message": "受け取ったサンプルの状態を確認してください。",
             "defectDesk": "サンプル不備通知 ",
             "confirmDesk": "正常なサンプルの受領連絡",
-            "defectMob": "Sample Defect",
-            "confirmMob": "Sample Receipt"
+            "defectMob": "サンプル不備通知",
+            "confirmMob": "正常なサンプルの受領連絡"
         },
         "deletePopup": {
             "title": "サンプル受領のご連絡",
@@ -1189,6 +1190,8 @@
         "postalCode": "郵便番号",
         "date": "日付",
         "invoiceNumber": "登録番号",
+        "quotationNumber":"見積書番号",
+        "userDetails":"ユーザーの詳細",
         "name": "氏名",
         "companyName1": "MEDBANK株式会社",
         "companyAddress1": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",

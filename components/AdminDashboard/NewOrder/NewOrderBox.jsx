@@ -1712,7 +1712,7 @@ const NewOrderBox = () => {
                 </div>
               )}
               {activePopup === 'costEstimate' && (
-                <div className="bg-white rounded-md shadow-lg md:py-[26px] md:px-[12px] w-[90vw] lg:w-[1199px] mx-5 px-4 md:mx-auto my-10 font-DM-Sans md:min-h-[576px]">
+                <div className="bg-white rounded-md shadow-lg py-[10px] md:py-[26px] md:px-[12px] w-[90vw] lg:w-[1199px] mx-5 px-4 md:mx-auto my-10 font-DM-Sans md:min-h-[576px]">
                   <h2 className="text-[18px] md:text-[22px] font-medium text-center mb-4 md:mb-6">{t("costEstimation.title")}</h2>
                   <div className='border border-dashed'></div>
                   <div className='border border-dashed pt-[20px]'></div>
@@ -1974,8 +1974,8 @@ const NewOrderBox = () => {
                         </p>
                         {uploadedFile && (
                           <div className="mt-2">
-                            <p className="text-[10px] md:text-sm font-medium">{t("qualityCheck.file")}</p>
-                            {/* <p className="text-lg text-blue-600">{uploadedFile.name}</p> */}
+                            {/* <p className="text-[10px] md:text-sm font-medium">{t("qualityCheck.file")}</p> */}
+                             <p className="text-[12px] md:text-base text-[#60b7cf]">{uploadedFile.name}</p> 
                           </div>
                         )}
                         {uploadStatus && (
@@ -2012,8 +2012,8 @@ const NewOrderBox = () => {
                         </p>
                         {uploadedFile && (
                           <div className="mt-2">
-                            <p className="text-[10px] md:text-sm font-medium">{t("libraryPrep.file")}</p>
-                            {/* <p className="text-lg text-blue-600">{uploadedFile.name}</p> */}
+                            {/* <p className="text-[10px] md:text-sm font-medium">{t("libraryPrep.file")}</p> */}
+                            <p className="text-[12px] md:text-base text-[#60b7cf]">{uploadedFile.name}</p>
                           </div>
                         )}
                         {uploadStatus && (
@@ -2101,8 +2101,8 @@ const NewOrderBox = () => {
                         </p>
                         {uploadedFile && (
                           <div className="mt-2">
-                            <p className="text-[10px] md:text-sm font-medium">{t("analysisSpecification.file")}</p>
-                            {/* <p className="text-lg text-blue-600">{uploadedFile.name}</p> */}
+                            {/* <p className="text-[10px] md:text-sm font-medium">{t("analysisSpecification.file")}</p> */}
+                            <p className="text-[12px] md:text-base text-[#60b7cf]">{uploadedFile.name}</p> 
                           </div>
                         )}
                         {uploadStatus && (
@@ -2110,9 +2110,9 @@ const NewOrderBox = () => {
                             <span className='text-[10px] w-full flex justify-between'><span>{t("analysisSpecification.uploading")}</span> <span>{uploadPercentage} %</span> </span>
                             <div className='w-full flex'>
                               <Progress value={uploadPercentage} />
-                              <div className="text-red-500 cursor-pointer" onClick={handleAbortUpload}>
+                              {/* <div className="text-red-500 cursor-pointer" onClick={handleAbortUpload}>
                                 <Image src={deleteIcon} className='h-[13px] w-[13px]'></Image>
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         )}
@@ -2126,7 +2126,7 @@ const NewOrderBox = () => {
                 </div>
               )}
               {activePopup === 'invoice' && (
-                <div className="bg-white rounded-md shadow-lg md:py-[26px] md:px-[12px] w-[90vw] lg:w-[1199px] mx-5 px-4 md:mx-auto my-10 font-DM-Sans md:min-h-[576px]">
+                <div className="bg-white rounded-md shadow-lg py-[12px] md:py-[26px] md:px-[12px] w-[90vw] lg:w-[1199px] mx-5 px-4 md:mx-auto my-10 font-DM-Sans md:min-h-[576px]">
                   <h2 className="text-[18px] md:text-[22px] font-medium text-center mb-4 md:mb-6">{t("invoice.title")}</h2>
                   <div className='border border-dashed'></div>
                   <div className='border border-dashed pt-[20px]'></div>

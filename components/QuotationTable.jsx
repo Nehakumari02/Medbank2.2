@@ -121,8 +121,8 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
             <p> <strong>{t("name")}:</strong> {userDetails.name}</p>
             <div> <strong>{t("city")}:</strong> {userDetails.city}</div>
             <span><strong>{t("postalCode")}:</strong>  {userDetails.postalCode}</span>
-            <div className=''><strong>{t("invoiceNumber")}:</strong> {orderId}</div>
-            <div><strong>{t("date")}:</strong> {formattedDate}</div>
+            <div className='pt-[8px]'><strong>{t("quotationNumber")}:</strong> {orderId}</div>
+            <div ><strong>{t("date")}:</strong> {formattedDate}</div>
           </div>
         </div>
       ) : (

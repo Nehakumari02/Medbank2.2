@@ -256,7 +256,7 @@ const OrderCreationPage = () => {
                 <div className='group w-full h-[36px] md:h-[50px] flex items-center justify-center flex-col'>
                   <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`}>
                     <input className="w-full p-[10px] text-black md:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
-                      placeholder="Order Title"
+                      placeholder={t("requestSheet.step1.label")}
                       value={orderTitle}
                       onChange={(e) => setOrderTitle(e.target.value)}
                       style={{ backgroundColor: "white", backgroundClip: "padding-box" }}
@@ -295,8 +295,8 @@ const OrderCreationPage = () => {
                     </p>
                     {uploadedFile && (
                       <div className="mt-2">
-                        <p className="text-sm md:text-base text- [#606060] font-normal"> {t("requestSheet.step2.file")}</p>
-                        {/* <p className="text-lg text-blue-600">{uploadedFile.name}</p> */}
+                        {/* <p className="text-sm md:text-base text- [#606060] font-normal"> {t("requestSheet.step2.file")}</p> */}
+                         <p className="text-xs text-[#60b7cf]">{uploadedFile.name}</p> 
                       </div>
                     )}
                   </div>
@@ -324,7 +324,7 @@ const OrderCreationPage = () => {
                   <div className='group w-full h-[36px] md:h-[50px] flex items-center justify-center flex-col'>
                     <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`}>
                       <input className="w-full p-[10px] text-black md:p-[12px] outline-none rounded-[6px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
-                        placeholder="Genomic Sequence"
+                        placeholder={t("requestSheet.step3.label")}
                         value={orderTitle}
                         onChange={(e) => setOrderTitle(e.target.value)}
                         style={{ backgroundColor: "white", backgroundClip: "padding-box" }}
@@ -344,7 +344,7 @@ const OrderCreationPage = () => {
                       </div>
                       <div>
                         <a href={URL.createObjectURL(uploadedFile)}>
-                        <span className="text-sm md:text-lg">
+                        <span className="text-sm md:text-base">
                           {uploadedFile.name.length > 20 ? `${uploadedFile.name.substring(0, 19)}...` : uploadedFile.name}
                         </span>
                           <p className="text-sm text-[#717171]">{(uploadedFile.size / 1024 / 1024).toFixed(2)} Mb</p>

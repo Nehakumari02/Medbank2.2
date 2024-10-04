@@ -46,7 +46,9 @@ const NewOrderBox = () => {
   const [xhr, setXhr] = useState(null);
   const [downloadStatus, setDownloadStatus] = useState(false);
   const [abortController, setAbortController] = useState(null);
-  const [name,setName] = useState("")
+  const [name,setName] = useState("");
+  const [school,setSchool] = useState("");
+  const [username,setUsername] = useState("");
 
   const { token, notificationPermissionStatus } = useFcmToken("66ea96cbb87b8baa2f3a1117");
 
@@ -1673,6 +1675,8 @@ const NewOrderBox = () => {
         setPaymentStatus(orderData.paymentStatus);
         setPaymentRecieptLink(orderData.paymentRecieptLink);
         setName(orderData.userId.name)
+        setUsername(orderData.userId.Username);
+        setSchool(orderData.userId.school);
         console.log(orderData)
       } catch (error) {
         console.log("fetch order error ", error)
@@ -2367,6 +2371,14 @@ const NewOrderBox = () => {
         <div>
           <div className='h-[40px] '>
             <span className='font-DM-Sans font-bold text-[14px] md:text-[20px] leading-[28px]'>{orderId}</span>
+          </div>
+          <div className='flex flex-col gap-[12px] mt-[9px] mb-[20px]'>
+            <h1 className='text-[18px] leading-[24px] font-medium'>Basic Information</h1>
+            <div className='flex flex-col gap-[6px]'>
+              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>Order Title </span>: {orderTitle}</div>
+              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>Affiliated Institution </span>: {school}</div>
+              <div className='font-normal flex'><span className='text-[14px] leading-[24px] block font-medium w-[150px]'>Username </span>: {username}</div>
+            </div>
           </div>
           <div className='flex items-center justify-center md:justify-start gap-x-[6px] gap-y-[6px]  md:gap-x-[32px] md:gap-y-[8px] flex-wrap'>
             <button onClick={handleOrderCreation} disabled={!(requestSheetStatus == "inAdminProgress" || requestSheetStatus == "isUserCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${requestSheetStatus == "isPending" || requestSheetStatus == "inUserProgress" ? "text-[#333333]" : "text-white"} ${requestSheetStatus == "isPending" || requestSheetStatus == "inUserProgress" ? "bg-[#E2E8F0]" : requestSheetStatus == "inAdminProgress" || requestSheetStatus == "isUserCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.requestSheet")}</button>

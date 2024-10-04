@@ -49,7 +49,7 @@ export async function POST(req) {
     }), {
       status: 200,
       headers: {
-        "Set-Cookie": `medbank_user_token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=7200` // Set cookie for 2 hours
+        "Set-Cookie": `medbank_user_token=${token}; HttpOnly; Path=/; Secure; SameSite=Strict; Max-Age=7200` // Set cookie for 2 hours
       }
     });
 

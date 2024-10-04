@@ -43,6 +43,7 @@ import PaymentsSkeleton from "../Payments/PaymentsSkeleton"
 
 export type PaymentList = {
   _id: string
+  userId: string
   orderId: string
   orderTitle: string
   paymentStatus: string
@@ -56,6 +57,23 @@ interface OrderTitleCellProps {
   orderId: string;
   orderTitle: string;
 }
+
+const OrderIdCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderTitle }) => {
+  const router = useRouter();
+  const language = usePathname().split("/")[1];
+
+
+  return (
+    <button
+      onClick={() => {
+        router.push(`/${language}/Admin_Restricted/${orderId}/NewOrder`);
+      }}
+      className="capitalize font-DM-Sans font-medium text-[14px] leading-[24px] text-center underline"
+    >
+      {orderTitle}
+    </button>
+  );
+};
 
 const OrderTitleCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderTitle }) => {
   const router = useRouter();
@@ -81,9 +99,14 @@ export const columns: ColumnDef<PaymentList>[] = [
       return(<span>{t("paymentBox.orderId")}</span>)
     },
     cell: function Cell({ row }) {return(
-      <div className="text-center font-DM-Sans font-medium text-[14px] leading-[24px]">
-        {row.getValue('orderId')}
-      </div>
+      // <div className="text-center font-DM-Sans font-medium text-[14px] leading-[24px]">
+      //   {row.getValue('orderId')}
+      // </div>
+      <OrderIdCell
+        userId={row.original.userId}
+        orderId={row.original._id}
+        orderTitle={row.getValue("orderId")}
+      />
     )},
     size: 140,
     minSize: 140,
@@ -97,9 +120,14 @@ export const columns: ColumnDef<PaymentList>[] = [
       return(<span>{t("paymentBox.title")}</span>)
     },
     cell: function Cell({ row }) {return(
-      <div className="font-DM-Sans font-medium text-[14px] leading-[24px]">
-        {row.getValue('orderTitle')}
-      </div>
+      // <div className="font-DM-Sans font-medium text-[14px] leading-[24px]">
+      //   {row.getValue('orderTitle')}
+      // </div>
+      <OrderTitleCell
+        userId={row.original.userId}
+        orderId={row.original._id}
+        orderTitle={row.getValue("orderTitle")}
+      />
     )},
     size: 140,
     minSize: 140,

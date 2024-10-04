@@ -10,7 +10,7 @@ export async function POST(req) {
 
     // Fetch the order by orderId
     const order = await Order.findOne({ _id: orderId })
-      .populate('userId', 'name') // Populate userId and select only the name field
+      .populate('userId',  ['name', 'Username', 'school']) // Populate userId and select only the name field
       .exec();
 
 

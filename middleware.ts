@@ -46,10 +46,10 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
   }
 
   // If the page is not public and the user does not have a token, redirect to login
-  //if (!isPublicPage && !token) {
-   // console.log("no token found")
-    //return NextResponse.redirect(new URL('/en/Login', req.url));
-  //}
+  // if (!isPublicPage && !token) {
+  //   console.log("no token found")
+  //   return NextResponse.redirect(new URL('/en/Login', req.url));
+  // }
 
   // Allow the request to continue if it's a public page or if a valid token is present
   return NextResponse.next();

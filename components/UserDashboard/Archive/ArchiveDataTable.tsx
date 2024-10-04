@@ -45,6 +45,23 @@ interface OrderTitleCellProps {
   orderTitle: string;
 }
 
+const OrderIdCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderTitle }) => {
+  const router = useRouter();
+  const language = usePathname().split("/")[1];
+
+
+  return (
+    <button
+      onClick={() => {
+        router.push(`/${language}/${userId}/${orderId}/OrderDetails`);
+      }}
+      className="capitalize font-DM-Sans font-medium text-[14px] leading-[24px] text-center underline"
+    >
+      {orderTitle}
+    </button>
+  );
+};
+
 const OrderTitleCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderTitle }) => {
   const router = useRouter();
   const language = usePathname().split("/")[1];
@@ -159,7 +176,12 @@ export const columns: ColumnDef<OrderList>[] = [
       return(<span>{t("orderList.orderId")}</span>)
     },
     cell: function Cell({ row }) {return(
-      <div className="capitalize font-DM-Sans font-medium text-[14px] leading-[24px] text-center">{row.getValue("orderId")}</div>
+      // <div className="capitalize font-DM-Sans font-medium text-[14px] leading-[24px] text-center">{row.getValue("orderId")}</div>
+      <OrderIdCell
+        userId={row.original.userId}
+        orderId={row.original._id}
+        orderTitle={row.getValue("orderId")}
+      />
     )},
     size: 140,
     minSize: 140,

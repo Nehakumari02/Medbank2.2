@@ -68,7 +68,7 @@ export default function Layout({ children, params }) {
                                         <div className="">
                                             <TopNav />
                                         </div>
-                                        {isLoading ? <LoadingScreen /> : <div className="h-[calc(100dvh-166px)] md:h-[calc(100vh-104px)] md:bg-[#F7F9FB] overflow-y-scroll"> {children}</div>}
+                                        {isLoading ? <LoadingScreen /> : <div className="h-[calc(100dvh-116px)] md:h-[calc(100vh-104px)] md:bg-[#F7F9FB] overflow-y-scroll"> {children}</div>}
                                         <div className="md:hidden">
                                             <MobileBottomNav/>
                                         </div>

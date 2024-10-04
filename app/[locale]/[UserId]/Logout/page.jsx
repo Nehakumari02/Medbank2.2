@@ -12,7 +12,7 @@ const Logout = () => {
   const handleLogout = ()=>{
     // document.cookie = "medbank_user_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure; SameSite=Strict";
     router.push(`/${language}/Login`);
-    Cookies.remove("medbank_user_token");
+    // Cookies.remove("medbank_user_token");
   }
 
   return (

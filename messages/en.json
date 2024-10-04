@@ -609,7 +609,7 @@
             "perfecture": "Perfecture",
             "city": "City/Town Address",
             "cancel": "Cancel",
-            "confirm": "Confirm"
+            "confirm": "Save"
         }
     },
     "AdminLogout": {

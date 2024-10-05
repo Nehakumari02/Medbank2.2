@@ -11,11 +11,13 @@ const s3 = new AWS.S3({
 
 export async function POST(req) {
   const {fileName,fileType} = await req.json();
-  console.log(fileName)
+  const timestamp = Date.now();
+  let newFileName = `${fileName}_${timestamp}`
+  console.log(newFileName)
   try {
     const params={
       Bucket: process.env.AWS_S3_BUCKET_NAME,
-      Key: fileName,
+      Key: newFileName,
       Expires: 1000,
       ContentType:fileType
     }

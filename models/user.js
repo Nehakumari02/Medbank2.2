@@ -11,6 +11,30 @@ const userSchema = new Schema(
     token: {
       type: String
     },
+    verified:{
+      type: Boolean,
+      default: false
+    },
+    role:{
+      type: String,
+      default: "user"
+    },
+    userDetails:{
+      type: Boolean,
+      default: false
+    },
+    verificationToken:{
+      type: String
+    },
+    verificationTokenExpiry:{
+      type: Date
+    },
+    resetPasswordToken:{
+      type: String
+    },
+    resetPasswordTokenExpiry:{
+      type: Date
+    },
     memberId:{
       type:String
     },

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import creation1 from '../../../../../../public/dashboard/creation1.png';
 import creation2 from '../../../../../../public/dashboard/creation2.png';
 import creation3 from '../../../../../../public/dashboard/creation3.png';
@@ -21,6 +21,11 @@ const OrderCreationPage = () => {
     setFile(null); // Remove the file from state
     
   };
+  useEffect(()=>{
+    setOrderTitle("");
+    setUploadedFile(null);
+    setFile(null);
+  },[])
 
   console.log("order title",orderTitle)
 

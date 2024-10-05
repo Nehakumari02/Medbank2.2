@@ -98,7 +98,7 @@ const TopNav = () => {
       <div>
         {path=="Dashboard"?<span className='font-DM-Sans font-bold text-[18px] leading-[24px] '>{t("welcomeMsg")}</span>:<></>}
       </div>
-      <button onClick={handleNewOrder} className='h-[40px] w-[117px] rounded-[6px] flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] leading-[20px] '>{plusIcon}{t("newOrder")}</button>
+      <button disabled={disabled} onClick={handleNewOrder} className={`h-[40px] w-[117px] rounded-[6px] flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] leading-[20px] ${disabled?"opacity-75":""}`}>{plusIcon}{t("newOrder")}</button>
     </div>
     </>
   )

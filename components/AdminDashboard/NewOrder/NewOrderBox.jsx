@@ -50,7 +50,7 @@ const NewOrderBox = () => {
   const [school,setSchool] = useState("");
   const [username,setUsername] = useState("");
 
-  const { token, notificationPermissionStatus } = useFcmToken("66ea96cbb87b8baa2f3a1117");
+  const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
 
   const updateDataInDB = async (orderData) => {
     const saveApiResponse = await fetch('/api/updateOrder', {
@@ -120,14 +120,8 @@ const NewOrderBox = () => {
   const [isInvoiceChecked2, setIsInvoiceChecked2] = useState(false);
 
   const [samples, setSamples] = useState([
-    { id: '', name: '', qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' },
-    { id: '', name: '', qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' },
-    { id: '', name: '', qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' }
   ]);
   const [samples1, setSamples1] = useState([
-    { id: '', name: '', qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' },
-    { id: '', name: '', qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' },
-    { id: '', name: '', qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' }
   ]);
 
   const [grandTotal, setGrandTotal] = useState(0);
@@ -561,7 +555,7 @@ const NewOrderBox = () => {
     setOrderPopVisible(true);
     setActivePopup('costEstimate');
     const namesArray = await fetchSampleNames(requestSheetLink);
-    // console.log("samples",data)
+    console.log("samples",namesArray)
     const updatedSamples = namesArray.map((_, index) => {
         return { 
           name: namesArray[index] || "" , id: orderId, qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
@@ -1717,9 +1711,9 @@ const NewOrderBox = () => {
                   <div className='border border-dashed'></div>
                   <div className='border border-dashed pt-[20px]'></div>
 
-                  <div className="overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-                    <table className="w-full mb-6 min-w-[768px]">
-                      <thead>
+                  <div className="overflow-y-auto max-h-[50vh] mb-[10px] pb-[10px] pl-[10px] overflow-x-scroll custom-scrollbar">
+                    <table className="w-full min-w-[768px">
+                      <thead className='sticky top-0 bg-white'>
                         <tr className="text-left font-medium text-sm">
                           <th className="py-2">{t("costEstimation.sampleId")}</th>
                           <th className="py-2">{t("costEstimation.sampleName")}</th>

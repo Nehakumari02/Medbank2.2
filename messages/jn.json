@@ -492,7 +492,7 @@
         "confirmPassword": "パスワードの再確認",
         "misMatchPassword": "パスワードが一致しません。",
         "errorPassword": "<span1>パスワードは下記を含む必要があります。</span1><span2>最低8文字</span2><span3> 大文字、小文字、数字、特殊文字を混ぜて使う</span3>",
-        "acknowledgement": "登録することにより、 <personalInfo>プライバシーポリシー</personalInfo>、<cancellationPolicy>個人情報の取り扱い</cancellationPolicy>、<sitePolicy>キャンセル ポリシー</sitePolicy>、<privacyPolicy>サイトポリシー</privacyPolicy>のすべてに同意します。",
+        "acknowledgement": "登録することにより、 <personalInfo>個人情報の取り扱い</personalInfo>、<cancellationPolicy>キャンセル ポリシー</cancellationPolicy>、<sitePolicy>サイトポリシー</sitePolicy>、<privacyPolicy>プライバシーポリシー</privacyPolicy>のすべてに同意します。",
         "register": "登録",
         "signUpText": "既にアカウントをお持ちの方はこちら  <Link> サインイン </Link>"
     },
@@ -502,10 +502,34 @@
         "subTitle": "ログインしてください。",
         "email": "メールアドレス",
         "password": "パスワード",
-        "acknowledgement": "登録することにより、 <personalInfo>プライバシーポリシー</personalInfo>、<cancellationPolicy>個人情報の取り扱い</cancellationPolicy>、<sitePolicy>キャンセル ポリシー</sitePolicy>、<privacyPolicy>サイトポリシー</privacyPolicy>のすべてに同意します。",
+        "acknowledgement": "ログインすることにより、 <personalInfo>個人情報の取り扱い</personalInfo>、<cancellationPolicy>キャンセル ポリシー</cancellationPolicy>、<sitePolicy>サイトポリシー</sitePolicy>、<privacyPolicy>プライバシーポリシー</privacyPolicy>のすべてに同意します。",
         "login": "ログイン",
         "signInText": "アカウントをお持ちではありませんか？ <Link> 登録 </Link>",
         "forgotPassword": "パスワードをお忘れですか？"
+    },
+    "ForgotPassword":{
+        "back": "戻る",
+        "title": "パスワードをリセット",
+        "subTitle": "メールアドレスを入力すると、パスワードをリセットするためのご案内が送信されます。",
+        "email": "メールアドレス",
+        "continue":"続ける",
+        "title2":"メールをご確認ください",
+        "subTitle2":"{email} のメールアドレスを確認して、パスワードをリセットするための指示を確認してください。",
+        "resendEmail":"メールを再送信"
+    },
+    "ResetPassword":{
+        "back": "戻る",
+        "title": "パスワードのリセット",
+        "subTitle": "新しいパスワードを下に入力して、パスワードを変更してください。",
+        "newPassword": "新しいパスワード",
+        "confirmNewPassword": "新しいパスワードを再入力",
+        "misMatchPassword": "パスワードが一致しません。",
+        "weakPassword": "脆弱なパスワード",
+        "resetPassword": "パスワードをリセット",
+        "title2": "パスワードが変更されました！",
+        "subTitle2": "パスワードが正常に変更されました。",
+        "login": "ログイン",
+        "errorPassword": "<span1>パスワードは下記を含む必要があります。</span1><span2>最低8文字</span2><span3> 大文字、小文字、数字、特殊文字を混ぜて使う</span3>"
     },
     "UserSideBar": {
         "dashboard": "ダッシュボード",
@@ -743,7 +767,7 @@
         "invoice": {
             "title": "請求書",
             "message": "請求書をダウンロード",
-            "pdfTitle": "Receipt.pdf",
+            "pdfTitle": "Invoice.pdf",
             "checkboxMob": "請求書を確認しました。",
             "checkboxDesk": "請求書を確認しました。",
             "mobButton": "確認した",

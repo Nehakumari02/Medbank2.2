@@ -34,6 +34,13 @@ export async function POST(req) {
       });
     }
 
+    if(!user.verified){
+      console.log("not verified")
+      return new NextResponse(JSON.stringify({ message: 'Email is not verified' }), {
+        status: 403,
+      });
+    }
+
     const token = jwt.sign(
       { userId: user._id, email: user.email, role: user.role },
       process.env.JWT_SECRET,  // Ensure that `JWT_SECRET` is set in your environment variables
@@ -44,10 +51,24 @@ export async function POST(req) {
     //   status: 200,
     // });
 
+    if(!user.userDetails){
+      return new NextResponse(JSON.stringify({ 
+        message: 'User sign-in successful', 
+        userId: user._id,
+        token ,
+        firstLogin: true
+      }), {
+        status: 200,
+        headers: {
+          "Set-Cookie": `medbank_user_token=${token}; HttpOnly; Path=/; Secure; SameSite=Strict; Max-Age=7200` // Set cookie for 2 hours
+        }
+      });
+    }
     return new NextResponse(JSON.stringify({ 
       message: 'User sign-in successful', 
       userId: user._id,
-      token 
+      token ,
+      firstLogin: false
     }), {
       status: 200,
       headers: {

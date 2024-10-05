@@ -7,6 +7,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { useSidebarContext } from "@/contexts/SidebarContext";
 import { useTranslations } from "next-intl";
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 const Sidebar = () => {
   const [profilePicture, setProfilePicture] = useState('');
   const router = useRouter();
@@ -28,8 +32,17 @@ const Sidebar = () => {
         body: JSON.stringify({userId:userIdDB}),
       });
       const data = await response.json();
-      console.log(data.data,data.message)
+      console.log(data.data,data.message);
+      const body = document.querySelector("body");
+
+      body?.classList.add("page-transition");
+
+      await sleep(500);
       router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
+      await sleep(500);
+
+      body?.classList.remove("page-transition");
+      // router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
     }catch(error){
       console.log(error)
     }
@@ -80,12 +93,21 @@ const Sidebar = () => {
     setOpen(!open);
   };
   
-  const handleMenuItemClick =(menuPath)=>{
+  const handleMenuItemClick = async(menuPath)=>{
     if(menuPath==="NewOrder"){
       handleNewOrder();
     }
     else{
-      router.push(`/${language}/${userIdDB}/${menuPath}`)
+    const body = document.querySelector("body");
+
+    body?.classList.add("page-transition");
+
+    await sleep(500);
+    router.push(`/${language}/${userIdDB}/${menuPath}`)
+    await sleep(500);
+
+    body?.classList.remove("page-transition");
+      // router.push(`/${language}/${userIdDB}/${menuPath}`)
     }
   }
   return (

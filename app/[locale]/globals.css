@@ -7,12 +7,44 @@ html{
 }
 
 * {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
   -ms-overflow-style: none; /* Internet Explorer and Edge */
 }
 
-*::-webkit-scrollbar {
-  display: none;
+body {
+  transition-property: opacity, transform, filter, background;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+.page-transition {
+  opacity: 0;
+  background: white;
+  /* transform: translateY(40px); */
+  filter: blur(12px);
+}
+
+.custom-scrollbar {
+  scrollbar-width:auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+  height: 0px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3E8DA7; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #33333325; /* Background of the scrollbar track */
+  border-left: 2px solid transparent; /* Optional padding effect */
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent; /* Optional padding effect */
+  background-clip: padding-box; /* Ensure background-clip works */
 }
 
 @layer base {

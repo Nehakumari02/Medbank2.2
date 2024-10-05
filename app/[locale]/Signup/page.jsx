@@ -93,7 +93,7 @@ const SignUp = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({name,email,password,confirmPassword}),
+      body: JSON.stringify({name,email,password,confirmPassword,language}),
     });
     const data = await response.json();
     if(response.status==400){
@@ -169,12 +169,12 @@ const SignUp = () => {
                     <input className="w-full p-[10px] md:p-[12px] outline-none rounded-[7px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
                       placeholder={t('name')}
                       value={name}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                          e.preventDefault()
-                          document.getElementsByName('email')[0].focus();
-                        }
-                      }}
+                      // onKeyDown={(e) => {
+                      //   if (e.key === 'Enter' && !e.shiftKey) {
+                      //     e.preventDefault()
+                      //     document.getElementsByName('email')[0].focus();
+                      //   }
+                      // }}
                       onChange={(e) => setName(e.target.value)}
                       style={{ backgroundColor: "white", backgroundClip: "padding-box", }}
                       type="text"
@@ -188,12 +188,12 @@ const SignUp = () => {
                     <input className="w-full p-[10px] md:p-[12px] outline-none rounded-[7px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
                       placeholder={t('email')}
                       value={email}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                          e.preventDefault()
-                          document.getElementsByName('password')[0].focus();
-                        }
-                      }}
+                      // onKeyDown={(e) => {
+                      //   if (e.key === 'Enter' && !e.shiftKey) {
+                      //     e.preventDefault()
+                      //     document.getElementsByName('password')[0].focus();
+                      //   }
+                      // }}
                       onChange={(e) => setEmail(e.target.value)}
                       onBlur={handleVerifyEmail}
                       type="email"
@@ -208,12 +208,12 @@ const SignUp = () => {
                     <input className="w-full p-[10px] md:p-[12px] outline-none rounded-[7px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
                       placeholder={t('password')}
                       value={password} 
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                          e.preventDefault()
-                          document.getElementsByName('confirmPassword')[0].focus();
-                        }
-                      }}
+                      // onKeyDown={(e) => {
+                      //   if (e.key === 'Enter' && !e.shiftKey) {
+                      //     e.preventDefault()
+                      //     document.getElementsByName('confirmPassword')[0].focus();
+                      //   }
+                      // }}
                       type={passwordVisibility?"text":"password"} 
                       name="password"
                       onChange={handlePasswordUpdate}
@@ -230,12 +230,12 @@ const SignUp = () => {
                     <input className="w-full p-[10px] md:p-[12px] outline-none rounded-[7px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
                       placeholder={t('confirmPassword')}
                       value={confirmPassword}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                          // e.preventDefault()
-                          handleSignUp();
-                        }
-                      }}
+                      // onKeyDown={(e) => {
+                      //   if (e.key === 'Enter' && !e.shiftKey) {
+                      //     // e.preventDefault()
+                      //     handleSignUp();
+                      //   }
+                      // }}
                       onChange={handleConfirmPassword}
                       onBlur={handleConfirmPassword}
                       style={{ backgroundColor: "white", backgroundClip: "padding-box", }}

@@ -46,6 +46,7 @@ export async function POST(req) {
         Perfecture,
         postalCode,
         city,
+        userDetails:true
       },
       { new: true } // Returns the updated document
     );

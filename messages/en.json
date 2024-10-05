@@ -503,10 +503,34 @@
         "subTitle": "Login account to continue!",
         "email": "Email",
         "password": "Create Password",
-        "acknowledgement": "By signing up, I accept all of Medbank's terms and conditions, <personalInfo>Personal Information</personalInfo>, <cancellationPolicy>Cancellation Policy</cancellationPolicy>, <sitePolicy>Site Policy</sitePolicy> and acknowledge their <privacyPolicy>Privacy Policy</privacyPolicy>.",
+        "acknowledgement": "By signing in, I accept all of Medbank's terms and conditions, <personalInfo>Personal Information</personalInfo>, <cancellationPolicy>Cancellation Policy</cancellationPolicy>, <sitePolicy>Site Policy</sitePolicy> and acknowledge their <privacyPolicy>Privacy Policy</privacyPolicy>.",
         "login": "Login",
         "signInText": "Don’t have an Account ?  <Link> Register </Link>",
         "forgotPassword": "Forgot Password?"
+    },
+    "ForgotPassword":{
+        "back": "Back",
+        "title": "Reset Your Password",
+        "subTitle": "Enter your email address and we will send you instructions to reset your password",
+        "email": "Email",
+        "continue":"Continue",
+        "title2":"Check Your Email",
+        "subTitle2":"Please check the email address {email} for instructions to reset your password.",
+        "resendEmail":"Resend Email"
+    },
+    "ResetPassword":{
+        "back": "Back",
+        "title": "Reset Your Password",
+        "subTitle": "Enter a new password below to change your password.",
+        "newPassword": "New Password",
+        "confirmNewPassword": "Re-Enter New Password",
+        "weakPassword": "Password too weak",
+        "misMatchPassword": "Password don't match",
+        "resetPassword": "Reset Password",
+        "title2": "Password Changed!",
+        "subTitle2": "Your Password has been changed successfully.",
+        "login": "Login",
+        "errorPassword": "<span1>Your password must contain:</span1><span2> At least 8 characters</span2><span3> Use a mix of uppercase and lowercase letters, numbers, and special characters.</span3>"
     },
     "UserSideBar": {
         "dashboard": "Dashboard",
@@ -745,7 +769,7 @@
         "invoice": {
             "title": "Invoice",
             "message": "Download invoice.",
-            "pdfTitle": "Receipt.pdf",
+            "pdfTitle": "Invoice.pdf",
             "checkboxMob": "I have reviewed the Invoice.",
             "checkboxDesk": "I have reviewed the Invoice.",
             "mobButton": "Proceed",

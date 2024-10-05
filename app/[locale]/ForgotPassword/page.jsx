@@ -1,22 +1,22 @@
 "use client"
 
 import React, { useState } from 'react'
-import Logo from '@/public/Images/Home/logo.png'
+import Logo from '../../../public/Images/Home/logo.png'
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import {signIn} from 'next-auth/react'
+import {signIn} from 'next-auth/react';
+import { toast } from '@/hooks/use-toast';
 
 const SignInPage = () => {
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
   const language = usePathname().split("/")[1];
   const router = useRouter();
-  const t = useTranslations("SignIn");
-  const [emailError, setEmailError] = useState(false);
+  const t = useTranslations("ForgotPassword");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   // console.log(session)
 
@@ -45,62 +45,47 @@ const SignInPage = () => {
     router.push(newPath);
   };
 
-  const handleLogin =  async (e) => {
+  const handleEmailForForgotPassword =  async (e) => {
     e.preventDefault();
 
     try {
-      // const res = await signIn("credentials",{
-      //   email,password,admin:true,redirect:false
-      // })
 
-      const res = await fetch('/api/signin', {
+      const res = await fetch('/api/forgotPassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({email,password,admin:true}),
+        body: JSON.stringify({email,language}),
       });
 
-      console.log(res)
-      if(res.status==401){
+      if(res.status === 400) {
         toast({
-          variant:'error',
-          title:'Error',
-          description:"Password incorrect"
-        })
-        return;
-      }
-      if(res.status==200){
-        router.push(`/${language}/Admin_Restricted/Dashboard`);
-        toast({
-          variant:"success",
-          title:"Success",
-          description:"login Successfull..."
-        })
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: language === 'jn' ? "ユーザーが見つかりません" : "User does not exist",
+        });
       }
 
-      // if(res.error){
-      //   return;
-      // }
-      // if(res.ok){
-      //   router.push(`/${language}/Admin_Restricted/Dashboard`)
-      // }
+      if (res.status === 200) {
+          toast({
+            variant: 'success',
+            title: language === 'jn' ? '成功' : 'Success',
+            description: language === 'jn' ? "メールが正常に送信されました" : "Email sent successfully",
+          });
+          setEmailSent(true);
+      }
+
     } catch (error) {
-      
-    }
+      const message = language === 'jn' 
+        ? "何か問題が発生しました。もう一度お試しください" 
+        : "Something went wrong, please try again";
 
-    // const response = await fetch('/api/signin', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({email,password}),
-    // });
-    // const data = await response.json();
-    // console.log(data.message)
-    // if(response.status==200){
-    //   router.push(`/${language}/42397/Dashboard`)
-    // }
+      toast({
+        variant: 'error',
+        title: language === 'jn' ? 'エラー' : 'Error',
+        description: message,
+      });
+    }
     
   }
 
@@ -122,65 +107,49 @@ const SignInPage = () => {
         <div className='w-full h-full flex justify-between md:flex-row flex-col gap-[18px] md:gap-0'>
           <div className='font-DM-Sans w-full md:w-[309px] text-[#333333] flex flex-col items-center md:items-start gap-[12px] md:gap-[24px]'>
             <Image src={Logo} alt='Logo' className='h-[80px] w-[80px]'></Image>
-            <div className='flex flex-col items-start gap-[8px]'>
-              <span className='font-bold text-center md:text-left w-full text-[20px] md:text-[40px] leading-[26px] md:leading-[40px]'>Welcome Admin!!!</span>
-              <span className='font-normal text-center md:text-left w-full text-[14px] md:text-[18px] leading-[18px] md:leading-[24px]'>{t("subTitle")}</span>
-              {/* <span className='font-bold text-center md:text-left w-full text-[20px] md:text-[40px] leading-[26px] md:leading-[40px]'>{t("title")}</span>
-              <span className='font-normal text-center md:text-left w-full text-[14px] md:text-[18px] leading-[18px] md:leading-[24px]'>{t("subTitle")}</span> */}
-            </div>
           </div>
-          <div className='flex md:items-end w-full md:w-[527px] md:mt-[104px]'>
-            <div className='w-full flex flex-col gap-[12px]'>
-              <div className='w-full flex flex-col gap-[10px] md:gap-[20px]'>
-                <div className="group w-full h-[38px] md:h-[50px] flex items-center justify-center flex-col">
-                  <div className={`w-full rounded-[7px] ${emailError ? "bg-red-600" : "bg-gray-200"} ${emailError ? "group-focus-within:bg-red-600" : "group-focus-within:gradient-primary"}`} >
-                    <input className="w-full p-[10px] md:p-[12px] outline-none rounded-[7px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
-                      placeholder={t('email')}
-                      value={email}
-                      onChange={handleChange}
-                      onBlur={handleVerifyEmail}
-                      type="email"
-                      name="email"
-                      style={{ backgroundColor: "white", backgroundClip: "padding-box", }}
-                    />
-                  </div>
+          {
+            emailSent?
+            <div className='flex md:items-end w-full md:w-[527px]'>
+              <div className='w-full flex flex-col gap-[12px]'>
+                <div className='flex flex-col items-start gap-[8px]'>
+                  <span className='font-bold text-center md:text-left w-full text-[20px] md:text-[40px] leading-[26px] md:leading-[40px]'>{t("title2")}</span>
+                  <span className='font-normal text-center md:text-left w-full text-[14px] md:text-[18px] leading-[18px] md:leading-[24px]'>{t.rich("subTitle2",{email})}</span>
                 </div>
-                <div className="group w-full h-[38px] md:h-[50px] flex items-center justify-center flex-col">
-                  <div className={`w-full relative rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
-                    <input className="w-full p-[10px] md:p-[12px] outline-none rounded-[7px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
-                      placeholder={t('password')}
-                      value={password}
-                      type={passwordVisibility ? "text" : "password"}
-                      name="password"
-                      onChange={(e) => { setPassword(e.target.value) }}
-                      style={{ backgroundColor: "white", backgroundClip: "padding-box", }}
-                    />
-                    <button className='absolute top-[11px] md:top-[18px] right-[12px]' onClick={() => setPasswordVisibility(!passwordVisibility)}>{passwordVisibility ? hiddenPasswordIcon : showPasswrodIcon}</button>
-                  </div>
+                <div className='flex flex-col gap-[6px] md:gap-[16px]'>
+                  <button type="submit" onClick={handleEmailForForgotPassword} className='h-[38px] md:h-[50px] rounded-[6px] md:flex items-center justify-center border text-black font-DM-Sans font-bold text-[18px] leading-[24px] '>{t('resendEmail')}</button>
                 </div>
               </div>
-
-              <p className='w-full m-0'><Link href={`/${language}/ForgotPassword`} className='font-DM-Sans font-normal text-[10px] md:text-[16px] leading-[20px] text-[#3E8DA7]'>{t('forgotPassword')}</Link></p>
-
-              <div className='flex flex-col gap-[6px] md:gap-[16px]'>
-                <p className='m-0 font-DM-Sans font-normal text-[8px] md:text-[14px] leading-[20px]'>
-                  {t.rich('acknowledgement', {
-                    personalInfo: (chunks) => <Link className='text-[#3E8DA7] underline underline-offset-2' href={`/${language}/Personal-Information`}>{chunks}</Link>,
-                    cancellationPolicy: (chunks) => <Link className='text-[#3E8DA7] underline underline-offset-2' href={`/${language}/CancellationPolicy`}>{chunks}</Link>,
-                    sitePolicy: (chunks) => <Link className='text-[#3E8DA7] underline underline-offset-2' href={`/${language}/SitePolicy`}>{chunks}</Link>,
-                    privacyPolicy: (chunks) => <Link className='text-[#3E8DA7] underline underline-offset-2' href={`/${language}/PrivacyPolicy`}>{chunks}</Link>,
-                  })}
-                </p>
-                <button type="submit" onClick={handleLogin} className='h-[38px] md:h-[50px] rounded-[6px] md:flex items-center justify-center [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-bold text-[18px] leading-[24px] '>{t('login')}</button>
-              </div>
-
-              <p className='m-0 text-center font-DM-Sans font-normal text-[12px] md:text-[14px] leading-[20px] pt-[18px] md:pt-[28px]'>
-                {t.rich("signInText", {
-                  Link: (chunks) => <Link className='text-[#3E8DA7]' href={`/${language}/Admin_Signup`}>{chunks}</Link>
-                })}
-              </p>
             </div>
-          </div>
+            :
+            <div className='flex md:items-end w-full md:w-[527px]'>
+              <div className='w-full flex flex-col gap-[12px]'>
+                <div className='flex flex-col items-start gap-[8px]'>
+                  <span className='font-bold text-center md:text-left w-full text-[20px] md:text-[40px] leading-[26px] md:leading-[40px]'>{t("title")}</span>
+                  <span className='font-normal text-center md:text-left w-full text-[14px] md:text-[18px] leading-[18px] md:leading-[24px]'>{t("subTitle")}</span>
+                </div>
+                <div className='w-full flex flex-col gap-[10px] md:gap-[20px]'>
+                  <div className="group w-full h-[38px] md:h-[50px] flex items-center justify-center flex-col">
+                    <div className={`w-full rounded-[7px] ${emailError ? "bg-red-600" : "bg-gray-200"} ${emailError ? "group-focus-within:bg-red-600" : "group-focus-within:gradient-primary"}`} >
+                      <input className="w-full p-[10px] md:p-[12px] outline-none rounded-[7px] border-[2px] border-transparent font-DM-Sans font-normal text-[12px] md:text-[16px] leading-[16px] md:leading-[24px]"
+                        placeholder={t('email')}
+                        value={email}
+                        onChange={handleChange}
+                        onBlur={handleVerifyEmail}
+                        type="email"
+                        name="email"
+                        style={{ backgroundColor: "white", backgroundClip: "padding-box", }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className='flex flex-col gap-[6px] md:gap-[16px]'>
+                  <button type="submit" onClick={handleEmailForForgotPassword} className='h-[38px] md:h-[50px] rounded-[6px] md:flex items-center justify-center [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-bold text-[18px] leading-[24px] '>{t('continue')}</button>
+                </div>
+              </div>
+            </div>
+          }
         </div>
 
       </div>

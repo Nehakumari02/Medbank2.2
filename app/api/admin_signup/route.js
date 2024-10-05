@@ -51,6 +51,8 @@ export async function POST(req) {
       memberId:nextMemberId,
       name,
       school,
+      userDetails:true,
+      verified:true,
       faculty,
       field,
       others,

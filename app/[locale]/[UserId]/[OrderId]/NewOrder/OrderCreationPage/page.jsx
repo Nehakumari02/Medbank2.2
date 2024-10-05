@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import creation1 from '../../../../../../public/dashboard/creation1.png';
 import creation2 from '../../../../../../public/dashboard/creation2.png';
 import creation3 from '../../../../../../public/dashboard/creation3.png';
@@ -30,7 +30,12 @@ const OrderCreationPage = () => {
   const t = useTranslations("UserDashboard");
   let userIdDB = usePathname().split('/')[2];
   const { token, notificationPermissionStatus } = useFcmToken()
-  const adminIdDB="66ea96cbb87b8baa2f3a1117";
+  const adminIdDB="67012cdf074407659a1ac9d4";
+
+  useEffect(()=>{
+    setOrderTitle("");
+    setUploadedFile(null);
+  },[])
 
   const handleDelete = () => {
     setUploadedFile(null); // Remove the file from state
@@ -85,15 +90,21 @@ const OrderCreationPage = () => {
     }
   
     try {
-      const { name: fileName, type: fileType } = uploadedFile;
-  
+      const { name: originalFileName, type: fileType } = uploadedFile;
+
+      // Get current timestamp
+      const timestamp = Date.now(); // Gets the current time in milliseconds
+
+      // Create a new file name with timestamp
+      const fileName = `${timestamp}_${originalFileName}`
+      console.log(fileName)
       // Get signed URL for file upload
       const response = await fetch('/api/fileUpload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ fileName, fileType }),
+        body: JSON.stringify({ fileName:fileName, fileType }),
       });
   
       if (!response.ok) {

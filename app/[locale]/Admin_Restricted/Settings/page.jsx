@@ -20,7 +20,7 @@ const Settings = () => {
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const t = useTranslations("AdminSettings");
-  const userId = "66ea96cbb87b8baa2f3a1117";
+  const userId = "67012cdf074407659a1ac9d4";
 
   const handleSave=async(e)=>{
     e.preventDefault();

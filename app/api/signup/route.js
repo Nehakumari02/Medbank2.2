@@ -4,6 +4,8 @@ import dbConnect from "../../../lib/dbConnect"
 import User from "../../../models/user";
 import Conversation from "../../../models/conversation";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import nodemailer from 'nodemailer';
 
 export async function POST(req) {
   const {
@@ -23,8 +25,36 @@ export async function POST(req) {
     city = "",
     password,
     confirmPassword,
+    language
   } = await req.json();
-  console.log("name",name,"\n","email",email,"\n","password",password,"\n","confirmPassword",confirmPassword)
+  console.log("name",name,"\n","email",email,"\n","password",password,"\n","confirmPassword",confirmPassword,language)
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER, // Use environment variables
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+      // Generate a JWT for email verification
+      const verificationToken = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '240h' }); // Expires in 1 hour
+      const url = `${process.env.BASE_URL}/api/verify-email?token=${verificationToken}`;
+  
+
+  // Email content based on language\
+  const subject = language === 'jn' ? '確認リンク' : 'Confirmation Link';
+  const text = language === 'jn'
+    ? `以下のリンクをクリックして、登録を確認してください。\n\n登録確認: ${url}`
+    : `Please click the link below to confirm your registration.\n\nConfirm Registration: ${url}`;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER, // Use your email user here
+    to: email,
+    subject: subject,
+    text: text, // Use text instead of html
+  };
+
   try {
     await dbConnect();
     const existingUser = await User.findOne({ email: email });
@@ -71,6 +101,7 @@ export async function POST(req) {
     });
 
     console.log("New conversation created with admin:", conversation);
+    await transporter.sendMail(mailOptions);
     return new NextResponse(JSON.stringify({ message: 'User registered successfully' }), {
       status: 200,
     });

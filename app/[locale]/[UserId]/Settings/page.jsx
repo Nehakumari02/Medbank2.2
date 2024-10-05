@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useModal } from '@/contexts/ModalContext'
 import { usePathname } from 'next/navigation'
 import { toast } from '@/hooks/use-toast';
+import Loading from './loading'
 
 const Settings = () => {
   const userId = usePathname().split("/")[2]
@@ -25,6 +26,7 @@ const Settings = () => {
   const [city, setCity] = useState("");
   const t = useTranslations("Settings");
   const [selectedFlag, setSelectedFlag] = useState('ad.svg');
+  const [loading ,setLoading] = useState(true);
 
   const handleFlagSelect = (flag) => {
     setSelectedFlag(flag);
@@ -63,6 +65,7 @@ const Settings = () => {
   }
   useEffect(() => {
     const fetchUserData = async (userId) => {
+      setLoading(true)
       try {
         const data = await fetch('/api/fetchUserDetails', {
           method: 'POST',
@@ -92,11 +95,16 @@ const Settings = () => {
         setCity(user.city || "");
       } catch (error) {
         console.error("Error fetching user data:", error);
+      } finally{
+        setLoading(false);
       }
     };
 
     fetchUserData(userId);
   }, []);
+
+  // if(loading)
+  //   return <Loading/>
 
 
   return (

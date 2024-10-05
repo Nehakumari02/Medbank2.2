@@ -108,7 +108,7 @@ const NewOrderBox = () => {
   const printRef1 = useRef();
   const printRef2 = useRef();
   const { token, notificationPermissionStatus } = useFcmToken()
-  const adminIdDB = "66ea96cbb87b8baa2f3a1117";
+  const adminIdDB = "67012cdf074407659a1ac9d4";
 
   const handleSampleSendChecked1 = (e) => {
     setIsSampleSendChecked1(e.target.checked);
@@ -1434,7 +1434,7 @@ const NewOrderBox = () => {
             <button onClick={handlePaymentClick} disabled={!(paymentStatus == "inUserProgress" || paymentStatus == "isAdminCompleted" || paymentStatus == "isCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${paymentStatus == "isPending" || paymentStatus == "inAdminProgress" ? "text-[#333333]" : "text-white"} ${paymentStatus == "isPending" || paymentStatus == "inAdminProgress" ? "bg-[#E2E8F0]" : paymentStatus == "paymentess" || paymentStatus == "isAdminCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.receipt")}</button>
           </div>
         </div>
-        <div className="w-full h-[92px] md:px-[40px] flex flex-col justify-center border-[1px] border-[#E2E8F0] rounded-md shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]">
+        <div className="w-full h-[92px] px-4 md:px-[40px] flex flex-col justify-center border-[1px] border-[#E2E8F0] rounded-md shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]">
           <div className='w-full flex items-center justify-between h-[46px] gap-[12px] font-DM-Sans font-normal text-[18px] leading-[24px] tracking-tracking-0.5'>
             <div className="flex items-start gap-[10px]">
               <Image src={Logo} alt="logo" className="h-[46px] w-[46px]"></Image>

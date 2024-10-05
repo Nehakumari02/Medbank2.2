@@ -62,44 +62,79 @@ const SignInPage = () => {
         body: JSON.stringify({email,password}),
       });
 
-      
-      if(res.status==401){
+      if (res.status === 404) {
+        const message = language === 'jn' 
+          ? "ユーザーが見つかりません" 
+          : "User not found";
+  
         toast({
-          variant:'error',
-          title:'Error',
-          description:"Password incorrect"
-        })
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
         return;
       }
-      if(res.status==200){
-        const userData = await res.json();
-        router.push(`/${language}/${userData.userId}/Dashboard`);
+      
+      if (res.status === 401) {
+        const message = language === 'jn' 
+          ? "パスワードが間違っています" 
+          : "Password incorrect";
+  
         toast({
-          variant:"success",
-          title:"Success",
-          description:"login Successfull..."
-        })
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
+        return;
       }
-    } catch (error) {
-      toast({
-        variant:'error',
-        title:'Error',
-        description:'Something went wrong please try again'
-      })
-    }
 
-    // const response = await fetch('/api/signin', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({email,password}),
-    // });
-    // const data = await response.json();
-    // console.log(data.message)
-    // if(response.status==200){
-    //   router.push(`/${language}/42397/Dashboard`)
-    // }
+      if (res.status === 403) {
+          // console.log(userData.verified)
+        const message = language === 'jn' 
+          ? "メールが確認されていません" 
+          : "Email is not verified";
+
+        toast({
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
+        return;
+      }
+
+      if (res.status === 200) {
+        const userData = await res.json();
+        console.log(userData)
+        if(userData.firstLogin){
+          router.push(`/${language}/${userData.userId}/Settings`);
+        }
+        else{
+          router.push(`/${language}/${userData.userId}/Dashboard`);
+        }
+        
+        
+        const message = language === 'jn' 
+          ? "ログイン成功..." 
+          : "Login successful...";
+
+        toast({
+          variant: "success",
+          title: language === 'jn' ? '成功' : 'Success',
+          description: message,
+        });
+      }
+
+    } catch (error) {
+      const message = language === 'jn' 
+        ? "何か問題が発生しました。もう一度お試しください" 
+        : "Something went wrong, please try again";
+
+      toast({
+        variant: 'error',
+        title: language === 'jn' ? 'エラー' : 'Error',
+        description: message,
+      });
+    }
     
   }
 

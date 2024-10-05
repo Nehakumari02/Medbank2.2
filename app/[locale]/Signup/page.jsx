@@ -8,6 +8,10 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {toast} from '@/hooks/use-toast'
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 const SignUp = () => {
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
   const language = usePathname().split("/")[1];
@@ -118,7 +122,16 @@ const SignUp = () => {
       description:'User registered successfully!!!'
     })
     console.log(data.message)
+    const body = document.querySelector("body");
+
+    body?.classList.add("page-transition");
+
+    await sleep(500);
     router.push(`/${language}/Login`);
+    await sleep(500);
+
+    body?.classList.remove("page-transition");
+    // router.push(`/${language}/Login`);
   }catch(error){
     toast({
       variant:'error',

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import Logo from '../../../public/Images/Home/logo.png'
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -221,7 +221,15 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+// export default ResetPassword
+
+const PageWrapper = () => (
+  <Suspense fallback={null}>
+    <ResetPassword />
+  </Suspense>
+);
+
+export default PageWrapper;
 
 
 const backIcon = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

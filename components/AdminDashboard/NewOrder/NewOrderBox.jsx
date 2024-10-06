@@ -1701,7 +1701,9 @@ const NewOrderBox = () => {
                     <button onClick={() => handleDownload(requestSheetLink.split("?")[0], `RequestSheet.csv`)} disabled={disabled} className={`${disabled ? "opacity-75" : ""}`}>
                       <button className="h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] text-[#333333] font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]">{t("requestSheet.download")}</button>
                     </button>
-                    <button disabled={disabled} className={`${disabled ? "opacity-75" : ""} h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`} onClick={handleConfirmRequestSheet}>{t("requestSheet.confirm")}</button>
+                    {requestSheetStatus !== "isCompleted" &&
+                      <button disabled={disabled} className={`${disabled ? "opacity-75" : ""} h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`} onClick={handleConfirmRequestSheet}>{t("requestSheet.confirm")}</button>
+                    }
                   </div>
                 </div>
               )}
@@ -2124,9 +2126,9 @@ const NewOrderBox = () => {
                   <h2 className="text-[18px] md:text-[22px] font-medium text-center mb-4 md:mb-6">{t("invoice.title")}</h2>
                   <div className='border border-dashed'></div>
                   <div className='border border-dashed pt-[20px]'></div>
-                  <div className="w-full overflow-x-scroll">
-                    <table className="w-full mb-6 min-w-[768px]">
-                      <thead>
+                  <div className="w-full overflow-y-auto max-h-[50vh] mb-[10px] pb-[10px] pl-[10px] overflow-x-scroll custom-scrollbar">
+                    <table className="w-full min-w-[768px]">
+                      <thead className='sticky top-0 bg-white'>
                         <tr className="text-left font-medium text-sm">
                           <th className="py-2">{t("invoice.sampleId")}</th>
                           <th className="py-2">{t("invoice.sampleName")}</th>
@@ -2375,7 +2377,7 @@ const NewOrderBox = () => {
             </div>
           </div>
           <div className='flex items-center justify-center md:justify-start gap-x-[6px] gap-y-[6px]  md:gap-x-[32px] md:gap-y-[8px] flex-wrap'>
-            <button onClick={handleOrderCreation} disabled={!(requestSheetStatus == "inAdminProgress" || requestSheetStatus == "isUserCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${requestSheetStatus == "isPending" || requestSheetStatus == "inUserProgress" ? "text-[#333333]" : "text-white"} ${requestSheetStatus == "isPending" || requestSheetStatus == "inUserProgress" ? "bg-[#E2E8F0]" : requestSheetStatus == "inAdminProgress" || requestSheetStatus == "isUserCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.requestSheet")}</button>
+            <button onClick={handleOrderCreation} disabled={!(requestSheetStatus == "inAdminProgress" || requestSheetStatus == "isUserCompleted" || requestSheetStatus == "isCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${requestSheetStatus == "isPending" || requestSheetStatus == "inUserProgress" ? "text-[#333333]" : "text-white"} ${requestSheetStatus == "isPending" || requestSheetStatus == "inUserProgress" ? "bg-[#E2E8F0]" : requestSheetStatus == "inAdminProgress" || requestSheetStatus == "isUserCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.requestSheet")}</button>
             <button onClick={handleCostEstimateClick} disabled={!(costEstimateStatus == "inAdminProgress" || costEstimateStatus == "isUserCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${costEstimateStatus == "isPending" || costEstimateStatus == "inUserProgress" ? "text-[#333333]" : "text-white"} ${costEstimateStatus == "isPending" || costEstimateStatus == "inUserProgress" ? "bg-[#E2E8F0]" : costEstimateStatus == "inAdminProgress" || costEstimateStatus == "isUserCompleted" ? "bg-[#FF914D]" : costEstimateStatus == "isAdminCompleted" ? "bg-[#79747E]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.costEstimation")}</button>
             <button onClick={handleFormalRequestClick} disabled={!(formalRequestStatus == "inAdminProgress" || formalRequestStatus == "isUserCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${formalRequestStatus == "isPending" || formalRequestStatus == "inUserProgress" ? "text-[#333333]" : "text-white"} ${formalRequestStatus == "isPending" || formalRequestStatus == "inUserProgress" ? "bg-[#E2E8F0]" : formalRequestStatus == "inAdminProgress" || formalRequestStatus == "isUserCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.formalRequest")}</button>
             <button onClick={handleSampleShippingClick} disabled={!(sampleShippingStatus == "inTransit" || sampleShippingStatus == "isUserCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${sampleShippingStatus == "isPending" || sampleShippingStatus == "inUserProgress" ? "text-[#333333]" : "text-white"} ${sampleShippingStatus == "isPending" || sampleShippingStatus == "inUserProgress" ? "bg-[#E2E8F0]" : sampleShippingStatus == "inAdminProgress" || sampleShippingStatus == "isUserCompleted" ? "bg-[#FF914D]" : sampleShippingStatus == "inTransit" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.sampleRecieved")}</button>

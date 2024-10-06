@@ -125,6 +125,7 @@ const SignUp = () => {
     const body = document.querySelector("body");
 
     body?.classList.add("page-transition");
+    localStorage.removeItem('hasVisited');
 
     await sleep(500);
     router.push(`/${language}/Login`);

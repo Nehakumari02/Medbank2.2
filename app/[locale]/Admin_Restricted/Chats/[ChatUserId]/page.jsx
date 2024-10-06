@@ -12,12 +12,14 @@ const Chats = () => {
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState(""); // State for the input message
   const [messages, setMessages] = useState([]); // State for storing chat messages
-  const emails=["test@gmail.com","test2@gmail.com"]
+  const [emails,setEmails] = useState(["test@gmail.com","test2@gmail.com"]);
   const clientUserId = usePathname().split("/")[4]
   const [chatId,setChatId] = useState("");
   const conversationIdRef = useRef(""); // Use ref to persist conversationId
   const userIdDB = "66e055de6ddc7825fbd8a103";
   const [name,setName] = useState("")
+  const [addEmailShow,setAddEmailShow] = useState(false);
+  const [tempEmailInput, setTempEmailInput] = useState("");
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -47,6 +49,9 @@ const Chats = () => {
         conversationIdRef.current = data.conversationId; // Persist conversationId
         setMessages(data.messages)
         setName(data.userDetails.name)
+        const UserEmail = data.userDetails.email;
+        console.log(UserEmail)
+        setEmails([UserEmail])
         console.log(data)
       }catch(error){
         console.log(error)
@@ -136,6 +141,18 @@ const Chats = () => {
     }
   };
 
+  const removeEmail = (index) => {
+    setEmails((prevEmails) => prevEmails.filter((_, i) => i !== index));
+  };
+  
+  const handleAddEmail = ()=> {
+    if(tempEmailInput!==""){
+      setEmails((prevEmails) => [...prevEmails,tempEmailInput]);
+    }
+    setTempEmailInput("");
+    setAddEmailShow(false);
+  }
+
   const handleBackClick = () => {
     router.back();
   };
@@ -197,14 +214,17 @@ const Chats = () => {
         </div>
         <div className="h-[46px] pt-[10px] px-[5px] md:px-[70px] border-t-[1px] border-[#E2E8F0] mt-[10px] flex items-center justify-between">
           <div className="flex overflow-x-scroll items-center gap-[25px]">
-            <span>Email CC -</span>
+            <span className="text-nowrap">Email CC -</span>
+            {addEmailShow &&
+              <span className="relative"><input value={tempEmailInput} onChange={(e)=>{setTempEmailInput(e.target.value)}} className="h-[36px] px-[10px] pr-[60px] outline-none w-[200px] border border-gray-200 focus:border-gray-500 flex items-center gap-[4px] md:gap-[10px] bg-[#EFF4FB] bg-opacity-50 rounded-md"></input><button onClick={handleAddEmail} className="absolute top-[50%] translate-y-[-50%] right-8 bg-green-500 rounded-full">{tickIcon}</button> <button onClick={()=>{setAddEmailShow(false);setTempEmailInput("")}} className="absolute top-[50%] translate-y-[-50%] right-1 bg-red-500 rounded-full">{closeIcon}</button> </span>
+            }
             {emails.map((email,index)=>{
               return(
-                <span key={index} className="h-[36px] px-[10px] flex items-center gap-[4px] md:gap-[10px] bg-[#EFF4FB] rounded-md">{email}<button>{closeIcon}</button></span>
+                <span key={index} className="h-[36px] px-[10px] flex items-center gap-[4px] md:gap-[10px] bg-[#EFF4FB] rounded-md">{email}<button onClick={()=>{removeEmail(index)}}>{closeIcon}</button></span>
               )
             })}
           </div>
-          <button>{editIcon}</button>
+          <button onClick={()=>setAddEmailShow(!addEmailShow)}>{editIcon}</button>
         </div>
       </div>
     </div>
@@ -258,4 +278,8 @@ const editIcon = <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xml
 
 const closeIcon = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M16.066 8.99502C16.1377 8.92587 16.1948 8.84314 16.2342 8.75165C16.2735 8.66017 16.2943 8.56176 16.2952 8.46218C16.2961 8.3626 16.2772 8.26383 16.2395 8.17164C16.2018 8.07945 16.1462 7.99568 16.0758 7.92523C16.0054 7.85478 15.9217 7.79905 15.8295 7.7613C15.7374 7.72354 15.6386 7.70452 15.5391 7.70534C15.4395 7.70616 15.341 7.7268 15.2495 7.76606C15.158 7.80532 15.0752 7.86242 15.006 7.93402L12 10.939L8.995 7.93402C8.92634 7.86033 8.84354 7.80123 8.75154 7.76024C8.65954 7.71925 8.56022 7.69721 8.45952 7.69543C8.35882 7.69365 8.25879 7.71218 8.1654 7.7499C8.07201 7.78762 7.98718 7.84376 7.91596 7.91498C7.84474 7.9862 7.7886 8.07103 7.75087 8.16442C7.71315 8.25781 7.69463 8.35784 7.69641 8.45854C7.69818 8.55925 7.72022 8.65856 7.76122 8.75056C7.80221 8.84256 7.86131 8.92536 7.935 8.99402L10.938 12L7.933 15.005C7.80052 15.1472 7.72839 15.3352 7.73182 15.5295C7.73525 15.7238 7.81396 15.9092 7.95138 16.0466C8.08879 16.1841 8.27417 16.2628 8.46847 16.2662C8.66278 16.2696 8.85082 16.1975 8.993 16.065L12 13.06L15.005 16.066C15.1472 16.1985 15.3352 16.2706 15.5295 16.2672C15.7238 16.2638 15.9092 16.1851 16.0466 16.0476C16.184 15.9102 16.2627 15.7248 16.2662 15.5305C16.2696 15.3362 16.1975 15.1482 16.065 15.006L13.062 12L16.066 8.99502Z" fill="#333333"/>
+</svg>
+
+const tickIcon = <svg widths="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
 </svg>

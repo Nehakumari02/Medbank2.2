@@ -14,8 +14,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
   const day = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${day}-${month}-${year}`;
-  const { grandTotal1, setGrandTotal1 } = useOrder();
-  const { currency1, setCurrency1 } = useOrder();
+  const { grandTotal1, currency1 } = useOrder();
   const t = useTranslations("quotation");
   const dueDate = new Date(currentDate);
   dueDate.setDate(currentDate.getDate() + 15);
@@ -60,7 +59,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
         });
 
         if (!response.ok) {
-          throw new Error('Network response was not ok1');
+          throw new Error('Network response was not ok');
         }
 
         const data = await response.json();
@@ -94,7 +93,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
   return (
     <div className="max-w-full mx-auto p-6 bg-white shadow-md rounded-md">
       {/* Header Section */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 border-b pb-4">
         <div>
           <h2 className="text-2xl font-bold">{getCompanyNameByCurrency()}</h2>
           <p className="text-base">{getCompanyAddressByCurrency()}</p>
@@ -119,7 +118,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
       )}
 
       {/* Table Section */}
-      <table className="w-full border-collapse ">
+      <table className="w-full  table-fixed border-collapse mt-4 break-words">
         <thead>
           <tr className="bg-gray-200">
             <th className="border px-4 py-3 text-left text-sm">{t("sampleNumber")}</th>
@@ -132,7 +131,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
             <th className="border px-4 py-3 text-left text-sm">{t("total")}</th>
           </tr>
         </thead>
-        <tbody className="text-xs">
+        <tbody className="text-xs break-words">
           {samples1.map((sample1, index) => (
             <tr key={index} className="hover:bg-gray-50">
               <td className="border px-4 py-3">{sample1.id}</td>
@@ -154,23 +153,22 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
       </table>
 
       {/* Footer Section */}
-      <div className="mt-8">
-        <div className="flex justify-between items-center mb-4 pt-12 gap-2">
+      <div className="mt-8 pt-4 border-t">
+        <div className="flex justify-between items-center mb-4">
           <div>
             <h4 className="font-bold text-lg">Remittance Information</h4>
-            <p><strong>Bank Name:  </strong> DBS Bank code7171 </p>
-            {/* <p><strong>{t("swiftCode")}:</strong> ABC12345</p> */}
-            <p><strong>Account Number:  </strong> 0721214571</p>
+            <p><strong>Bank Name:</strong> DBS Bank code7171</p>
+            <p><strong>Account Number:</strong> 0721214571</p>
           </div>
           <div className="text-right">
             <p className="text-base"><strong>Due Date:</strong> {formattedDueDate}</p>
-            <p className="text-base pt-3"><strong>Authorized Signature:</strong> </p>
-            <p className="text-base pt-4"><strong>....................................</strong> </p>
+            <p className="text-base pt-3"><strong>Authorized Signature:</strong></p>
+            <p className="text-base pt-4"><strong>....................................</strong></p>
           </div>
         </div>
-        {/* <p className="mt-8 text-center text-sm">
+         {/* <p className="mt-8 text-center text-sm">
           If you have any questions, please contact Yuki Okada at xxxxx.
-        </p> */}
+        </p>  */}
       </div>
     </div>
   );

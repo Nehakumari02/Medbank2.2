@@ -18,6 +18,7 @@ import useFcmToken from '@/hooks/useFCMToken'
 
 const OrderCreationPage = () => {
   const {
+    orderId, setOrderId,
     orderTitle, setOrderTitle,
     uploadedFile, setUploadedFile,
     setRequestSheetLink, setCostEstimateStatus,
@@ -192,7 +193,7 @@ const OrderCreationPage = () => {
         body: JSON.stringify({
           adminIdDB:adminIdDB,
           userId: userIdDB,
-          message: t("chatMessage.requestSheet"),
+          message: `(${orderId}) ${t("chatMessage.requestSheet")} `,
         }),
       });
   

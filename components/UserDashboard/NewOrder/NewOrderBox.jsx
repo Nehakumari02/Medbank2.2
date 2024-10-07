@@ -333,7 +333,7 @@ const NewOrderBox = () => {
         body: JSON.stringify({
           adminIdDB: adminIdDB,
           userId: userIdDB,
-          message: t("chatMessage.costEstimate"),
+          message: `(${orderId}) ${t("chatMessage.costEstimate")} `,
         }),
       });
     } catch (error) {
@@ -409,7 +409,7 @@ const NewOrderBox = () => {
           body: JSON.stringify({
             adminIdDB: adminIdDB,
             userId: userIdDB,
-            message: t("chatMessage.payment"),
+            message: `(${orderId}) ${t("chatMessage.paymenet")} `,
           }),
         });
       }
@@ -452,7 +452,7 @@ const NewOrderBox = () => {
       body: JSON.stringify({
         adminIdDB: adminIdDB,
         userId: userIdDB,
-        message: t("chatMessage.formalRequest"),
+        message: `(${orderId}) ${t("chatMessage.formalRequest")} `,
       }),
     });
   };
@@ -481,7 +481,7 @@ const NewOrderBox = () => {
         body: JSON.stringify({
           adminIdDB: adminIdDB,
           userId: userIdDB,
-          message: t("chatMessage.sampleShipping"),
+          message: `(${orderId}) ${t("chatMessage.sampleShipping")} `,
         }),
       });
       setSampleShippingStatus("inTransit")
@@ -548,7 +548,7 @@ const NewOrderBox = () => {
           body: JSON.stringify({
             adminIdDB: adminIdDB,
             userId: userIdDB,
-            message: t("chatMessage.sampleShipping"),
+            message: `(${orderId}) ${t("chatMessage.sampleShipping")} `,
           }),
         });
       }

@@ -363,7 +363,7 @@ const NewOrderBox = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userIdDB, message: t("chatMessage.sampleDefect")
+          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.sampleDefect")} `
         }),
       });
       setOrderPopVisible(false);
@@ -389,7 +389,7 @@ const NewOrderBox = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userIdDB, message: t("chatMessage.sampleGood")
+          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.sampleGood")} `
         }),
       });
       setOrderPopVisible(false);
@@ -648,7 +648,7 @@ const NewOrderBox = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userIdDB, message: t("chatMessage.requestSheet")
+          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.requestSheet")} `
         }),
       });
       setOrderPopVisible(false);
@@ -676,7 +676,7 @@ const NewOrderBox = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userIdDB, message: t("chatMessage.costEstimate")
+          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.costEstimate")} `
         }),
       });
       // Second API call (send-notification)
@@ -718,7 +718,7 @@ const NewOrderBox = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userIdDB, message: t("chatMessage.formalRequest")
+          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.formalRequest")} `
         }),
       });
       const response = await fetch('/api/send-notification', {
@@ -962,7 +962,7 @@ const NewOrderBox = () => {
                   },
                   body: JSON.stringify({
                     userId: userIdDB,
-                    message: t("chatMessage.qualityCheck"),
+                    message: `(${orderId}) ${t("chatMessage.qualityCheck")} `,
                   }),
                 }),
               ]);
@@ -1120,7 +1120,7 @@ const NewOrderBox = () => {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                  userId: userIdDB, message: t("chatMessage.libraryPrep")
+                  userId: userIdDB, message: `(${orderId}) ${t("chatMessage.libraryPrep")} `
                 }),
               });
 
@@ -1289,7 +1289,7 @@ const NewOrderBox = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userId: userIdDB, message: t("chatMessage.rawData")
+            userId: userIdDB, message: `(${orderId}) ${t("chatMessage.rawData")} `
           }),
         });
         const response2 = await fetch('/api/send-notification', {
@@ -1424,7 +1424,7 @@ const NewOrderBox = () => {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                  userId: userIdDB, message: t("chatMessage.analysisSpecification")
+                  userId: userIdDB, message: `(${orderId}) ${t("chatMessage.analysisSpecification")} `
                 }),
               });
 
@@ -1505,7 +1505,7 @@ const NewOrderBox = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userIdDB, message: t("chatMessage.invoice")
+          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.invoice")} `
         }),
       });
       const response2 = await fetch('/api/send-notification', {
@@ -1578,7 +1578,7 @@ const NewOrderBox = () => {
             },
             body: JSON.stringify({
               userId: userIdDB,
-              message: t("chatMessage.payment"),
+              message: `(${orderId}) ${t("chatMessage.payment")} `,
             }),
           });
 

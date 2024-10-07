@@ -7,6 +7,7 @@ import Image from "next/image";
 import Logo from "../../../../public/Images/Home/logo.png"
 import Messages from "../../../../components/AdminDashboard/Chats/Messages";
 import { useTranslations } from 'next-intl'
+import useFcmToken from "@/hooks/useFCMToken";
 
 const Chats = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -20,6 +21,8 @@ const Chats = () => {
   const t = useTranslations("UserDashboard");
   const [addEmailShow,setAddEmailShow] = useState(false);
   const [tempEmailInput, setTempEmailInput] = useState("");
+  const adminIdDB = "67012cdf074407659a1ac9d4";
+  const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -133,6 +136,27 @@ const Chats = () => {
         const messageSendRes = await response.json();
         if (response.status==200) {
           // Send message to the server via socket after successful POST request
+          try{
+          const response2 = await fetch('/api/send-notification2', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              adminIdDB: adminIdDB,
+              title: "MedBank",
+              message: message,
+              link: "/Dashboard",
+            }),
+          });
+          if(response2.status==200){
+            console.log("notification sent sucessfully")
+          }
+          else{
+            console.log("error sent in notification")
+          }
+        }catch{  
+        }
         
         } else {
           console.log("Error sending message:", data.error);

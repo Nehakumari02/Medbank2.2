@@ -21,32 +21,6 @@ export async function POST(req) {
 
     const { name, email } = user;
 
-    // Step 2: Handle sending the message
-    const conversation = await Conversation.findOne({ participants: userId });
-
-    if (!conversation) {
-      return new NextResponse(JSON.stringify({ error: 'Conversation not found' }), { status: 404 });
-    }
-
-    const conversationId = conversation._id;
-
-    // Create and save the new message
-    const newMessage = new Message({
-      conversationId,
-      senderId: hardcodedSenderId,
-      text: message,
-    });
-
-    await newMessage.save();
-
-    // Update the last message in the conversation
-    await Conversation.findByIdAndUpdate(conversationId, {
-      lastMessage: {
-        text: message,
-        senderId: hardcodedSenderId,
-      },
-    });
-
     // Step 3: Handle sending the email
     const transporter = nodemailer.createTransport({
       service: 'gmail',

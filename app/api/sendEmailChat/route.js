@@ -25,7 +25,7 @@ Please check the message from My Page.
 
 マイページログインはこちら
 Click here to log in to My Page
-< Login URL>
+meduon.jp/en/Login
 
 —----------------------------------------------
 ${message}

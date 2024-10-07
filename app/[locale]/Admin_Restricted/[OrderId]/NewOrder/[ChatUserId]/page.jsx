@@ -7,6 +7,7 @@ import Image from "next/image";
 import Logo from "@/public/Images/Home/logo.png"
 import Messages from "@/components/AdminDashboard/Chats/Messages";
 import { useTranslations } from 'next-intl'
+import useFcmToken from "@/hooks/useFCMToken";
 
 const Chats = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -21,6 +22,10 @@ const Chats = () => {
   const [name,setName] = useState("");
   const [addEmailShow,setAddEmailShow] = useState(false);
   const [tempEmailInput, setTempEmailInput] = useState("");
+    const orderIdDB = usePathname().split("/")[3]
+    const [userIdDB1, setUserIdDB1] = useState("");
+    const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
+ 
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -100,6 +105,54 @@ const Chats = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchOrderByID = async (orderId) => {
+      try {
+        const response = await fetch('/api/fetchOrder', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ orderId: orderId }),
+        });
+        const order = await response.json();
+        const orderData = order.data
+        console.log(orderData.userId)
+        setUserIdDB1(orderData.userId._id);
+        setOrderId(orderData.orderId);
+        setOrderTitle(orderData.orderTitle);
+        setRequestSheetStatus(orderData.requestSheetStatus);
+        setRequestSheetLink(orderData.requestSheetLink);
+        setCostEstimateStatus(orderData.costEstimateStatus);
+        setCostEstimationLink(orderData.costEstimateLink);
+        setFormalRequestStatus(orderData.formalRequestStatus);
+        setSampleShippingStatus(orderData.sampleShippingStatus);
+        setSampleShipping(orderData.sampleShipping);
+        setQualityCheckStatus(orderData.qualityCheckStatus);
+        setQualityCheckReportLink(orderData.qualityCheckReportLink);
+        setLibraryPrepStatus(orderData.libraryPrepStatus);
+        setLibraryCheckReportLink(orderData.libraryPrepReportLink);
+        setAnalysisProgressStatus(orderData.analysisProgressStatus);
+        setAnalysisDoneStatus(orderData.analysisDoneStatus);
+        setAnalysisRawDataStatus(orderData.analysisRawDataStatus);
+        setRawDataLink(orderData.analysisRawDataRawDataLink);
+        setAnalysisSpecificationStatus(orderData.analysisSpecificationStatus);
+        setAnalysisSpecificationReportLink(orderData.analysisSpecificationReportLink);
+        setInvoiceStatus(orderData.invoiceStatus);
+        setInvoiceLink(orderData.invoiceLink);
+        setPaymentStatus(orderData.paymentStatus);
+        setPaymentRecieptLink(orderData.paymentRecieptLink);
+        setName(orderData.userId.name)
+        setUsername(orderData.userId.Username);
+        setSchool(orderData.userId.school);
+        console.log(orderData)
+      } catch (error) {
+        console.log("fetch order error ", error)
+      }
+    }
+    fetchOrderByID(orderIdDB);
+  }, [])
+
   const handleChange = (event) => {
     setMessage(event.target.value);
   };
@@ -129,10 +182,51 @@ const Chats = () => {
         });
 
         const messageSendRes = await response.json();
-        if (response.status==200) {
-          // Send message to the server via socket after successful POST request
+        if (response.status == 200) {
+          // Send both the notification and chat email simultaneously
+          try {
+            const [notificationResponse, emailResponse] = await Promise.all([
+              fetch('/api/send-notificationchat', {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  userIdDB1: userIdDB1,
+                  title: "MedBank",
+                  message: message,
+                  link: "/Dashboard",
+                }),
+              }),
+              fetch('/api/sendChatEmail', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  userId: userIdDB1,
+                  message: message,
+                }),
+              }),
+            ]);
         
-        } else {
+            // Check the responses for both notification and email
+            if (notificationResponse.status == 200) {
+              console.log("Notification sent successfully");
+            } else {
+              console.log("Error sending notification");
+            }
+        
+            if (emailResponse.status == 200) {
+              console.log("Email sent successfully");
+            } else {
+              console.log("Error sending email");
+            }
+          } catch (error) {
+            console.error("An error occurred while sending notification or email", error);
+          }
+        }
+         else {
           console.log("Error sending message:", data.error);
         }
       } catch (error) {

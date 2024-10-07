@@ -111,20 +111,20 @@ const SignInPage = () => {
         const userData = await res.json();
         console.log(userData)
 
-        const body = document.querySelector("body");
+        // const body = document.querySelector("body");
 
-        body?.classList.add("page-transition");
+        // body?.classList.add("page-transition");
 
-        await sleep(500);
+        // await sleep(500);
         if(userData.firstLogin){
           router.push(`/${language}/${userData.userId}/Settings`);
         }
         else{
           router.push(`/${language}/${userData.userId}/Dashboard`);
         }
-        await sleep(500);
+        // await sleep(500);
 
-        body?.classList.remove("page-transition");
+        // body?.classList.remove("page-transition");
         
         const message = language === 'jn' 
           ? "ログイン成功..." 

@@ -33,15 +33,15 @@ const Sidebar = () => {
       });
       const data = await response.json();
       console.log(data.data,data.message);
-      const body = document.querySelector("body");
+      // const body = document.querySelector("body");
 
-      body?.classList.add("page-transition");
+      // body?.classList.add("page-transition");
 
-      await sleep(500);
+      // await sleep(500);
       router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
-      await sleep(500);
+      // await sleep(500);
 
-      body?.classList.remove("page-transition");
+      // body?.classList.remove("page-transition");
       // router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
     }catch(error){
       console.log(error)
@@ -98,15 +98,15 @@ const Sidebar = () => {
       handleNewOrder();
     }
     else{
-    const body = document.querySelector("body");
+    // const body = document.querySelector("body");
 
-    body?.classList.add("page-transition");
+    // body?.classList.add("page-transition");
 
-    await sleep(500);
+    // await sleep(500);
     router.push(`/${language}/${userIdDB}/${menuPath}`)
-    await sleep(500);
+    // await sleep(500);
 
-    body?.classList.remove("page-transition");
+    // body?.classList.remove("page-transition");
       // router.push(`/${language}/${userIdDB}/${menuPath}`)
     }
   }

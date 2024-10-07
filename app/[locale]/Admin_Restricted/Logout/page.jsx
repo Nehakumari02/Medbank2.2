@@ -1,8 +1,9 @@
 "use client"
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import { signOut } from 'next-auth/react';
+// import { signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
+import Cookie from 'js-cookie';
 
 const Logout = () => {
   const router = useRouter();
@@ -10,7 +11,9 @@ const Logout = () => {
   const t = useTranslations("Logout");
 
   const handleLogout = async()=>{
-    await signOut({redirect:false});
+    // await signOut({redirect:false});
+    document.cookie = "medbank_user_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict; Secure";
+    // Cookie.remove("medbank_user_token", { path: "/", sameSite: "Strict", secure: true });
     router.push(`/${language}/Admin_Login`);
   }
 

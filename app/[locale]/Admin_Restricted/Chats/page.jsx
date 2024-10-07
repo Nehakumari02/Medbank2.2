@@ -116,10 +116,10 @@ const Chats = () => {
               {conversations.map((conversation, index) => (
                 <div key={index} onClick={()=>handleChat(conversation.participants[0]._id)} className="flex items-center justify-start cursor-pointer py-[4px] md:py-[16px] px-[12px] h-[80px] gap-[18px] bg-gray-100 rounded-xl">
                   <div className="h-[56px] w-[56px] rounded-full bg-gray-400 flex items-center justify-center text-white">
-                  {getInitials(conversation.participants[0].name)}
+                  {conversation.participants[0]?.name?getInitials(conversation.participants[0]?.name):getInitials("NA")}
                   </div>
                   <div className="flex flex-col justify-between">
-                    <span className="font-DM-Sans font-medium text-[14px] leading-[24px]">{conversation.participants[0].name||"User Unknown"}</span>
+                    <span className="font-DM-Sans font-medium text-[14px] leading-[24px]">{conversation.participants[0]?.name?conversation.participants[0]?.name:"User Unknown"}</span>
                     <div className="font-DM-Sans font-medium text-[12px] leading-[22px] flex items-center gap-[8px]">
                       <span>
                         {conversation.lastMessage?.text

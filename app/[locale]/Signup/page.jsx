@@ -122,16 +122,16 @@ const SignUp = () => {
       description:'User registered successfully!!!'
     })
     console.log(data.message)
-    const body = document.querySelector("body");
+    // const body = document.querySelector("body");
 
-    body?.classList.add("page-transition");
+    // body?.classList.add("page-transition");
     localStorage.removeItem('hasVisited');
 
-    await sleep(500);
+    // await sleep(500);
     router.push(`/${language}/Login`);
-    await sleep(500);
+    // await sleep(500);
 
-    body?.classList.remove("page-transition");
+    // body?.classList.remove("page-transition");
     // router.push(`/${language}/Login`);
   }catch(error){
     toast({

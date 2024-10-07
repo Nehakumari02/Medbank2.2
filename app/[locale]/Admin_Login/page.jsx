@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import {signIn} from 'next-auth/react'
+import { toast } from '@/hooks/use-toast';
 
 const SignInPage = () => {
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
@@ -62,21 +62,50 @@ const SignInPage = () => {
       });
 
       console.log(res)
-      if(res.status===401){
+
+      if (res.status === 404) {
+        const message = language === 'jn' 
+          ? "ユーザーが見つかりません" 
+          : "User not found";
+  
         toast({
-          variant:'error',
-          title:'Error',
-          description:"Password incorrect"
-        })
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
+        return;
+      }
+      
+      if (res.status === 401) {
+        const message = language === 'jn' 
+          ? "パスワードが間違っています" 
+          : "Password incorrect";
+  
+        toast({
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
         return;
       }
       if(res.status===200){
-        toast({
-          variant:"success",
-          title:"Success",
-          description:"login Successfull..."
-        })
+        console.log("login succes")
+        // toast({
+        //   variant:"success",
+        //   title:"Success",
+        //   description:"login Successfull..."
+        // })
+        console.log("login toast")
         router.push(`/${language}/Admin_Restricted/Dashboard`);
+        const message = language === 'jn' 
+          ? "ログイン成功..." 
+          : "Login successful...";
+
+        toast({
+          variant: "success",
+          title: language === 'jn' ? '成功' : 'Success',
+          description: message,
+        });
       }
 
       // if(res.error){

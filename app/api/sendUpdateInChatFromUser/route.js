@@ -2,12 +2,22 @@ import { NextResponse } from "next/server";
 import dbConnect from "../../../lib/dbConnect";
 import Conversation from "../../../models/conversation";
 import Message from "../../../models/message";
+import User from "../../../models/user";
 
 export async function POST(req) {
-  const { userId, message } = await req.json();
+  const { adminIdDB ,userId, message } = await req.json();
 
   try {
     await dbConnect();
+    // Step 1: Fetch user email and name from the database using userId
+    const user = await User.findById(adminIdDB);
+
+    if (!user) {
+      return new NextResponse(JSON.stringify({ error: 'User not found' }), { status: 404 });
+    }
+
+    const { name, email } = user;
+
 
     // Find the conversation where userId is in participants
     const conversation = await Conversation.findOne({

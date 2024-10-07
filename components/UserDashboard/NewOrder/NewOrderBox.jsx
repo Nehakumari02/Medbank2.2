@@ -331,6 +331,7 @@ const NewOrderBox = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          adminIdDB: adminIdDB,
           userId: userIdDB,
           message: t("chatMessage.costEstimate"),
         }),
@@ -406,6 +407,7 @@ const NewOrderBox = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            adminIdDB: adminIdDB,
             userId: userIdDB,
             message: t("chatMessage.payment"),
           }),
@@ -447,6 +449,7 @@ const NewOrderBox = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        adminIdDB: adminIdDB,
         userId: userIdDB,
         message: t("chatMessage.formalRequest"),
       }),
@@ -474,6 +477,7 @@ const NewOrderBox = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          adminIdDB: adminIdDB,
           userId: userIdDB,
           message: t("chatMessage.sampleShipping"),
         }),
@@ -539,6 +543,7 @@ const NewOrderBox = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            adminIdDB: adminIdDB,
             userId: userIdDB,
             message: t("chatMessage.sampleShipping"),
           }),

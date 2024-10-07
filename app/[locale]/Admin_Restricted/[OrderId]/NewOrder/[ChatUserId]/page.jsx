@@ -14,7 +14,7 @@ const Chats = () => {
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState(""); // State for the input message
   const [messages, setMessages] = useState([]); // State for storing chat messages
-  const [emails,setEmails] = useState([]);
+  const [emails,setEmails] = useState(["test@gmail.com","test2@gmail.com"]);
   const clientUserId = usePathname().split("/")[5]
   const [chatId,setChatId] = useState("");
   const conversationIdRef = useRef(""); // Use ref to persist conversationId
@@ -56,7 +56,7 @@ const Chats = () => {
         conversationIdRef.current = data.conversationId; // Persist conversationId
         setMessages(data.messages)
         setName(data.userDetails.name)
-        setEmails((prevEmails)=>[...prevEmails,data.userDetails.email])
+        //setEmails((prevEmails)=>[...prevEmails,data.userDetails.email])
         console.log(data)
       }catch(error){
         console.log(error)

@@ -206,6 +206,7 @@ const Chats = () => {
                 body: JSON.stringify({
                   userId: userIdDB1,
                   message: message,
+                  cc:emails
                 }),
               }),
             ]);

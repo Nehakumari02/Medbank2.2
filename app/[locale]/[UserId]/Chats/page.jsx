@@ -108,6 +108,7 @@ const Chats = () => {
     //     timestamp: Date.now(),
     //   }); // Emit message to server
     //   setMessage(""); // Clear the input field after sending
+    
     // }
 
     if (message.trim()) {
@@ -143,6 +144,7 @@ const Chats = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
+              userIdDB:userIdDB,
               adminIdDB: adminIdDB,
               title: "MedBank",
               message: message,
@@ -186,6 +188,8 @@ const Chats = () => {
   const handleBackClick = () => {
     router.back();
   };
+
+  
 
   return (
     <div className="w-full h-full p-[13px] text-[#333333]">

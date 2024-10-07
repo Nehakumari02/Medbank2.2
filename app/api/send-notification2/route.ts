@@ -14,7 +14,7 @@ if (!admin.apps.length) {
 
 export async function POST(request: NextRequest) {
   try {
-    const { adminIdDB, title, message, link } = await request.json();
+    const {userIdDB, adminIdDB, title, message, link } = await request.json();
     await dbConnect();
 
     // Fetch user email and name from the database using userId
@@ -27,11 +27,18 @@ export async function POST(request: NextRequest) {
     const { token } = user;
     console.log("token2",token)
 
+    const user1 = await User.findById(userIdDB);
+
+    if (!user) {
+      return new NextResponse(JSON.stringify({ error: 'User not found' }), { status: 404 });
+    }
+    const { name } = user1;
+    
     // Prepare notification payload
     const payload: Message = {
       token,
       notification: {
-        title,
+        title:name,
         body: message,
       },
       webpush: link ? {

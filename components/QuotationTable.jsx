@@ -110,10 +110,7 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
 
   return (
     <div className="max-w-full mx-auto p-3 bg-white shadow-md rounded-md">
-       <div className="mb-8">
-       <h2 className="text-xl font-bold"><p>{getCompanyNameByCurrency()}</p></h2>
-        <p>{getCompanyAddressByCurrency()}</p>
-      </div>
+
       {userDetails ? (
         <div className="mb-8 text-base font-medium">
           <div className="text-lg font-bold">User Details</div>
@@ -128,9 +125,14 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
       ) : (
         <p>No user details available.</p>
       )}
-      
+
+      <div className="mb-8">
+        <h2 className="text-lg font-bold"><p>{getCompanyNameByCurrency()}</p></h2>
+        <p>{getCompanyAddressByCurrency()}</p>
+      </div>
+
       <h2 className="pb-5 font-medium text-xl text-center">{t("title")}</h2>
-      
+
       <table className="w-full table-fixed  border-collapse  break-words">
         <thead className='text-sm'>
           <tr className="bg-gray-100">

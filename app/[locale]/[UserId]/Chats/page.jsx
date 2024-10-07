@@ -135,31 +135,51 @@ const Chats = () => {
         });
 
         const messageSendRes = await response.json();
-        if (response.status==200) {
-          // Send message to the server via socket after successful POST request
-          try{
-          const response2 = await fetch('/api/send-notification2', {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              userIdDB:userIdDB,
-              adminIdDB: adminIdDB,
-              title: "MedBank",
-              message: message,
-              link: "/Dashboard",
-            }),
-          });
-          if(response2.status==200){
-            console.log("notification sent sucessfully")
-          }
-          else{
-            console.log("error sent in notification")
-          }
-        }catch{  
-        }
+        if (response.status == 200) {
+          // Send both the notification and chat email simultaneously
+          try {
+            const [notificationResponse, emailResponse] = await Promise.all([
+              fetch('/api/send-notification2', {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  userIdDB: userIdDB,
+                  adminIdDB:adminIdDB,
+                  title: "MedBank",
+                  message: message,
+                  link: "/Dashboard",
+                }),
+              }),
+              fetch('/api/sendChatEmailFromUser', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  adminIdDB: adminIdDB,
+                  message: message,
+                  cc:emails
+                }),
+              }),
+            ]);
         
+            // Check the responses for both notification and email
+            if (notificationResponse.status == 200) {
+              console.log("Notification sent successfully");
+            } else {
+              console.log("Error sending notification");
+            }
+        
+            if (emailResponse.status == 200) {
+              console.log("Email sent successfully");
+            } else {
+              console.log("Error sending email");
+            }
+          } catch (error) {
+            console.error("An error occurred while sending notification or email", error);
+          }
         } else {
           console.log("Error sending message:", data.error);
         }

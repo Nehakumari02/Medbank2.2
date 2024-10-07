@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Logo from "@/public/Images/Home/logo.png"
 import Messages from "@/components/AdminDashboard/Chats/Messages";
+import useFcmToken from "@/hooks/useFCMToken";
 
 const Chats = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -20,7 +21,7 @@ const Chats = () => {
   const [name,setName] = useState("")
   const [addEmailShow,setAddEmailShow] = useState(false);
   const [tempEmailInput, setTempEmailInput] = useState("");
-
+  const orderIdDB = usePathname().split("/")[4]
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
     const randomString = Math.random().toString(36).substring(2, 8); // Generate a random string
@@ -28,6 +29,7 @@ const Chats = () => {
   };
 
   const router = useRouter();
+  const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
 
   useEffect(() => {
     // const chatArray = createChatArray("user1", "user2", 10);
@@ -100,6 +102,8 @@ const Chats = () => {
     };
   }, []);
 
+
+
   const handleChange = (event) => {
     setMessage(event.target.value);
   };
@@ -131,6 +135,48 @@ const Chats = () => {
         const messageSendRes = await response.json();
         if (response.status==200) {
           // Send message to the server via socket after successful POST request
+          try {
+            const [notificationResponse, emailResponse] = await Promise.all([
+              fetch('/api/send-notificationchat', {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  userIdDB1: clientUserId,
+                  title: "MedBank",
+                  message: message,
+                  link: "/Dashboard",
+                }),
+              }),
+              fetch('/api/sendChatEmail', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  userId: clientUserId,
+                  message: message,
+                  cc:emails
+                }),
+              }),
+            ]);
+        
+            // Check the responses for both notification and email
+            if (notificationResponse.status == 200) {
+              console.log("Notification sent successfully");
+            } else {
+              console.log("Error sending notification");
+            }
+        
+            if (emailResponse.status == 200) {
+              console.log("Email sent successfully");
+            } else {
+              console.log("Error sending email");
+            }
+          } catch (error) {
+            console.error("An error occurred while sending notification or email", error);
+          }
         
         } else {
           console.log("Error sending message:", data.error);

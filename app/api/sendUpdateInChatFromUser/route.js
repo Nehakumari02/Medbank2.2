@@ -41,6 +41,47 @@ export async function POST(req) {
       },
     });
 
+    // Step 3: Handle sending the email
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER, // Use environment variables
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_SIGNUP,
+      to: email,
+      subject: "MEDBANK 【遺伝子解析について】Genetic Analysis",
+      text: `Dear Admin
+
+こんにちは。お客様からメッセージが届きました。
+Hello. You got a message from a customer. 
+
+管理画面より内容のご確認をお願いします。
+Please check the message from Admin.
+
+マイページログインはこちら
+Click here to log in to Admin
+ meduon.jp/en/Admin_Login
+      
+      —----------------------------------------------
+      ${message}
+      
+      —----------------------------------------------
+      
+      
+※こちらのメールは送信専用となります。お問合せやお困りの際はマイページ内よりお願い致します。
+Please note that this e-mail is for sending only. 
+
+      MEDBANK PTE. LTD. 
+      
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+
     return new NextResponse(JSON.stringify({ message: 'Message sent successfully' }), {
       status: 200,
     });

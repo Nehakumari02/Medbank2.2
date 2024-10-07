@@ -174,6 +174,7 @@ const OrderCreationPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          userIdDB: userIdDB,
           adminIdDB:adminIdDB,
           title: "MedBank",
           message: t("notification.requestSheet"),
@@ -189,6 +190,7 @@ const OrderCreationPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          adminIdDB:adminIdDB,
           userId: userIdDB,
           message: t("chatMessage.requestSheet"),
         }),

@@ -3,6 +3,7 @@ import dbConnect from "../../../lib/dbConnect";
 import Conversation from "../../../models/conversation";
 import Message from "../../../models/message";
 import User from "../../../models/user";
+import nodemailer from 'nodemailer';
 
 export async function POST(req) {
   const { adminIdDB, userId, message } = await req.json();
@@ -16,10 +17,8 @@ export async function POST(req) {
       return new NextResponse(JSON.stringify({ error: 'User not found' }), { status: 404 });
     }
 
-    const { name, email } = user;
-    console.log(email)
-
-
+    const {email } = user;
+  
     // Find the conversation where userId is in participants
     const conversation = await Conversation.findOne({
       participants: userId

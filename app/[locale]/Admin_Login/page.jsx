@@ -62,7 +62,7 @@ const SignInPage = () => {
       });
 
       console.log(res)
-      if(res.status===401){
+      if(res.status==401){
         toast({
           variant:'error',
           title:'Error',
@@ -70,12 +70,8 @@ const SignInPage = () => {
         })
         return;
       }
-      if(res.status===200){
-        toast({
-          variant:"success",
-          title:"Success",
-          description:"login Successfull..."
-        })
+      if(res.status==200){
+       
         router.push(`/${language}/Admin_Restricted/Dashboard`);
       }
 

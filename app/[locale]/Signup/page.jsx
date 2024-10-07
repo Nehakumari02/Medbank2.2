@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { Loader2} from 'lucide-react';
 import {toast} from '@/hooks/use-toast'
 
 function sleep(ms) {
@@ -29,6 +30,7 @@ const SignUp = () => {
   const [passwordValidation, setPasswordValidation] = useState(true);
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
+  const [loading,setLoading] = useState(false);
 
   const handleBackClick = () => {
     router.back();
@@ -75,6 +77,7 @@ const SignUp = () => {
 
   const handleSignUp = async (e)=>{
     e.preventDefault();
+    setLoading(true);
     try{
       if(emailError){
         toast({
@@ -140,6 +143,8 @@ const SignUp = () => {
       description:error
     })
     console.log(error)
+  } finally {
+    setLoading(false);
   }
   }
 
@@ -281,7 +286,7 @@ const SignUp = () => {
                     privacyPolicy: (chunks) => <Link className='text-[#3E8DA7] underline underline-offset-2' href={`/${language}/PrivacyPolicy`}>{chunks}</Link>,
                   })}
                 </p>
-                <button type="submit" onClick={handleSignUp} className='h-[38px] md:h-[50px] w-full rounded-[6px] md:flex items-center justify-center [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-bold text-[18px] leading-[24px]'>{t('register')}</button>
+                <button disabled={loading} type="submit" onClick={handleSignUp} className={`h-[38px] md:h-[50px] w-full rounded-[6px] md:flex items-center justify-center [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-bold text-[18px] leading-[24px] ${loading?"opacity-75":""} `}> {loading?<Loader2 className="animate-spin" /> : t('register')}</button>
               </div>
 
               <p className='m-0 text-center font-DM-Sans font-normal text-[12px] md:text-[14px] leading-[20px] pt-[18px] md:pt-[28px] '>{t.rich("signUpText",{

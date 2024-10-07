@@ -2,13 +2,30 @@ import { NextResponse } from "next/server";
 import dbConnect from "../../../lib/dbConnect";
 import Order from "../../../models/order";
 import User from "../../../models/user";
-import { Currency } from "lucide-react";
 
 export async function POST(req) {
   const { userId } = await req.json();
   try {
     console.log("userid", userId);
     await dbConnect();
+
+    // Retrieve user to check if userDetails flag is set
+    const user = await User.findById(userId);
+    if (!user) {
+      return new NextResponse(JSON.stringify({ message: "User not found" }), {
+        status: 404,
+      });
+    }
+
+    // Check if userDetails flag is true, if not send a 402 status
+    if (!user.userDetails) {
+      return new NextResponse(
+        JSON.stringify({ message: "User details are incomplete. Please fill in your details first." }),
+        {
+          status: 402,
+        }
+      );
+    }
 
     // Get the latest order and generate a new incremental orderId
     const latestOrder = await Order.findOne().sort({ createdAt: -1 }).exec();

@@ -318,24 +318,26 @@ const NewOrderBox = () => {
       await html2pdf().from(element).set(options).save();
       setOrderPopVisible(false);
       setIsPopupVisible(false);
-      setCostEstimateStatus("isCompleted");
-      setFormalRequestStatus("inUserProgress");
+      if(costEstimateStatus!=="isCompleted"){
+        setCostEstimateStatus("isCompleted");
+        setFormalRequestStatus("inUserProgress");
 
-      updateDataInDB({
-        costEstimateStatus: "isCompleted",
-        formalRequestStatus: "inUserProgress"
-      });
-      const chatResponse = await fetch("/api/sendUpdateInChatFromUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          adminIdDB: adminIdDB,
-          userId: userIdDB,
-          message: `(${orderId}) ${t("chatMessage.costEstimate")} `,
-        }),
-      });
+        updateDataInDB({
+          costEstimateStatus: "isCompleted",
+          formalRequestStatus: "inUserProgress"
+        });
+        const chatResponse = await fetch("/api/sendUpdateInChatFromUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            adminIdDB: adminIdDB,
+            userId: userIdDB,
+            message: `(${orderId}) ${t("chatMessage.costEstimate")} `,
+          }),
+        });
+      }
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -1431,7 +1433,7 @@ const NewOrderBox = () => {
           </div>
           <div className='flex items-center justify-center md:justify-start gap-x-[6px] gap-y-[6px]  md:gap-x-[32px] md:gap-y-[8px] flex-wrap'>
             <button onClick={handleOrderCreation} disabled={!(requestSheetStatus == "inUserProgress" || requestSheetStatus == "isAdminCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${requestSheetStatus == "isPending" || requestSheetStatus == "inAdminProgress" ? "text-[#333333]" : "text-white"} ${requestSheetStatus == "isPending" || requestSheetStatus == "inAdminProgress" ? "bg-[#E2E8F0]" : requestSheetStatus == "inUserProgress" || requestSheetStatus == "isAdminCompleted" ? "bg-[#FF914D]" : requestSheetStatus == "isUserCompleted" ? "bg-[#79747E]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.requestSheet")}</button>
-            <button onClick={handleCostEstimateClick} disabled={!(costEstimateStatus == "inUserProgress" || costEstimateStatus == "isAdminCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${costEstimateStatus == "isPending" || costEstimateStatus == "inAdminProgress" ? "text-[#333333]" : "text-white"} ${costEstimateStatus == "isPending" || costEstimateStatus == "inAdminProgress" ? "bg-[#E2E8F0]" : costEstimateStatus == "inUserProgress" || costEstimateStatus == "isAdminCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.costEstimation")}</button>
+            <button onClick={handleCostEstimateClick} disabled={!(costEstimateStatus == "inUserProgress" || costEstimateStatus == "isAdminCompleted" || costEstimateStatus == "isCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${costEstimateStatus == "isPending" || costEstimateStatus == "inAdminProgress" ? "text-[#333333]" : "text-white"} ${costEstimateStatus == "isPending" || costEstimateStatus == "inAdminProgress" ? "bg-[#E2E8F0]" : costEstimateStatus == "inUserProgress" || costEstimateStatus == "isAdminCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.costEstimation")}</button>
             <button onClick={handleFormalRequestClick} disabled={!(formalRequestStatus == "inUserProgress" || formalRequestStatus == "isAdminCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${formalRequestStatus == "isPending" || formalRequestStatus == "inAdminProgress" ? "text-[#333333]" : "text-white"} ${formalRequestStatus == "isPending" || formalRequestStatus == "inAdminProgress" ? "bg-[#E2E8F0]" : formalRequestStatus == "inUserProgress" || formalRequestStatus == "isAdminCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.formalRequest")}</button>
             <button onClick={handleSampleShippingClick} disabled={!(sampleShippingStatus == "inUserProgress" || sampleShippingStatus == "isAdminCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${sampleShippingStatus == "isPending" || sampleShippingStatus == "inAdminProgress" ? "text-[#333333]" : "text-white"} ${sampleShippingStatus == "isPending" || sampleShippingStatus == "inAdminProgress" ? "bg-[#E2E8F0]" : sampleShippingStatus == "inUserProgress" ? "bg-[#FF914D]" : sampleShippingStatus == "inTransit" || sampleShippingStatus == "isAdminCompleted" || sampleShippingStatus == "isUserCompleted" ? "bg-[#79747E]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.sampleShipment")}</button>
             <button onClick={handleQualityCheckClick} disabled={!(qualityCheckStatus == "inUserProgress" || qualityCheckStatus == "isAdminCompleted" || qualityCheckStatus == "isCompleted")} className={`h-[44px] w-[113px] md:h-[64px] md:w-[184px] p-[4px] md:p-[8px] rounded-[4px] md:rounded-[6px] ${qualityCheckStatus == "isPending" || qualityCheckStatus == "inAdminProgress" ? "text-[#333333]" : "text-white"} ${qualityCheckStatus == "isPending" || qualityCheckStatus == "inAdminProgress" ? "bg-[#E2E8F0]" : qualityCheckStatus == "inUserProgress" || qualityCheckStatus == "isAdminCompleted" ? "bg-[#FF914D]" : "bg-[#5CE1E6]"} font-DM-Sans font-medium text-[8px] md:text-[14px] leading-[24px] text-center`}>{t("buttons.qualityCheck")}</button>

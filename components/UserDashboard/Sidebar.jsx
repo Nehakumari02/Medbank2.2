@@ -6,6 +6,7 @@ import {dashboardIcon,dashboardSelectedIcon,newOrderIcon,newOrderSelectedIcon,or
 import { usePathname, useRouter } from "next/navigation";
 import { useSidebarContext } from "@/contexts/SidebarContext";
 import { useTranslations } from "next-intl";
+import { toast } from '@/hooks/use-toast';
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -19,11 +20,13 @@ const Sidebar = () => {
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
   const language = usePathname().split("/")[1];
   const userIdDB = usePathname().split("/")[2];
+  const [disabled, setDisabled] = useState(false);
 
   const t = useTranslations("UserSideBar");
 
   const handleNewOrder=async()=>{
     try{
+      setDisabled(true);
       const response = await fetch('/api/newOrder', {
         method: 'POST',
         headers: {
@@ -32,7 +35,34 @@ const Sidebar = () => {
         body: JSON.stringify({userId:userIdDB}),
       });
       const data = await response.json();
-      console.log(data.data,data.message);
+
+      if (response.status === 404) {
+        const message = language === 'jn' 
+          ? "ユーザーが見つかりません。自分のアカウントでログインしてください。" 
+          : "User not found. Please logout and login with your own credentials.";
+      
+        toast({
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
+        return;
+      }
+      
+      if (response.status === 402) {
+        console.log("fill user details")
+        const message = language === 'jn' 
+          ? "ユーザー情報が未入力です。まずは詳細を入力してください。" 
+          : "User details are incomplete. Please fill in your details first.";
+      
+        toast({
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
+        return;
+      }      
+
       // const body = document.querySelector("body");
 
       // body?.classList.add("page-transition");
@@ -45,6 +75,8 @@ const Sidebar = () => {
       // router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
     }catch(error){
       console.log(error)
+    }finally{
+      setDisabled(false);
     }
   }
 
@@ -120,8 +152,9 @@ const Sidebar = () => {
           {menuItems.map((item) => (
             <button
               key={item.text}
+              disabled={disabled}
               onClick={()=>handleMenuItemClick(item.path)}
-              className={`h-[40px] w-full flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px] ${path==item.path?"border-l-[1px] border-[#3E8DA7] rounded-[3px] bg-[#E8F3FE]":""}`}
+              className={`h-[40px] w-full flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px] ${disabled&&item.path=="NewOrder"?"opacity-75":""} ${path==item.path?"border-l-[1px] border-[#3E8DA7] rounded-[3px] bg-[#E8F3FE]":""}`}
             >
               {path==item.path?item.selectedIcon:item.icon}
               <span className={`font-DM-Sans font-normal text-[16px] leading-[24px] ${path==item.path?"text-[#3E8DA7]":""} ${sidebarVisibility?"":"hidden"}`}>{item.text}</span>

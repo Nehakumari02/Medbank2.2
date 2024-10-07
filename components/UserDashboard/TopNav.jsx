@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Logo from "../../public/Images/Home/logo.png";
+import { toast } from '@/hooks/use-toast';
+import { Loader2} from 'lucide-react';
 
 const TopNav = () => {
   const path = usePathname().split("/")[3];
@@ -33,7 +35,33 @@ const TopNav = () => {
         body: JSON.stringify({userId:userIdDB}),
       });
       const data = await response.json();
-      console.log(data.data,data.message)
+
+      if (response.status === 404) {
+        const message = language === 'jn' 
+          ? "ユーザーが見つかりません。自分のアカウントでログインしてください。" 
+          : "User not found. Please logout and login with your own credentials.";
+      
+        toast({
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
+        return;
+      }
+      
+      if (response.status === 402) {
+        const message = language === 'jn' 
+          ? "ユーザー情報が未入力です。まずは詳細を入力してください。" 
+          : "User details are incomplete. Please fill in your details first.";
+      
+        toast({
+          variant: 'error',
+          title: language === 'jn' ? 'エラー' : 'Error',
+          description: message,
+        });
+        return;
+      }
+      
       router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
     }catch(error){
       console.log(error)
@@ -66,7 +94,7 @@ const TopNav = () => {
             <span className={`${language == "en" ? "border-b-[2px] border-[#003E5C99] text-black" : "text-[#333333]"} font-sans font-normal pb-[4px]`}>EN</span>
           </button>
         </div>
-        <button disabled={disabled} onClick={handleNewOrder} id='highlight-step-2' className={`h-[40px] w-[133px] rounded-[6px] hidden md:flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[14px] leading-[20px] ${disabled?"opacity-75":""}`}>{plusIcon}{t("newOrder")}</button>
+        <button disabled={disabled} onClick={handleNewOrder} id='highlight-step-2' className={`h-[40px] w-[133px] rounded-[6px] hidden md:flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[14px] leading-[20px] ${disabled?"opacity-75":""}`}>  {disabled?<Loader2 className="animate-spin" /> : <>{plusIcon} {t("newOrder")}</>}</button>
         <div>
           <button onClick={() => handleMenu()} className='h-full flex items-center justify-center md:hidden pt-[2px]'>{hamburderMenuIcon}</button>
           {menu && <div className='absolute right-0 z-10 top-[40px] w-[168px] bg-white p-[12px] shadow-md'>

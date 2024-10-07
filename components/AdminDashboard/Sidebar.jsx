@@ -31,6 +31,12 @@ const Sidebar = () => {
       path: "Orders",
     },
     {
+      text: t("chats"),
+      icon: chatsIcon,
+      selectedIcon: chatsSelectedIcon,
+      path: "Chats",
+    },
+    {
       text: t("payments"),
       icon: paymentsIcon,
       selectedIcon: paymentsSelectedIcon,

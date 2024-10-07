@@ -28,15 +28,31 @@ export async function POST(req) {
 
   // Email content based on language
   const subject = language === 'jn' ? 'パスワードリセットのリクエスト' : 'Password Reset Request';
-  const text = language === 'jn'
-    ? `パスワードリセットのリクエストを受け取りました。\n\n以下のリンクをクリックしてパスワードをリセットしてください。\n\nリセットリンク: ${url}`
-    : `We received a request to reset your password.\n\nPlease click the link below to reset your password:\n\nReset Link: ${url}`;
+  // const text = language === 'jn'
+  //   ? `パスワードリセットのリクエストを受け取りました。\n\n以下のリンクをクリックしてパスワードをリセットしてください。\n\nリセットリンク: ${url}`
+  //   : `We received a request to reset your password.\n\nPlease click the link below to reset your password:\n\nReset Link: ${url}`;
+  const htmlContent = language === 'jn'
+  ? `
+    <p>こんにちは、Medbankです。</p>
+    <p>いつもご利用ありがとうございます。</p>
+    <p>パスワードのリセットは下記リンクよりお願い致します。</p>
+    <p><strong><a href="${url}">${url}</a></strong></p>
+    <p>Medbank株式会社</p>
+  `
+  : `
+    <p>Hello, this is Medbank.</p>
+    <p>Thank you for using our services.</p>
+    <p>Please click the link below to reset your password.</p>
+    <p><strong><a href="${url}">${url}</a></strong></p>
+    <p>Medbank Pte. Ltd</p>
+  `;
 
   const mailOptions = {
     from: process.env.EMAIL_USER, // Use your email user here
     to: email,
     subject: subject,
-    text: text, // Use text instead of html
+    // text: text, // Use text instead of html
+    html:htmlContent
   };
 
   try {

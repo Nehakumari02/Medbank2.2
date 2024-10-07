@@ -44,15 +44,31 @@ export async function POST(req) {
 
   // Email content based on language\
   const subject = language === 'jn' ? '確認リンク' : 'Confirmation Link';
-  const text = language === 'jn'
-    ? `以下のリンクをクリックして、登録を確認してください。\n\n登録確認: ${url}`
-    : `Please click the link below to confirm your registration.\n\nConfirm Registration: ${url}`;
+  // const text = language === 'jn'
+  //   ? `以下のリンクをクリックして、登録を確認してください。\n\n登録確認: ${url}`
+  //   : `Please click the link below to confirm your registration.\n\nConfirm Registration: ${url}`;
+  const htmlContent = language === 'jn'
+  ? `
+    <p>こんにちは Medbank です。</p>
+    <p>Mypage のご登録ありがとうございます。</p>
+    <p>以下のリンクをクリックして、メールアドレスを認証してください。</p>
+    <p><strong>メールアドレス認証：</strong><a href="${url}">${url}</a></p>
+    <p>Medbank株式会社</p>
+  `
+  : `
+    <p>Hello Medbank,</p>
+    <p>Thank you for registering with Mypage.</p>
+    <p>Please click the link below to confirm your registration.</p>
+    <p><strong>Confirm Registration: </strong><a href="${url}">${url}</a></p>
+    <p>Medbank Pte. Ltd</p>
+  `;
 
   const mailOptions = {
     from: process.env.EMAIL_USER, // Use your email user here
     to: email,
     subject: subject,
-    text: text, // Use text instead of html
+    // text: text, // Use text instead of html
+    html:htmlContent
   };
 
   try {

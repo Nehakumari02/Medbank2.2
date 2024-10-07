@@ -437,6 +437,7 @@ const NewOrderBox = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        userIdDB: userIdDB,
         adminIdDB: adminIdDB,
         title: "MedBank",
         message: t("notification.formalRequest"),
@@ -465,6 +466,7 @@ const NewOrderBox = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          userIdDB: userIdDB,
           adminIdDB: adminIdDB,
           title: "MedBank",
           message: t("notification.sampleShipping"),
@@ -531,6 +533,7 @@ const NewOrderBox = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            userIdDB: userIdDB,
             adminIdDB: adminIdDB,
             title: "MedBank",
             message: t("notification.sampleShipping"),
@@ -663,6 +666,7 @@ const NewOrderBox = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            userIdDB: userIdDB,
             adminIdDB: adminIdDB,
             title: "MedBank",
             message: t("notification.qualityCheck"),
@@ -710,6 +714,7 @@ const NewOrderBox = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            userIdDB: userIdDB,
             adminIdDB: adminIdDB,
             title: "MedBank",
             message: t("notification.libraryPrep"),

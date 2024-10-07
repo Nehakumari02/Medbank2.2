@@ -5,7 +5,7 @@ import Message from "../../../models/message";
 import User from "../../../models/user";
 
 export async function POST(req) {
-  const { adminIdDB ,userId, message } = await req.json();
+  const { adminIdDB, userId, message } = await req.json();
 
   try {
     await dbConnect();
@@ -17,6 +17,7 @@ export async function POST(req) {
     }
 
     const { name, email } = user;
+    console.log(email)
 
 
     // Find the conversation where userId is in participants
@@ -64,17 +65,16 @@ export async function POST(req) {
       from: process.env.EMAIL_SIGNUP,
       to: email,
       subject: "MEDBANK 【遺伝子解析について】Genetic Analysis",
-      text: `Dear Admin
+      text: `Dear Admin 
+      こんにちは。お客様からメッセージが届きました。
+      Hello. You got a message from a customer. 
 
-こんにちは。お客様からメッセージが届きました。
-Hello. You got a message from a customer. 
+      管理画面より内容のご確認をお願いします。
+      Please check the message from Admin.
 
-管理画面より内容のご確認をお願いします。
-Please check the message from Admin.
-
-マイページログインはこちら
-Click here to log in to Admin
- meduon.jp/en/Admin_Login
+      マイページログインはこちら
+      Click here to log in to Admin
+      meduon.jp/en/Admin_Login
       
       —----------------------------------------------
       ${message}
@@ -82,8 +82,8 @@ Click here to log in to Admin
       —----------------------------------------------
       
       
-※こちらのメールは送信専用となります。お問合せやお困りの際はマイページ内よりお願い致します。
-Please note that this e-mail is for sending only. 
+    ※こちらのメールは送信専用となります。お問合せやお困りの際はマイページ内よりお願い致します。
+     Please note that this e-mail is for sending only. 
 
       MEDBANK PTE. LTD. 
       

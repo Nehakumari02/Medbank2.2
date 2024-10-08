@@ -403,17 +403,17 @@ const NewOrderBox = () => {
           paymentStatus: "isCompleted",
         });
 
-        const chatResponse = await fetch("/api/sendUpdateInChatFromUser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            adminIdDB: adminIdDB,
-            userId: userIdDB,
-            message: `(${orderId}) ${t("chatMessage.payment")} `,
-          }),
-        });
+        // const chatResponse = await fetch("/api/sendUpdateInChatFromUser", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({
+        //     adminIdDB: adminIdDB,
+        //     userId: userIdDB,
+        //     message: `(${orderId}) ${t("chatMessage.payment")} `,
+        //   }),
+        // });
       }
 
     } catch (error) {

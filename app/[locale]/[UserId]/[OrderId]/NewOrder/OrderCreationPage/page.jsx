@@ -92,20 +92,21 @@ const OrderCreationPage = () => {
   
     try {
       const { name: originalFileName, type: fileType } = uploadedFile;
-
+  
       // Get current timestamp
       const timestamp = Date.now(); // Gets the current time in milliseconds
-
+  
       // Create a new file name with timestamp
-      const fileName = `${timestamp}_${originalFileName}`
-      console.log(fileName)
+      const fileName = `${timestamp}_${originalFileName}`;
+      console.log(fileName);
+  
       // Get signed URL for file upload
       const response = await fetch('/api/fileUpload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ fileName:fileName, fileType }),
+        body: JSON.stringify({ fileName, fileType }),
       });
   
       if (!response.ok) {
@@ -169,39 +170,51 @@ const OrderCreationPage = () => {
         setDisabled(false);
         return;
       }
-      const response2 = await fetch('/api/send-notification2', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userIdDB: userIdDB,
-          adminIdDB:adminIdDB,
-          title: "MedBank",
-          message: t("notification.requestSheet"),
-          link: "/Dashboard",
-        }),
-      });
-
   
-      // Send chat update
-      const chatResponse = await fetch("/api/sendUpdateInChatFromUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          adminIdDB:adminIdDB,
-          userId: userIdDB,
-          message: `(${orderId}) ${t("chatMessage.requestSheet")} `,
+      // Send notification and chat update simultaneously
+      const [notificationResponse, chatResponse] = await Promise.all([
+        // Send notification
+        fetch('/api/send-notification2', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userIdDB: userIdDB,
+            adminIdDB: adminIdDB,
+            title: "MedBank",
+            message: t("notification.requestSheet"),
+            link: "/Dashboard",
+          }),
         }),
-      });
   
-      if (chatResponse.status !== 200) {
+        // Send chat update
+        fetch("/api/sendUpdateInChatFromUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            adminIdDB: adminIdDB,
+            userId: userIdDB,
+            message: `(${orderId}) ${t("chatMessage.requestSheet")} `,
+          }),
+        }),
+      ]);
+  
+      if (!notificationResponse.ok) {
+        toast({
+          variant: "error",
+          title: "Notification Error",
+          description: "Failed to send notification, please try again...",
+        });
+      }
+  
+      if (!chatResponse.ok) {
         toast({
           variant: "error",
           title: "Chat Notification Error",
-          description: "Failed to send notification, please try again...",
+          description: "Failed to send chat update, please try again...",
         });
       }
   
@@ -224,6 +237,7 @@ const OrderCreationPage = () => {
   
     router.back();
   };
+  
   
   
 

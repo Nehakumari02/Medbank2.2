@@ -669,46 +669,51 @@ const NewOrderBox = () => {
   }
 
   const handleConfirmCostEstimate = async () => {
-    setDisabled(true)
+    setDisabled(true);
     try {
-      const res = await fetch('/api/sendUpdateInChat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.costEstimate")} `
+      // Send both API requests in parallel using Promise.all
+      await Promise.all([
+        fetch('/api/sendUpdateInChat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: userIdDB, 
+            message: `(${orderId}) ${t("chatMessage.costEstimate")}`,
+          }),
         }),
-      });
-      // Second API call (send-notification)
-
-      const response = await fetch('/api/send-notification', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userIdDB: userIdDB,
-          title: "MedBank",
-          message: t("notification.costEstimation"),
-          link: "/Dashboard",
-        }),
-      });
-
+        fetch('/api/send-notification', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userIdDB: userIdDB,
+            title: "MedBank",
+            message: t("notification.costEstimation"),
+            link: "/Dashboard",
+          }),
+        })
+      ]);
+  
+      // Update the UI after both requests have completed
       setOrderPopVisible(false);
       setIsPopupVisible(false);
       setCostEstimateStatus("isAdminCompleted");
       updateDataInDB({
         costEstimateStatus: "isAdminCompleted"
-      })
+      });
     }
-    catch {
-
+    catch (error) {
+      // Handle error if needed
+      console.error(error);
     }
-    finally{
+    finally {
       setDisabled(false);
     }
-  }
+  };
+  
 
   const handleConfirmFormalRequest = async () => {
     setDisabled(true);
@@ -1024,10 +1029,9 @@ const NewOrderBox = () => {
 
   const handleLibraryPrepConfirmation = async () => {
     setIsPopupVisible(false);
-    // setOrderPopVisible(false);
     setDisabled(true);
     setUploadStatus(true);
-
+  
     if (!uploadedFile) {
       toast({
         variant: "error",
@@ -1036,10 +1040,10 @@ const NewOrderBox = () => {
       });
       return;
     }
-
+  
     try {
       const { name: fileName, type: fileType } = uploadedFile;
-
+  
       // Call the API to get the signed URL
       const response = await fetch('/api/fileUpload', {
         method: 'POST',
@@ -1048,17 +1052,17 @@ const NewOrderBox = () => {
         },
         body: JSON.stringify({ fileName, fileType }),
       });
-
+  
       const { url } = await response.json();
       console.log("upload url", url);
-
+  
       setLibraryCheckReportLink(url.split("?")[0]);
-
+  
       // Upload the file directly to S3 using XMLHttpRequest
       const uploadRequest = new XMLHttpRequest();
       uploadRequest.open('PUT', url, true);
       uploadRequest.setRequestHeader('Content-Type', fileType);
-
+  
       // Update progress
       uploadRequest.upload.onprogress = (event) => {
         if (event.lengthComputable) {
@@ -1066,21 +1070,20 @@ const NewOrderBox = () => {
           setUploadPercentage(percentComplete);
         }
       };
-
+  
       // Handle upload complete
       uploadRequest.onload = async () => {
         if (uploadRequest.status === 200) {
-          setLibraryCheckReportLink(url.split("?")[0]);
-
-          setLibraryPrepStatus("isAdminCompleted");
           const fileUrl = url.split("?")[0];
-
+          setLibraryCheckReportLink(fileUrl);
+  
+          setLibraryPrepStatus("isAdminCompleted");
           const orderData = {
             orderTitle,
             libraryPrepStatus: "isAdminCompleted",
             libraryCheckReportLink: fileUrl,
           };
-
+  
           try {
             // Save order data
             const saveApiResponse = await fetch('/api/updateOrder', {
@@ -1090,46 +1093,39 @@ const NewOrderBox = () => {
               },
               body: JSON.stringify({ order: orderData, orderIdDB }),
             });
-
+  
             updateSampleInDB({
-              libraryPrepStatus:"isAdminCompleted"
-            })
-
+              libraryPrepStatus: "isAdminCompleted"
+            });
+  
             if (saveApiResponse.status === 200) {
-              // toast({
-              //   variant: "success",
-              //   title: "Upload Successful",
-              //   description: "Your file has been uploaded to S3.",
-              // });
-
-              // Send update in chat
-              const response2 = await fetch('/api/send-notification', {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  userIdDB: userIdDB,
-                  title: "MedBank",
-                  message: t("notification.libraryPrep"),
-                  link: "/Dashboard",
+              // Send notification and chat update in parallel
+              await Promise.all([
+                fetch('/api/send-notification', {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    userIdDB: userIdDB,
+                    title: "MedBank",
+                    message: t("notification.libraryPrep"),
+                    link: "/Dashboard",
+                  }),
                 }),
-              });
-              const res = await fetch('/api/sendUpdateInChat', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  userId: userIdDB, message: `(${orderId}) ${t("chatMessage.libraryPrep")} `
-                }),
-              });
-
-              if (res.ok) {
-                console.log("Chat message sent successfully");
-              } else {
-                console.error("Failed to send chat message");
-              }
+                fetch('/api/sendUpdateInChat', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    userId: userIdDB,
+                    message: `(${orderId}) ${t("chatMessage.libraryPrep")}`
+                  }),
+                })
+              ]);
+  
+              console.log("Notification and chat message sent successfully");
             } else {
               toast({
                 variant: "error",
@@ -1156,7 +1152,7 @@ const NewOrderBox = () => {
           });
         }
       };
-
+  
       // Handle upload error
       uploadRequest.onerror = () => {
         toast({
@@ -1166,9 +1162,9 @@ const NewOrderBox = () => {
         });
         console.error("Error uploading file:", uploadRequest.statusText);
       };
-
+  
       uploadRequest.send(uploadedFile);
-
+  
     } catch (err) {
       toast({
         variant: "error",
@@ -1181,119 +1177,84 @@ const NewOrderBox = () => {
       setUploadPercentage(0); // Optionally reset upload percentage
     }
   };
+  
 
   const handleAnalysisDoneConfirmation = async () => {
-    console.log(sampleShippingStatus)
-    console.log("click on ok from sample shipping")
-    
+    console.log(sampleShippingStatus);
+    console.log("click on ok from sample shipping");
+
     try {
       setDisabled(true);
-      const res = await fetch('/api/sendUpdateInChat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId: userIdDB,  message: `${t("chatMessage.analysisStart")} ${orderId} ${t("chatMessage.analysisStart1")}` }),
-      });
-      const response2 = await fetch('/api/send-notification', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userIdDB: userIdDB,
-          title: "MedBank",
-          message: t("notification.analysisStart"),
-          link: "/Dashboard",
+      
+      // Send chat message and notification in parallel
+      const [res, response2] = await Promise.all([
+        fetch('/api/sendUpdateInChat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            userId: userIdDB,  
+            message: `${t("chatMessage.analysisStart")} ${orderId} ${t("chatMessage.analysisStart1")}` 
+          }),
         }),
-      });
-      console.log(res)
-      setAnalysisProgressStatus('isCompleted');
-      setAnalysisDoneStatus('inAdminProgress');
-      handleSendMessage();
-      updateDataInDB({
-        analysisProgressStatus: "isCompleted",
-        analysisDoneStatus: "inAdminProgress"
-      })
-    } catch {
-
-    }
-    finally{
-      setDisabled(false);
-      setOrderPopVisible(false);
-    }
-
-  }
-
-  const handleAnalysisDone = async () => {
-    console.log(sampleShippingStatus)
-    console.log("click on ok from sample shipping")
-   
-    try {
-      setDisabled(true);
-      const res = await fetch('/api/sendUpdateInChat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId: userIdDB,   message: `${t("chatMessage.analysisDone")} ${orderId} ${t("chatMessage.analysisDone1")}` }),
-      });
-      console.log(res)
-      const response2 = await fetch('/api/send-notification', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userIdDB: userIdDB,
-          title: "MedBank",
-          message: t("notification.analysisDone"),
-          link: "/Dashboard",
-        }),
-      });
-      setAnalysisDoneStatus('isCompleted');
-      setAnalysisRawDataStatus('inAdminProgress')
-      setAnalysisSpecificationStatus('inAdminProgress')
-      setInvoiceStatus('inAdminProgress')
-      handleSendMessage();
-      updateDataInDB({
-        analysisDoneStatus: "isCompleted",
-        analysisRawDataStatus: "inAdminProgress",
-        analysisSpecificationStatus: "inAdminProgress",
-        invoiceStatus: "inAdminProgress"
-      })
-    } catch {
-
-    }
-    finally{
-      setDisabled(false);
-      setOrderPopVisible(false);
-    }
-
-  }
-
-  const handleAnalysisRawDataConfirm = async () => {
-    if (!rawDataLink) {
-      toast({
-        variant: "error",
-        title: "Error",
-        description: "Please paste the data link..."
-      })
-      return;
-    }
-    else {
-      try {
-        setDisabled(true);
-        const res = await fetch('/api/sendUpdateInChat', {
+        fetch('/api/send-notification', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userId: userIdDB, message: `(${orderId}) ${t("chatMessage.rawData")} `
+            userIdDB: userIdDB,
+            title: "MedBank",
+            message: t("notification.analysisStart"),
+            link: "/Dashboard",
           }),
-        });
-        const response2 = await fetch('/api/send-notification', {
+        })
+      ]);
+
+      // Log the responses (optional)
+      console.log(res, response2);
+
+      // Update statuses and send a message
+      setAnalysisProgressStatus('isCompleted');
+      setAnalysisDoneStatus('inAdminProgress');
+      handleSendMessage();
+
+      // Update data in the database
+      updateDataInDB({
+        analysisProgressStatus: 'isCompleted',
+        analysisDoneStatus: 'inAdminProgress',
+      });
+      
+    } catch (error) {
+      console.error('Error in sending chat message or notification:', error);
+    } finally {
+      setDisabled(false);
+      setOrderPopVisible(false);
+    }
+};
+
+
+  const handleAnalysisDone = async () => {
+    console.log(sampleShippingStatus);
+    console.log("click on ok from sample shipping");
+  
+    try {
+      setDisabled(true);
+  
+      // Sending chat message and notification in parallel
+      const [res, response2] = await Promise.all([
+        fetch('/api/sendUpdateInChat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            userId: userIdDB, 
+            message: `${t("chatMessage.analysisDone")} ${orderId} ${t("chatMessage.analysisDone1")}` 
+          }),
+        }),
+        fetch('/api/send-notification', {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -1301,37 +1262,104 @@ const NewOrderBox = () => {
           body: JSON.stringify({
             userIdDB: userIdDB,
             title: "MedBank",
-            message: t("notification.rawData"),
+            message: t("notification.analysisDone"),
             link: "/Dashboard",
           }),
-        });
+        })
+      ]);
+  
+      console.log(res);
+      console.log(response2);
+  
+      // Updating statuses after the requests are completed
+      setAnalysisDoneStatus('isCompleted');
+      setAnalysisRawDataStatus('inAdminProgress');
+      setAnalysisSpecificationStatus('inAdminProgress');
+      setInvoiceStatus('inAdminProgress');
+  
+      handleSendMessage();
+  
+      // Updating data in the database
+      updateDataInDB({
+        analysisDoneStatus: "isCompleted",
+        analysisRawDataStatus: "inAdminProgress",
+        analysisSpecificationStatus: "inAdminProgress",
+        invoiceStatus: "inAdminProgress"
+      });
+    } catch (error) {
+      console.error("Error occurred:", error);
+    } finally {
+      setDisabled(false);
+      setOrderPopVisible(false);
+    }
+  };
+  
+
+  const handleAnalysisRawDataConfirm = async () => {
+    if (!rawDataLink) {
+      toast({
+        variant: "error",
+        title: "Error",
+        description: "Please paste the data link..."
+      });
+      return;
+    } else {
+      try {
+        setDisabled(true);
+  
+        // Send both requests in parallel using Promise.all
+        await Promise.all([
+          fetch('/api/sendUpdateInChat', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userId: userIdDB, 
+              message: `(${orderId}) ${t("chatMessage.rawData")}`
+            }),
+          }),
+          fetch('/api/send-notification', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userIdDB: userIdDB,
+              title: "MedBank",
+              message: t("notification.rawData"),
+              link: "/Dashboard",
+            }),
+          })
+        ]);
+  
+        // Set state and update the database
         setOrderPopVisible(false);
         setActivePopup('');
-        setAnalysisRawDataStatus("isAdminCompleted")
-        setRawDataLink(rawDataLink)
+        setAnalysisRawDataStatus("isAdminCompleted");
+        setRawDataLink(rawDataLink);
+  
         updateDataInDB({
           analysisRawDataStatus: "isAdminCompleted",
           rawDataLink: rawDataLink
-        })
+        });
         updateSampleInDB({
-          analysisSpecificationStatus:"inAdminProgress"
-        })
-      }
-      catch {
-
-      }
-      finally{
+          analysisSpecificationStatus: "inAdminProgress"
+        });
+      } catch (error) {
+        console.error("Error sending chat or notification:", error);
+      } finally {
         setDisabled(false);
       }
     }
-  }
+  };
+  
 
   const handleAnalysisSpecification = async () => {
     setIsPopupVisible(false);
-    // setOrderPopVisible(false);
     setDisabled(true);
     setUploadStatus(true);
-
+  
     if (!uploadedFile) {
       toast({
         variant: "error",
@@ -1340,10 +1368,10 @@ const NewOrderBox = () => {
       });
       return;
     }
-
+  
     try {
       const { name: fileName, type: fileType } = uploadedFile;
-
+  
       // Call the API to get the signed URL
       const response = await fetch('/api/fileUpload', {
         method: 'POST',
@@ -1352,17 +1380,17 @@ const NewOrderBox = () => {
         },
         body: JSON.stringify({ fileName, fileType }),
       });
-
+  
       const { url } = await response.json();
       console.log("upload url", url);
-
+  
       setAnalysisSpecificationReportLink(url.split("?")[0]);
-
+  
       // Upload the file directly to S3 using XMLHttpRequest
       const uploadRequest = new XMLHttpRequest();
       uploadRequest.open('PUT', url, true);
       uploadRequest.setRequestHeader('Content-Type', fileType);
-
+  
       // Update progress
       uploadRequest.upload.onprogress = (event) => {
         if (event.lengthComputable) {
@@ -1370,21 +1398,20 @@ const NewOrderBox = () => {
           setUploadPercentage(percentComplete);
         }
       };
-
+  
       // Handle upload complete
       uploadRequest.onload = async () => {
         if (uploadRequest.status === 200) {
           setAnalysisSpecificationReportLink(url.split("?")[0]);
-
           setAnalysisSpecificationStatus("isAdminCompleted");
           const fileUrl = url.split("?")[0];
-
+  
           const orderData = {
             orderTitle,
             analysisSpecificationStatus: "isAdminCompleted",
             analysisSpecificationReportLink: fileUrl,
           };
-
+  
           try {
             // Save order data
             const saveApiResponse = await fetch('/api/updateOrder', {
@@ -1394,46 +1421,44 @@ const NewOrderBox = () => {
               },
               body: JSON.stringify({ order: orderData, orderIdDB }),
             });
-
+  
             updateSampleInDB({
-              analysisSpecificationStatus:"isAdminCompleted"
-            })
-
+              analysisSpecificationStatus: "isAdminCompleted"
+            });
+  
             if (saveApiResponse.status === 200) {
-              // toast({
-              //   variant: "success",
-              //   title: "Upload Successful",
-              //   description: "Your file has been uploaded to S3.",
-              // });
-
-              // Send update in chat
-              const response2 = await fetch('/api/send-notification', {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  userIdDB: userIdDB,
-                  title: "MedBank",
-                  message: t("notification.analysisSpecification"),
-                  link: "/Dashboard",
+              // Send chat and notification concurrently
+              const [notificationResponse, chatResponse] = await Promise.all([
+                fetch('/api/send-notification', {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    userIdDB: userIdDB,
+                    title: "MedBank",
+                    message: t("notification.analysisSpecification"),
+                    link: "/Dashboard",
+                  }),
                 }),
-              });
-              const res = await fetch('/api/sendUpdateInChat', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  userId: userIdDB, message: `(${orderId}) ${t("chatMessage.analysisSpecification")} `
-                }),
-              });
-
-              if (res.ok) {
+                fetch('/api/sendUpdateInChat', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    userId: userIdDB,
+                    message: `(${orderId}) ${t("chatMessage.analysisSpecification")} `,
+                  }),
+                })
+              ]);
+  
+              if (chatResponse.ok) {
                 console.log("Chat message sent successfully");
               } else {
                 console.error("Failed to send chat message");
               }
+  
             } else {
               toast({
                 variant: "error",
@@ -1441,6 +1466,7 @@ const NewOrderBox = () => {
                 description: "Failed to submit order, please try again...",
               });
             }
+  
           } catch (err) {
             toast({
               variant: "error",
@@ -1452,6 +1478,7 @@ const NewOrderBox = () => {
             setOrderPopVisible(false);
             setUploadStatus(false);
           }
+  
         } else {
           toast({
             variant: "error",
@@ -1460,7 +1487,7 @@ const NewOrderBox = () => {
           });
         }
       };
-
+  
       // Handle upload error
       uploadRequest.onerror = () => {
         toast({
@@ -1470,9 +1497,9 @@ const NewOrderBox = () => {
         });
         console.error("Error uploading file:", uploadRequest.statusText);
       };
-
+  
       uploadRequest.send(uploadedFile);
-
+  
     } catch (err) {
       toast({
         variant: "error",
@@ -1485,6 +1512,7 @@ const NewOrderBox = () => {
       setUploadPercentage(0); // Optionally reset upload percentage
     }
   };
+  
 
 
   const handleAbortUpload = () => {
@@ -1500,41 +1528,47 @@ const NewOrderBox = () => {
   const handleInvoice = async () => {
     try {
       setDisabled(true);
-      const res = await fetch('/api/sendUpdateInChat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId: userIdDB, message: `(${orderId}) ${t("chatMessage.invoice")} `
+  
+      // Send chat and notification requests in parallel using Promise.all
+      await Promise.all([
+        fetch('/api/sendUpdateInChat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: userIdDB,
+            message: `(${orderId}) ${t("chatMessage.invoice")}`,
+          }),
         }),
-      });
-      const response2 = await fetch('/api/send-notification', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userIdDB: userIdDB,
-          title: "MedBank",
-          message: t("notification.invoice"),
-          link: "/Dashboard",
+        fetch('/api/send-notification', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userIdDB: userIdDB,
+            title: "MedBank",
+            message: t("notification.invoice"),
+            link: "/Dashboard",
+          }),
         }),
-      });
+      ]);
+  
+      // After both requests are completed
       setOrderPopVisible(false);
-      //setActivePopup('');
-      setInvoiceStatus("isAdminCompleted")
+      setInvoiceStatus("isAdminCompleted");
       updateDataInDB({
         invoiceStatus: "isAdminCompleted"
-      })
+      });
+    } catch (error) {
+      console.error('Error in handleInvoice:', error);
+      // You can handle error here, e.g., show an error message to the user
+    } finally {
+      setDisabled(false);
     }
-    catch {
-
-    }
-    finally{
-      setDisabled(false)
-    }
-  }
+  };
+  
 
   const handleConfirmPayment = async () => {
     try{

@@ -14,7 +14,7 @@ const Chats = () => {
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState(""); // State for the input message
   const [messages, setMessages] = useState([]); // State for storing chat messages
-  const [emails,setEmails] = useState(["test@gmail.com","test2@gmail.com"]);
+  const [emails,setEmails] = useState(["test@gmail.com","medbank.team@gmail.com"]);
   const [chatId,setChatId] = useState();
   const userIdDB = usePathname().split("/")[2];
   const conversationIdRef = useRef(""); // Use ref to persist conversationId

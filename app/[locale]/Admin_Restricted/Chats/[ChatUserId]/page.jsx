@@ -13,7 +13,7 @@ const Chats = () => {
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState(""); // State for the input message
   const [messages, setMessages] = useState([]); // State for storing chat messages
-  const [emails,setEmails] = useState(["test@gmail.com","test2@gmail.com"]);
+  const [emails,setEmails] = useState(["test@gmail.com","medbank.team@gmail.com"]);
   const clientUserId = usePathname().split("/")[4]
   const [chatId,setChatId] = useState("");
   const conversationIdRef = useRef(""); // Use ref to persist conversationId
@@ -53,7 +53,7 @@ const Chats = () => {
         setName(data.userDetails.name)
         const UserEmail = data.userDetails.email;
         console.log(UserEmail)
-        setEmails([UserEmail])
+        //setEmails([UserEmail])
         console.log(data)
         const chatUpdateResponse = await fetch('/api/updateSeen', {
           method: 'POST',

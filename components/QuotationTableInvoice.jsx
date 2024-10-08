@@ -162,8 +162,8 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
           </div>
           <div className="text-right">
             <p className="text-base"><strong>Due Date:</strong> {formattedDueDate}</p>
-            {/* <p className="text-base pt-3"><strong>Authorized Signature:</strong></p>
-            <p className="text-base pt-4"><strong>....................................</strong></p> */}
+            <p className="text-base pt-3"><strong>Authorized Signature:</strong></p>
+            <p className="text-base pt-4"><strong>....................................</strong></p>
           </div>
         </div>
          {/* <p className="mt-8 text-center text-sm">

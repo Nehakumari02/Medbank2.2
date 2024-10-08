@@ -411,7 +411,7 @@ const NewOrderBox = () => {
           body: JSON.stringify({
             adminIdDB: adminIdDB,
             userId: userIdDB,
-            message: `(${orderId}) ${t("chatMessage.paymenet")} `,
+            message: `(${orderId}) ${t("chatMessage.payment")} `,
           }),
         });
       }

@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useSidebarContext } from "@/contexts/SidebarContext";
 import { useTranslations } from "next-intl";
 
-const MobileBottomNav = () => {
+const MobileBottomNav = ({hasNewMessages,newMessagesCount}) => {
   const [profilePicture, setProfilePicture] = useState('');
   const router = useRouter();
   const path = usePathname().split("/")[3];
@@ -62,9 +62,22 @@ const MobileBottomNav = () => {
             <button
               key={item.text}
               onClick={() => router.push(`/${language}/Admin_Restricted/${item.path}`)}
-              className={`h-[40px] flex flex-col items-center justify-between`}
+              className={`h-[40px] relative flex flex-col items-center justify-between`}
             >
               {path==item.path?item.selectedIcon:item.icon}
+              {item.path=="Chats"&&<div
+                  className={`absolute top-[0px] left-[10px] flex items-center justify-center text-xs text-white font-bold ${
+                    hasNewMessages ? "bg-green-500" : "bg-gray-400"
+                  }`}
+                  style={{
+                    width: hasNewMessages ? "20px" : "10px",
+                    height: hasNewMessages ? "20px" : "10px",
+                    borderRadius: "50%",
+                    marginLeft: "8px",
+                  }}
+                >
+                  {hasNewMessages && newMessagesCount > 0 ? newMessagesCount : ""}
+                </div>}
               <span className={`font-DM-Sans font-normal text-[12px] leading-[16px] ${path==item.path?"text-[#3E8DA7]":""}`}>{item.text}</span>
             </button>
           ))}

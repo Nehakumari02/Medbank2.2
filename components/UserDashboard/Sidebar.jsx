@@ -12,7 +12,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const Sidebar = () => {
+const Sidebar = ({newMessage}) => {
   const [profilePicture, setProfilePicture] = useState('');
   const router = useRouter();
   const {sidebarVisibility}=useSidebarContext();
@@ -154,9 +154,18 @@ const Sidebar = () => {
               key={item.text}
               disabled={disabled}
               onClick={()=>handleMenuItemClick(item.path)}
-              className={`h-[40px] w-full flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px] ${disabled&&item.path=="NewOrder"?"opacity-75":""} ${path==item.path?"border-l-[1px] border-[#3E8DA7] rounded-[3px] bg-[#E8F3FE]":""}`}
+              className={`h-[40px] w-full relative flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px] ${disabled&&item.path=="NewOrder"?"opacity-75":""} ${path==item.path?"border-l-[1px] border-[#3E8DA7] rounded-[3px] bg-[#E8F3FE]":""}`}
             >
               {path==item.path?item.selectedIcon:item.icon}
+              {item.path=="Chats"&&<div
+                  className={`absolute top-[8px] left-[14px] dot ${newMessage ? "bg-green-500" : "bg-gray-400"}`}
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    marginLeft: "8px"
+                  }}
+                />}
               <span className={`font-DM-Sans font-normal text-[16px] leading-[24px] ${path==item.path?"text-[#3E8DA7]":""} ${sidebarVisibility?"":"hidden"}`}>{item.text}</span>
             </button>
           ))}

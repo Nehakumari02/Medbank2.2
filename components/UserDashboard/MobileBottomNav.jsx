@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useSidebarContext } from "@/contexts/SidebarContext";
 import { useTranslations } from "next-intl";
 
-const MobileBottomNav = () => {
+const MobileBottomNav = ({newMessage}) => {
   const [profilePicture, setProfilePicture] = useState('');
   const router = useRouter();
   const path = usePathname().split("/")[3];
@@ -62,9 +62,18 @@ const MobileBottomNav = () => {
             <button
               key={item.text}
               onClick={() => router.push(`/${language}/${userId}/${item.path}`)}
-              className={`h-[40px] flex flex-col items-center justify-between`}
+              className={`h-[40px] flex relative flex-col items-center justify-between`}
             >
               {path==item.path?item.selectedIcon:item.icon}
+              {item.path=="Chats"&&<div
+                  className={`absolute top-[0px] left-[10px] dot ${newMessage ? "bg-green-500" : "bg-gray-400"}`}
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    marginLeft: "8px"
+                  }}
+                />}
               <span className={`font-DM-Sans font-normal text-[12px] leading-[16px] ${path==item.path?"text-[#3E8DA7]":""}`}>{item.text}</span>
             </button>
           ))}

@@ -3,7 +3,7 @@ import LoadingScreen from "@/components/Common/LoadingScreen";
 // import { useAutomationContext } from "@/components/CreateAutomations/automationContext";
 // import TemplateContainer from "@/components/CreateAutomations/templateContainer";/
 import { useSidebarContext } from "@/contexts/SidebarContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalProvider } from "@/contexts/ModalContext";
 import Modal from "@/components/Common/Modal";
 // import { useBanner } from "@/contexts/BannerContext";
@@ -11,10 +11,13 @@ import Sidebar from "../../../components/UserDashboard/Sidebar";
 import TopNav from "../../../components/UserDashboard/TopNav";
 import MobileBottomNav from "../../../components/UserDashboard/MobileBottomNav"
 import { OrderProvider } from "@/contexts/OrderContext";
+import { usePathname } from "next/navigation";
 
 export default function Layout({ children, params }) {
     const [isLoading, setIsLoading] = useState(false);
     const [hasPermission, setHasPermission] = useState(true);
+    const [newMessage, setNewMessage] = useState(false);
+    const userIdDB = usePathname().split("/")[2];
     const { sidebarVisibility, setSidebarVisibility, setUsersVisibility } =
         useSidebarContext();
     // const { banner } = useBanner();
@@ -29,6 +32,38 @@ export default function Layout({ children, params }) {
         setSidebarVisibility(false);
     };
     // const { templateOpen, templateData } = useAutomationContext();
+    useEffect(() => {
+        // Define the function to check for new messages
+        const checkNewMessages = async () => {
+          try {
+            const response = await fetch('/api/checkNewMessageUser', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ userId: userIdDB }), // Replace with the actual user ID
+            });
+    
+            if (response.ok) {
+              const data = await response.json();
+              console.log(data)
+              // Update the `newMessage` state based on the response
+              setNewMessage(data.hasNewMessages); // Adjust based on your response structure
+            }
+          } catch (error) {
+            console.error('Error checking for new messages:', error);
+          }
+        };
+    
+        // Set up a timer to run every 15 seconds
+        const intervalId = setInterval(checkNewMessages, 8000); // 8 seconds = 15000 milliseconds
+    
+        // Run the function once when the component mounts
+        checkNewMessages();
+    
+        // Cleanup the interval on component unmount
+        return () => clearInterval(intervalId);
+      }, []);
 
     return (
         <OrderProvider>
@@ -55,9 +90,10 @@ export default function Layout({ children, params }) {
                                         onMouseEnter={handleDrawerToggle}
                                     >
                                         <Sidebar
-                                            instagram_id={params.instagram_id}
-                                            setIsLoading={setIsLoading}
-                                            setHasPermission={setHasPermission}
+                                            // instagram_id={params.instagram_id}
+                                            // setIsLoading={setIsLoading}
+                                            // setHasPermission={setHasPermission}
+                                            newMessage={newMessage}
                                         />
                                     </div>
                                     <div
@@ -70,7 +106,7 @@ export default function Layout({ children, params }) {
                                         </div>
                                         {isLoading ? <LoadingScreen /> : <div className="h-[calc(100dvh-166px)] md:h-[calc(100vh-104px)] md:bg-[#F7F9FB] overflow-y-scroll"> {children}</div>}
                                         <div className="md:hidden">
-                                            <MobileBottomNav/>
+                                            <MobileBottomNav newMessage={newMessage}/>
                                         </div>
                                     </div>
                                 </div>

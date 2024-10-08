@@ -6,13 +6,21 @@ export async function POST(req) {
   try {
     await dbConnect();
 
-    // Fetch all conversations
+    // // Fetch all conversations
+    // const conversations = await Conversation.find()
+    //   .populate({
+    //     path: 'participants',
+    //     select: 'name email' // Specify the fields you want to include
+    //   })
+    //   .sort({ createdAt: -1 });
+
     const conversations = await Conversation.find()
       .populate({
         path: 'participants',
-        select: 'name email' // Specify the fields you want to include
+        select: 'name email', // Specify the fields you want to include
       })
-      .sort({ createdAt: -1 });
+      .sort([['lastMessage.seen', 1], ['createdAt', -1]])
+
 
     if (!conversations || conversations.length === 0) {
       return new NextResponse(

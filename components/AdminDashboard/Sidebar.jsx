@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useSidebarContext } from "@/contexts/SidebarContext";
 import { useTranslations } from "next-intl";
 
-const Sidebar = () => {
+const Sidebar = ({hasNewMessages,newMessagesCount}) => {
   const [profilePicture, setProfilePicture] = useState('');
   const router = useRouter();
   const {sidebarVisibility}=useSidebarContext();
@@ -66,9 +66,22 @@ const Sidebar = () => {
             <button
               key={item.text}
               onClick={() => router.push(`/${language}/Admin_Restricted/${item.path}`)}
-              className={`h-[40px] w-full flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px] ${path==item.path?"border-l-[1px] border-[#3E8DA7] rounded-[3px] bg-[#E8F3FE]":""}`}
+              className={`h-[40px] w-full relative flex items-center justify-start gap-[10px] py-[8px] pr-[12px] pl-[12px] ${path==item.path?"border-l-[1px] border-[#3E8DA7] rounded-[3px] bg-[#E8F3FE]":""}`}
             >
               {path==item.path?item.selectedIcon:item.icon}
+              {item.path=="Chats"&&<div
+                  className={`absolute top-[8px] left-[14px] flex items-center justify-center text-xs text-white font-bold ${
+                    hasNewMessages ? "bg-green-500" : "bg-gray-400"
+                  }`}
+                  style={{
+                    width: hasNewMessages ? "20px" : "10px",
+                    height: hasNewMessages ? "20px" : "10px",
+                    borderRadius: "50%",
+                    marginLeft: "8px",
+                  }}
+                >
+                  {hasNewMessages && newMessagesCount > 0 ? newMessagesCount : ""}
+                </div>}
               <span className={`font-DM-Sans font-normal text-[16px] leading-[24px] ${path==item.path?"text-[#3E8DA7]":""} ${sidebarVisibility?"":"hidden"}`}>{item.text}</span>
             </button>
           ))}

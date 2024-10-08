@@ -48,6 +48,15 @@ const Chats = () => {
         conversationIdRef.current = data.conversationId; // Persist conversationId
         setMessages(data.messages)
         console.log(data)
+        const chatUpdateResponse = await fetch('/api/updateSeen', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({conversationId:data.conversationId, userId:userIdDB}),
+        });
+        const data1 = await chatUpdateResponse.json();
+        console.log(chatUpdateResponse,data1)
       }catch(error){
         console.log(error)
       }
@@ -74,7 +83,7 @@ const Chats = () => {
     }
 
     // Listen for incoming messages
-    socket.on("chat message", (message) => {
+    socket.on("chat message", async (message) => {
       console.log(message)
       if(message.conversationId==conversationIdRef.current){
         setMessages((prevMessages) => {
@@ -82,6 +91,17 @@ const Chats = () => {
             return [...prevMessages, message];
           else return [message];
         })
+        setTimeout(async() => {
+          const chatUpdateResponse = await fetch('/api/updateSeen', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({conversationId:conversationIdRef.current, userId:userIdDB}),
+          });
+          const data = await chatUpdateResponse.json();
+          console.log(chatUpdateResponse,data)
+        }, 10000);
       }
     });
 

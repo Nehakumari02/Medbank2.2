@@ -21,6 +21,23 @@ export async function POST(req) {
       city,
     } = await req.json();
 
+    const userDetails = [
+      Username,
+      name,
+      school,
+      faculty,
+      field,
+      others,
+      service,
+      country,
+      phone,
+      email,
+      confirmEmail,
+      Perfecture,
+      postalCode,
+      city
+    ].every(field => field && field.trim() !== '');
+
     // Ensure email and confirmEmail match
     if (email !== confirmEmail) {
       return new NextResponse(JSON.stringify({ error: 'Emails do not match' }), {
@@ -46,7 +63,7 @@ export async function POST(req) {
         Perfecture,
         postalCode,
         city,
-        userDetails:true
+        userDetails:userDetails
       },
       { new: true } // Returns the updated document
     );

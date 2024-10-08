@@ -3,7 +3,7 @@ import LoadingScreen from "@/components/Common/LoadingScreen";
 // import { useAutomationContext } from "@/components/CreateAutomations/automationContext";
 // import TemplateContainer from "@/components/CreateAutomations/templateContainer";/
 import { useSidebarContext } from "@/contexts/SidebarContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalProvider } from "@/contexts/ModalContext";
 import Modal from "@/components/Common/Modal";
 // import { useBanner } from "@/contexts/BannerContext";
@@ -15,6 +15,9 @@ import { OrderProvider } from "@/contexts/OrderContext";
 export default function Layout({ children, params }) {
     const [isLoading, setIsLoading] = useState(false);
     const [hasPermission, setHasPermission] = useState(true);
+    const [hasNewMessages, setHasNewMessages] = useState(false);
+    const [newMessagesCount, setNewMessagesCount] = useState(0);
+    const adminId = "66e055de6ddc7825fbd8a103";
     const { sidebarVisibility, setSidebarVisibility, setUsersVisibility } =
         useSidebarContext();
     // const { banner } = useBanner();
@@ -29,6 +32,34 @@ export default function Layout({ children, params }) {
         setSidebarVisibility(false);
     };
     // const { templateOpen, templateData } = useAutomationContext();
+    useEffect(() => {
+        const fetchNewMessages = async () => {
+          try {
+            const response = await fetch("/api/checkNewMessagesForAdmin", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ adminId }),
+            });
+            const data = await response.json();
+            console.log(data)
+    
+            if (data) {
+              setHasNewMessages(data.hasNewMessages);
+              setNewMessagesCount(data.newMessagesCount);
+            }
+          } catch (error) {
+            console.error("Error fetching new messages for admin:", error);
+          }
+        };
+    
+        // Call immediately, and then every 8 seconds
+        fetchNewMessages();
+        const interval = setInterval(fetchNewMessages, 8000);
+    
+        return () => clearInterval(interval); // Cleanup interval on unmount
+      }, [adminId]);
 
     return (
         <OrderProvider>
@@ -55,9 +86,11 @@ export default function Layout({ children, params }) {
                                         onMouseEnter={handleDrawerToggle}
                                     >
                                         <Sidebar
-                                            instagram_id={params.instagram_id}
-                                            setIsLoading={setIsLoading}
-                                            setHasPermission={setHasPermission}
+                                            // instagram_id={params.instagram_id}
+                                            // setIsLoading={setIsLoading}
+                                            // setHasPermission={setHasPermission}
+                                            hasNewMessages={hasNewMessages}
+                                            newMessagesCount={newMessagesCount}
                                         />
                                     </div>
                                     <div
@@ -70,7 +103,7 @@ export default function Layout({ children, params }) {
                                         </div>
                                         {isLoading ? <LoadingScreen /> : <div className="h-[calc(100dvh-116px)] md:h-[calc(100vh-104px)] md:bg-[#F7F9FB] overflow-y-scroll"> {children}</div>}
                                         <div className="md:hidden">
-                                            <MobileBottomNav/>
+                                            <MobileBottomNav hasNewMessages={hasNewMessages} newMessagesCount={newMessagesCount}/>
                                         </div>
                                     </div>
                                 </div>

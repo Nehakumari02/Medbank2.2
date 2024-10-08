@@ -34,8 +34,7 @@ export async function POST(req) {
     const newMessage = new Message({
       conversationId,
       senderId: hardcodedSenderId,
-      text: message,
-      seen: false
+      text: message
     });
 
     await newMessage.save();
@@ -45,6 +44,7 @@ export async function POST(req) {
       lastMessage: {
         text: message,
         senderId: hardcodedSenderId,
+        seen: false
       },
     });
 

@@ -108,7 +108,7 @@ const NewOrderBox = () => {
   const printRef1 = useRef();
   const printRef2 = useRef();
   const { token, notificationPermissionStatus } = useFcmToken()
-  const adminIdDB = "67012cdf074407659a1ac9d4";
+  const adminIdDB = "6704b59a50180ae667b87b4a";
 
   const handleSampleSendChecked1 = (e) => {
     setIsSampleSendChecked1(e.target.checked);

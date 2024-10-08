@@ -1,8 +1,12 @@
 import mongoose, { Schema, models } from "mongoose";
+import AutoIncrementFactory from 'mongoose-sequence';
+
+// Initialize AutoIncrement plugin
+const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
 const sampleSchema = new Schema(
   {
-    id:{type:String},
+    id:{type:Number, unique: true},
     orderId: { 
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Order', // Reference to the Order model
@@ -42,6 +46,9 @@ const sampleSchema = new Schema(
   },
   { timestamps: true }
 );
+
+// Apply the auto-increment plugin to the `id` field
+sampleSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 const Sample = models.Sample || mongoose.model("Sample", sampleSchema);
 export default Sample;

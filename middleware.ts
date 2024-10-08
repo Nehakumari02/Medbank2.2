@@ -17,6 +17,8 @@ const publicPages = [
   '/strength',
   '/Admin_Login',
   '/Admin_Signup',
+  '/ForgotPassword',
+  '/ResetPassword'
 ];
 
 export async function middleware(req: NextRequest) {

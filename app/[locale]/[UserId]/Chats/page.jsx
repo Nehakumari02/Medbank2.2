@@ -21,8 +21,8 @@ const Chats = () => {
   const t = useTranslations("UserDashboard");
   const [addEmailShow,setAddEmailShow] = useState(false);
   const [tempEmailInput, setTempEmailInput] = useState("");
-  const adminIdDB = "67012cdf074407659a1ac9d4";
-  const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
+  const adminIdDB = "6704b59a50180ae667b87b4a";
+  const { token, notificationPermissionStatus } = useFcmToken("6704b59a50180ae667b87b4a");
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36

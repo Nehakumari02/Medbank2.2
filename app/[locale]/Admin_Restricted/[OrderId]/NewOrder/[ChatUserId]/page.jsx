@@ -24,7 +24,7 @@ const Chats = () => {
   const [tempEmailInput, setTempEmailInput] = useState("");
     const orderIdDB = usePathname().split("/")[3]
     const [userIdDB1, setUserIdDB1] = useState("");
-    const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
+    const { token, notificationPermissionStatus } = useFcmToken("6704b59a50180ae667b87b4a");
  
 
   const generateRandomId = () => {

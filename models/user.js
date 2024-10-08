@@ -1,6 +1,10 @@
 import mongoose, { Schema, models } from "mongoose";
 import Order from './order'
 import { type } from "os";
+// import AutoIncrementFactory from 'mongoose-sequence';
+
+// Initialize AutoIncrement plugin
+// const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
 const userSchema = new Schema(
   {
@@ -38,6 +42,7 @@ const userSchema = new Schema(
     memberId:{
       type:String
     },
+    // memberId: {type:Number, unique: true},
     name: {
       type: String,
       required: true,
@@ -100,6 +105,9 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+// Apply the auto-increment plugin to the `id` field
+// sampleSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 const User = models.User || mongoose.model("User", userSchema);
 export default User;

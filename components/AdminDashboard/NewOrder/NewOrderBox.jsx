@@ -49,8 +49,9 @@ const NewOrderBox = () => {
   const [name,setName] = useState("");
   const [school,setSchool] = useState("");
   const [username,setUsername] = useState("");
+  const [sampleCount,setSampleCount] = useState(0);
 
-  const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
+  const { token, notificationPermissionStatus } = useFcmToken("6704b59a50180ae667b87b4a");
 
   const updateDataInDB = async (orderData) => {
     const saveApiResponse = await fetch('/api/updateOrder', {
@@ -558,7 +559,7 @@ const NewOrderBox = () => {
     console.log("samples",namesArray)
     const updatedSamples = namesArray.map((_, index) => {
         return { 
-          name: namesArray[index] || "" , id: orderId, qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
+          name: namesArray[index] || "" , qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
     });
     setSamples(updatedSamples);
   };
@@ -612,7 +613,7 @@ const NewOrderBox = () => {
     // const namesArray = await fetchSampleNames(requestSheetLink);
     // console.log("samples",namesArray)
 
-        const response = await fetch('/api/fetchQuotation', {
+        const response = await fetch('/api/fetchQuotation-invoice', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -626,7 +627,7 @@ const NewOrderBox = () => {
     const updatedSamples = costEstimationSamples.data.map((costEstimationSample, index) => {
       // console.log(costEstimationSample)
       return { 
-        name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityFees, libraryFees: costEstimationSample.libraryFees, analysisFees: costEstimationSample.analysisFees, tax: costEstimationSample.tax, others: costEstimationSample.others, total: costEstimationSample.total };
+        _id: costEstimationSample._id, name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityFees, libraryFees: costEstimationSample.libraryFees, analysisFees: costEstimationSample.analysisFees, tax: costEstimationSample.tax, others: costEstimationSample.others, total: costEstimationSample.total };
     });
 
     setSamples1(updatedSamples);
@@ -1672,6 +1673,20 @@ const NewOrderBox = () => {
         setUsername(orderData.userId.Username);
         setSchool(orderData.userId.school);
         console.log(orderData)
+        const response2 = await fetch('/api/fetchLatestSampleCount',{
+          method: 'POST',
+          headers: {
+            "Content-Type":"application/json",
+          }
+        });
+        const sampleCountResponse = await response2.json();
+        if(response2.status==200){
+          setSampleCount(sampleCountResponse.sampleCount)
+        }
+        else{
+          setSampleCount(0);
+        }
+        
       } catch (error) {
         console.log("fetch order error ", error)
       }
@@ -1734,8 +1749,9 @@ const NewOrderBox = () => {
                               <input
                                 type="text"
                                 className="border rounded-md lg:w-full p-2"
-                                onChange={(e) => handleInputChange(index, 'id', e.target.value)}
-                                value={samples[index].id}
+                                // onChange={(e) => handleInputChange(index, 'id', e.target.value)}
+                                // value={samples[index].id}
+                                value={sampleCount+index+1}
                                 placeholder={`10${index + 1}`}
                               />
                             </td>
@@ -2243,7 +2259,7 @@ const NewOrderBox = () => {
                               <input
                                 type="text"
                                 className="border rounded-md lg:w-full p-2 bg-[#33333314]"
-                                onChange={(e) => handleInputChangeInvoice(index, 'other', e.target.value)}
+                                onChange={(e) => handleInputChangeInvoice(index, 'others', e.target.value)}
                                 placeholder=""
                                 value={samples1[index].others}
                               />

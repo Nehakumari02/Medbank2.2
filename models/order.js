@@ -1,4 +1,8 @@
 import mongoose, { Schema, models } from "mongoose";
+// import AutoIncrementFactory from 'mongoose-sequence';
+
+// Initialize AutoIncrement plugin
+// const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
 const orderSchema = new Schema(
   {
@@ -8,6 +12,7 @@ const orderSchema = new Schema(
       required: true,
       unique: true,
     },
+    // orderId: {type:Number, unique: true},
     orderTitle: {
       type: String,
       required: false,
@@ -128,6 +133,9 @@ const orderSchema = new Schema(
   },
   { timestamps: true }
 );
+
+// Apply the auto-increment plugin to the `id` field
+// sampleSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 const Order = models.Order || mongoose.model("Order", orderSchema);
 export default Order;

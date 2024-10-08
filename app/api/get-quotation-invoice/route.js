@@ -23,6 +23,8 @@ export async function POST(req) {
     const existingSamples = samples1.filter(sample => sample._id);
     const newSamples = samples1.filter(sample => !sample._id);
 
+    console.log("existing",existingSamples,"new",newSamples)
+
     // Update existing samples with orderId
     await Promise.all(
       existingSamples.map(async (sampleData) => {

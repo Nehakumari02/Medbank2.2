@@ -19,7 +19,7 @@ const AdminDashboard = () => {
   const [sampleData,setSampleData] = useState([]);
   const [searchQuerySample,setSearchQuerySample] = useState("");
   const [loadingSample,setLoadingSample] = useState(true);
-  const { token, notificationPermissionStatus } = useFcmToken('67012cdf074407659a1ac9d4')
+  const { token, notificationPermissionStatus } = useFcmToken('6704b59a50180ae667b87b4a')
 
   useEffect(()=>{
     const fetchOrdersByUserId = async()=>{

@@ -29,7 +29,7 @@ const Chats = () => {
   };
 
   const router = useRouter();
-  const { token, notificationPermissionStatus } = useFcmToken("67012cdf074407659a1ac9d4");
+  const { token, notificationPermissionStatus } = useFcmToken("6704b59a50180ae667b87b4a");
 
   useEffect(() => {
     // const chatArray = createChatArray("user1", "user2", 10);

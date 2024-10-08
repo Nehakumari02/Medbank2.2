@@ -19,32 +19,9 @@ export async function POST(req) {
       analysisSpecificationReportLink: ""
     };
 
-    // Separate existing and new samples
-    const existingSamples = samples.filter(sample => sample._id);
-    const newSamples = samples.filter(sample => !sample._id);
-
-    // Update existing samples with orderId
-    await Promise.all(
-      existingSamples.map(async (sampleData) => {
-        const sample = await Sample.findByIdAndUpdate(
-          sampleData._id, // Find the sample by ID
-          { 
-            $set: { 
-              ...sampleData, // Existing sample data
-              orderId: orderIdDB // Add orderId to the update
-            } 
-          }, 
-          { new: true } // Return the updated document
-        );
-        if (!sample) {
-          throw new Error(`Sample with ID ${sampleData._id} not found`);
-        }
-      })
-    );
-
     // Create new samples and get their IDs
     const savedNewSamples = await Promise.all(
-      newSamples.map(async (sampleData) => {
+      samples.map(async (sampleData) => {
         const sampleWithDefaults = { 
           ...defaultValues, 
           ...sampleData,
@@ -55,10 +32,7 @@ export async function POST(req) {
       })
     );
 
-    const sampleIds = [
-      ...existingSamples.map(sample => sample._id),
-      ...savedNewSamples.map(sample => sample._id)
-    ]; // Combine existing and new sample IDs
+    const sampleIds = savedNewSamples.map(sample => sample._id); // Collect IDs of newly created samples
 
     // Find the order by ID and update it
     const updatedOrder = await Order.findByIdAndUpdate(
@@ -67,7 +41,10 @@ export async function POST(req) {
         $set: { 
           samples: sampleIds, // Update the samples field with the new sample IDs
           grandTotal: grandTotal, // Update the grandTotal field
-          currency:currency
+          currency:currency,
+          samples1: sampleIds,
+          grandTotal1: grandTotal,
+          currency1: currency
         } 
       },
       { new: true } // Return the updated document

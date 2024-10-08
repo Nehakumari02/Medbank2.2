@@ -35,6 +35,7 @@ export async function POST(req) {
       conversationId,
       senderId: hardcodedSenderId,
       text: message,
+      seen: false
     });
 
     await newMessage.save();

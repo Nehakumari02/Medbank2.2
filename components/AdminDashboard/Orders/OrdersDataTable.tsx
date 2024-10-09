@@ -321,7 +321,7 @@ export const columns: ColumnDef<OrderList>[] = [
       const sampleShippingStatus = row.getValue("sampleShippingStatus");
       const t = useTranslations("AdminDashboard");
   
-      if (sampleShippingStatus === "inAdminProgress" ||sampleShippingStatus === "isUserCompleted") {
+      if (sampleShippingStatus === "inAdminProgress" ||sampleShippingStatus === "isUserCompleted"||sampleShippingStatus == "inTransit") {
         return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#FF914D] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.sampleShippingInProgress")}</div>;
       } else if (sampleShippingStatus === "isCompleted" || sampleShippingStatus === "isAdminCompleted") {
         return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#5CE1E6] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.sampleShippingIsCompleted")}</div>;

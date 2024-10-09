@@ -13,16 +13,21 @@ export async function POST(req) {
     const searchRegex = searchQuery ? new RegExp(searchQuery, 'i') : /.*/;
 
     // Fetch users with pagination
-    const users = await User.find({ 
-      $or: [
-        { Username: { $regex: searchRegex } },
-        // Add more fields if you need to search in additional fields
+    const users = await User.find({
+      $and: [
+        { userDetails: true }, // Only fetch users where userDetails is true
+        {
+          $or: [
+            { Username: { $regex: searchRegex, $options: 'i' } }, // Search in Username with regex (case-insensitive)
+            // Add more fields if you need to search in additional fields
+          ]
+        }
       ]
     })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
-      .select('memberId Username school country city'); // Modify as needed
+      .select('-password -token -role -verificationToken -orders -verified'); // Modify as needed
 
     console.log("users for customers query", users)
 

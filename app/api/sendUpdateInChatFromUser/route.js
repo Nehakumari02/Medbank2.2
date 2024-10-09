@@ -48,7 +48,8 @@ export async function POST(req) {
       lastMessage: {
         text: message,
         senderId: userId,
-        seen: false
+        seen: false,
+        lastMessageTs: Date.now()
       },
     });
 

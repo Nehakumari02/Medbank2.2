@@ -10,7 +10,8 @@ const conversationSchema = new Schema(
         type:String
       },
       senderId:{type:mongoose.Schema.Types.ObjectId,ref:'User'},
-      seen: {type:Boolean}
+      seen: {type:Boolean},
+      lastMessageTs: {type: Date}
     }
   },
   { timestamps: true }

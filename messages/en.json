@@ -492,7 +492,7 @@
         "weakPassword": "Password too weak",
         "confirmPassword": "Confirm Password",
         "misMatchPassword": "Password don't match",
-        "errorPassword": "<span1>Your password must contain:</span1><span2> At least 8 characters</span2><span3> Use a mix of uppercase and lowercase letters, numbers, and special characters.</span3>",
+        "errorPassword": "<span1>Your password must contain:</span1><span2> At least 8 characters</span2><span3> Use a mix of uppercase and lowercase letters, numbers, and special characters </span3>",
         "acknowledgement": "By signing up, I accept all of Medbank's terms and conditions, <personalInfo>Personal Information</personalInfo>, <cancellationPolicy>Cancellation Policy</cancellationPolicy>, <sitePolicy>Site Policy</sitePolicy> and acknowledge their <privacyPolicy>Privacy Policy</privacyPolicy>.",
         "register": "Register",
         "signUpText": "Already have an Account ?  <Link> Sign-In </Link>"
@@ -1144,6 +1144,28 @@
             "userName": "Username",
             "country": "Country",
             "address": "Address"
+        },
+        "personalInfo": {
+            "personalInfo": "Personal Information",
+            "userName": "Username",
+            "name": "Name",
+            "school": "School/Organization Name",
+            "faculty": "Faculty/Department",
+            "field": "Field/Group",
+            "others": "Others",
+            "invoice": "Name on quotation, invoice, receipt"
+        },
+        "contactInfo": {
+            "contactInfo": "Contact  Information",
+            "country": "Country",
+            "phone": "Phone Number",
+            "email": "Email Address",
+            "confirmEmail": "Confirm Email Address",
+            "postalCode": "Postal Code",
+            "perfecture": "Perfecture",
+            "city": "City/Town Address",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
         },
         "sampleList": {
             "title": "Sample List",

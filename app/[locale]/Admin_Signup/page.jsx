@@ -27,6 +27,8 @@ const SignUp = () => {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
   const [loading,setLoading] = useState(false);
+  const specialCharacters = ['!', '@', '#', '$', '%', '_', '^', '&', '*', '(', ')', ',', '.', '?', '"', ':', '{', '}', '|', '<', '>'];
+  const specialCharactersString = specialCharacters.join(' ');
 
   const handleBackClick = () => {
     router.back();
@@ -232,7 +234,7 @@ const SignUp = () => {
                 {t.rich("errorPassword",{
                   span1: (chunks)=><span>{chunks}</span>,
                   span2: (chunks)=><span className={`${password.length>8?"text-[#00A86B]":"text-[#333333]"} flex items-start justify-start gap-2 font-DM-Sans font-normal text-[14px] leading-[18px]`}> {password.length<8&&"·"} {password.length>8&&greenTickIcon}{chunks}</span>,
-                  span3: (chunks)=><span className={`${validatePassword(password).isValidComplexity?"text-[#00A86B]":"text-[#333333]"} flex items-start justify-start gap-2 font-DM-Sans font-normal text-[14px] leading-[18px]`}>{!validatePassword(password).isValidComplexity&&"·"} {validatePassword(password).isValidComplexity&&greenTickIcon} {chunks}</span>
+                  span3: (chunks)=><span className={`${validatePassword(password).isValidComplexity?"text-[#00A86B]":"text-[#333333]"} flex items-start justify-start gap-2 font-DM-Sans font-normal text-[14px] leading-[18px]`}>{!validatePassword(password).isValidComplexity&&"·"} {validatePassword(password).isValidComplexity&&greenTickIcon} {chunks} {specialCharactersString}</span>
                 })}
                 {/* <span1>Your password must contain:</span>
                 <span2 > {password.length<8&&"·"} {password.length>8&&greenTickIcon}  At least 8 characters</span>

@@ -1161,6 +1161,28 @@
             "country": "国",
             "address": "住所"
         },
+        "personalInfo": {
+            "personalInfo": "ユーザー情報",
+            "userName": "ユーザーネーム",
+            "name": "氏名",
+            "school": "大学名/組織名",
+            "faculty": "学部/部署",
+            "field": "研究分野/グループ",
+            "others": "その他",
+            "invoice": "請求書等に記載する名称"
+        },
+        "contactInfo": {
+            "contactInfo": "連絡先",
+            "country": "国",
+            "phone": "電話番号",
+            "email": "メールアドレス",
+            "confirmEmail": "メールアドレス再確認用",
+            "postalCode": "郵便番号",
+            "perfecture": "都道府県 ",
+            "city": "以降住所",
+            "cancel": "キャンセル",
+            "confirm": "確定"
+        },
         "search":"検索",
         "typeMsg":"メッセージを入力する...",
         "online":"オンライン中",

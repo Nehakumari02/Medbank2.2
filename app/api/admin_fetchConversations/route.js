@@ -20,9 +20,9 @@ export async function POST(req) {
         select: 'name email', // Specify the fields you want to include
       })
       .sort([
-        ['lastMessage.lastMessageTs', -1], // Sort by last message timestamp in descending order
-        ['lastMessage.seen', 1], // Sort by seen status (false first, then true)
-        ['createdAt', -1] // Sort by creation date in descending order
+        // ['createdAt', -1],
+        // ['lastMessage.seen', -1],
+        ['lastMessage.lastMessageTs', -1]
       ]);
       // .sort([['lastMessage.seen', 1], ['createdAt', -1]])
 

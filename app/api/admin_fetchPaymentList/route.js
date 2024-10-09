@@ -28,7 +28,7 @@ export async function POST(req) {
         path: 'userId',
         select: 'school Username' // Select only the fields you want from the User model
       })
-      .select('orderId orderTitle grandTotal1 paymentStatus') // Select only the fields you want from the Order model
+      .select('_id orderId orderTitle grandTotal1 paymentStatus') // Select only the fields you want from the Order model
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);

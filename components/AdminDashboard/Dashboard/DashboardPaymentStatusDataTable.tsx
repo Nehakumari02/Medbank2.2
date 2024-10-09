@@ -91,6 +91,25 @@ const OrderTitleCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderT
   );
 };
 
+const updateDataInDB = async (orderData:any,orderIdDB:string) => {
+  const saveApiResponse = await fetch('/api/updateOrder', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ order: orderData, orderIdDB: orderIdDB }),
+  });
+
+  console.log(saveApiResponse)
+}
+
+const updateOrderDetails = (orderId:string,setDisabled:(state: boolean) => void)=>{
+  console.log("order update request ")
+  console.log(orderId)
+  updateDataInDB({paymentStatus: "isAdminCompleted"},orderId);
+  setDisabled(true);
+}
+
 export const columns: ColumnDef<PaymentList>[] = [
   {
     accessorKey: 'orderId',
@@ -189,16 +208,20 @@ export const columns: ColumnDef<PaymentList>[] = [
       return(<span>{t("paymentBox.receipt")}</span>)
     },
     cell: function Cell({ row }) {
-      const status = row.getValue('paymentStatus');
-      const bgColor = status === 'isCompleted' ? '#5CE1E6' : '#FF914D';
+      const status:string = row.getValue('paymentStatus');
       const t = useTranslations("AdminDashboard");
+      const [disabled,setDisabled] = React.useState(status === 'isAdminCompleted' || status === 'isCompleted');
+      const bgColor = disabled? '#5CE1E6' : '#FF914D';
+
       return (
-        <div
-          className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
+        <button
+          disabled={disabled}
+          className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200  flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: bgColor }}
+          onClick={()=>updateOrderDetails(row.original._id,setDisabled)}
         >
-          {status === 'isCompleted' ? t("paymentList.receiptCompleted") : t("paymentList.receiptPending")}
-        </div>
+          {disabled ? t("paymentList.receiptCompleted") : t("paymentList.receiptPending")}
+        </button>
       );
     },
     size: 140,

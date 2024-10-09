@@ -467,7 +467,10 @@ export const columns: ColumnDef<OrderList>[] = [
   
       if (analysisSpecificationStatus === "inAdminProgress" ||analysisSpecificationStatus === "isUserCompleted") {
         return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#FF914D] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.analysisSpecificationInProgress")}</div>;
-      } else if (analysisSpecificationStatus === "isCompleted" || analysisSpecificationStatus === "isAdminCompleted") {
+      }else if (analysisSpecificationStatus === "isAdminCompleted") {
+        return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#79747E] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.analysisSpecificationIsCompleted")}</div>;
+      }
+       else if (analysisSpecificationStatus === "isCompleted") {
         return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#5CE1E6] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.analysisSpecificationIsCompleted")}</div>;
       } else {
         return <></>;

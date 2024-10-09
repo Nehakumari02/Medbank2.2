@@ -253,7 +253,7 @@ const Settings = () => {
                 </label>
                 <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                   <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
-                    <CountryDropDownMob country={country} setCountry={setCountry} selectedFlag={selectedFlag} setSelectedFlag={setSelectedFlag}></CountryDropDownMob>
+                    <CountryDropDown country={country} setCountry={setCountry} selectedFlag={selectedFlag} setSelectedFlag={setSelectedFlag}></CountryDropDown>
                   </div>
                 </div>
               </div>

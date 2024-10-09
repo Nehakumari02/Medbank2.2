@@ -298,9 +298,9 @@ export const columns: ColumnDef<OrderList>[] = [
       const t = useTranslations("UserDashboard");
       const sampleShippingStatus = row.getValue("sampleShippingStatus");
   
-      if (sampleShippingStatus === "inUserProgress" || sampleShippingStatus === "isAdminCompleted") {
+      if (sampleShippingStatus === "inUserProgress" ) {
         return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#FF914D] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.sampleShippingInProgress")}</div>;
-      } else if(sampleShippingStatus === "inTransit"){
+      } else if(sampleShippingStatus === "inTransit" || sampleShippingStatus === "isAdminCompleted"){
         return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#79747E] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.sampleShippingInProgress")}</div>;
       } else if (sampleShippingStatus === "isCompleted") {
         return <div className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] bg-[#5CE1E6] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center">{t("orderList.sampleShippingIsCompleted")}</div>;

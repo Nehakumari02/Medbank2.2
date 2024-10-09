@@ -110,10 +110,11 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
 
   return (
     <div className="max-w-full mx-auto p-3 bg-white shadow-md rounded-md">
+      
+      <h2 className="flex flex-col pb-5 font-bold text-xl text-center justify-center">{t("title")}</h2>
 
       {userDetails ? (
         <div className="mb-8 text-base font-medium">
-          <div className="text-lg font-bold">User Details</div>
           <div className="">
             <p> <strong>{t("name")}:</strong> {userDetails.name}</p>
             <div> <strong>{t("city")}:</strong> {userDetails.city}</div>
@@ -131,7 +132,6 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
         <p>{getCompanyAddressByCurrency()}</p>
       </div>
 
-      <h2 className="pb-5 font-medium text-xl text-center">{t("title")}</h2>
 
       <table className="w-full table-fixed  border-collapse  break-words">
         <thead className='text-sm'>

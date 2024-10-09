@@ -10,27 +10,28 @@ import {
 } from "@/components/ui/select"
 
 const flags = [
-    'ad.svg', 'ae.svg', 'af.svg', 'ag.svg', 'ai.svg', 'al.svg', 'am.svg', 'ao.svg', 'aq.svg', 'ar.svg', 'as.svg', 'at.svg', 'au.svg',
-    'aw.svg', 'ax.svg', 'az.svg', 'ba.svg', 'bb.svg', 'bd.svg', 'be.svg', 'bf.svg', 'bg.svg', 'bh.svg', 'bi.svg', 'bj.svg', 'bl.svg',
-    'bm.svg', 'bn.svg', 'bo.svg', 'bq.svg', 'br.svg', 'bs.svg', 'bt.svg', 'bv.svg', 'bw.svg', 'by.svg', 'bz.svg', 'ca.svg', 'cc.svg',
-    'cd.svg', 'cf.svg', 'cg.svg', 'ch.svg', 'ci.svg', 'ck.svg', 'cl.svg', 'cm.svg', 'cn.svg', 'co.svg', 'cr.svg', 'cu.svg', 'cv.svg',
-    'cw.svg', 'cx.svg', 'cy.svg', 'cz.svg', 'de.svg', 'dj.svg', 'dk.svg', 'dm.svg', 'do.svg', 'dz.svg', 'ec.svg', 'ee.svg', 'eg.svg',
-    'eh.svg', 'er.svg', 'es.svg', 'et.svg', 'eu.svg', 'fi.svg', 'fj.svg', 'fk.svg', 'fm.svg', 'fo.svg', 'fr.svg', 'ga.svg', 'gb-eng.svg',
-    'gb-nir.svg', 'gb-sct.svg', 'gb-wls.svg', 'gb.svg', 'gd.svg', 'ge.svg', 'gf.svg', 'gg.svg', 'gh.svg', 'gi.svg', 'gl.svg', 'gm.svg',
-    'gn.svg', 'gp.svg', 'gq.svg', 'gr.svg', 'gs.svg', 'gt.svg', 'gu.svg', 'gw.svg', 'gy.svg', 'hk.svg', 'hm.svg', 'hn.svg', 'hr.svg',
-    'ht.svg', 'hu.svg', 'id.svg', 'ie.svg', 'il.svg', 'im.svg', 'in.svg', 'io.svg', 'iq.svg', 'ir.svg', 'is.svg', 'it.svg', 'je.svg',
-    'jm.svg', 'jo.svg', 'jp.svg', 'ke.svg', 'kg.svg', 'kh.svg', 'ki.svg', 'km.svg', 'kn.svg', 'kp.svg', 'kr.svg', 'kw.svg', 'ky.svg',
-    'kz.svg', 'la.svg', 'lb.svg', 'lc.svg', 'li.svg', 'lk.svg', 'lr.svg', 'ls.svg', 'lt.svg', 'lu.svg', 'lv.svg', 'ly.svg', 'ma.svg',
-    'mc.svg', 'md.svg', 'me.svg', 'mf.svg', 'mg.svg', 'mh.svg', 'mk.svg', 'ml.svg', 'mm.svg', 'mn.svg', 'mo.svg', 'mp.svg', 'mq.svg',
-    'mr.svg', 'ms.svg', 'mt.svg', 'mu.svg', 'mv.svg', 'mw.svg', 'mx.svg', 'my.svg', 'mz.svg', 'na.svg', 'nc.svg', 'ne.svg', 'nf.svg',
-    'ng.svg', 'ni.svg', 'nl.svg', 'no.svg', 'np.svg', 'nr.svg', 'nu.svg', 'nz.svg', 'om.svg', 'pa.svg', 'pe.svg', 'pf.svg', 'pg.svg',
-    'ph.svg', 'pk.svg', 'pl.svg', 'pm.svg', 'pn.svg', 'pr.svg', 'ps.svg', 'pt.svg', 'pw.svg', 'py.svg', 'qa.svg', 're.svg', 'ro.svg',
-    'rs.svg', 'ru.svg', 'rw.svg', 'sa.svg', 'sb.svg', 'sc.svg', 'sd.svg', 'se.svg', 'sg.svg', 'sh.svg', 'si.svg', 'sj.svg', 'sk.svg',
-    'sl.svg', 'sm.svg', 'sn.svg', 'so.svg', 'sr.svg', 'ss.svg', 'st.svg', 'sv.svg', 'sx.svg', 'sy.svg', 'sz.svg', 'tc.svg', 'td.svg',
-    'tf.svg', 'tg.svg', 'th.svg', 'tj.svg', 'tk.svg', 'tl.svg', 'tm.svg', 'tn.svg', 'to.svg', 'tr.svg', 'tt.svg', 'tv.svg', 'tw.svg',
-    'tz.svg', 'ua.svg', 'ug.svg', 'um.svg', 'us.svg', 'uy.svg', 'uz.svg', 'va.svg', 'vc.svg', 've.svg', 'vg.svg', 'vi.svg', 'vn.svg',
-    'vu.svg', 'wf.svg', 'ws.svg', 'xk.svg', 'ye.svg', 'yt.svg', 'za.svg', 'zm.svg', 'zw.svg'
+    'jp.svg','af.svg', 'ax.svg', 'al.svg', 'dz.svg', 'as.svg', 'ad.svg', 'ao.svg', 'ai.svg', 'aq.svg', 'ag.svg', 'ar.svg', 'am.svg', 'aw.svg',
+    'au.svg', 'at.svg', 'az.svg', 'bs.svg', 'bh.svg', 'bd.svg', 'bb.svg', 'by.svg', 'be.svg', 'bz.svg', 'bj.svg', 'bm.svg', 'bt.svg',
+    'bo.svg', 'bq.svg', 'ba.svg', 'bw.svg', 'bv.svg', 'br.svg', 'io.svg', 'bn.svg', 'bg.svg', 'bf.svg', 'bi.svg', 'cv.svg', 'kh.svg',
+    'cm.svg', 'ca.svg', 'ky.svg', 'cf.svg', 'td.svg', 'cl.svg', 'cn.svg', 'cx.svg', 'cc.svg', 'co.svg', 'km.svg', 'cg.svg', 'cd.svg',
+    'ck.svg', 'cr.svg', 'hr.svg', 'cu.svg', 'cw.svg', 'cy.svg', 'cz.svg', 'dk.svg', 'dj.svg', 'dm.svg', 'do.svg', 'ec.svg', 'eg.svg',
+    'sv.svg', 'gq.svg', 'er.svg', 'ee.svg', 'et.svg', 'fk.svg', 'fo.svg', 'fj.svg', 'fi.svg', 'fr.svg', 'gf.svg', 'pf.svg', 'tf.svg',
+    'ga.svg', 'gm.svg', 'ge.svg', 'de.svg', 'gh.svg', 'gi.svg', 'gr.svg', 'gl.svg', 'gd.svg', 'gp.svg', 'gu.svg', 'gt.svg', 'gg.svg',
+    'gn.svg', 'gw.svg', 'gy.svg', 'ht.svg', 'hm.svg', 'hn.svg', 'hk.svg', 'hu.svg', 'is.svg', 'in.svg', 'id.svg', 'ir.svg', 'iq.svg',
+    'ie.svg', 'im.svg', 'il.svg', 'it.svg', 'ci.svg', 'jm.svg',  'je.svg', 'jo.svg', 'kz.svg', 'ke.svg', 'ki.svg', 'kp.svg',
+    'kr.svg', 'kw.svg', 'kg.svg', 'la.svg', 'lv.svg', 'lb.svg', 'ls.svg', 'lr.svg', 'ly.svg', 'li.svg', 'lt.svg', 'lu.svg', 'mo.svg',
+    'mg.svg', 'mw.svg', 'my.svg', 'mv.svg', 'ml.svg', 'mt.svg', 'mh.svg', 'mq.svg', 'mr.svg', 'mu.svg', 'yt.svg', 'mx.svg', 'fm.svg',
+    'md.svg', 'mc.svg', 'mn.svg', 'me.svg', 'ms.svg', 'ma.svg', 'mz.svg', 'mm.svg', 'na.svg', 'nr.svg', 'np.svg', 'nl.svg', 'nc.svg',
+    'nz.svg', 'ni.svg', 'ne.svg', 'ng.svg', 'nu.svg', 'nf.svg', 'mk.svg', 'mp.svg', 'no.svg', 'om.svg', 'pk.svg', 'pw.svg', 'ps.svg',
+    'pa.svg', 'pg.svg', 'py.svg', 'pe.svg', 'ph.svg', 'pn.svg', 'pl.svg', 'pt.svg', 'pr.svg', 'qa.svg', 're.svg', 'ro.svg', 'ru.svg',
+    'rw.svg', 'bl.svg', 'sh.svg', 'kn.svg', 'lc.svg', 'mf.svg', 'pm.svg', 'vc.svg', 'ws.svg', 'sm.svg', 'st.svg', 'sa.svg', 'sn.svg',
+    'rs.svg', 'sc.svg', 'sl.svg', 'sg.svg', 'sx.svg', 'sk.svg', 'si.svg', 'sb.svg', 'so.svg', 'za.svg', 'gs.svg', 'ss.svg', 'es.svg',
+    'lk.svg', 'sd.svg', 'sr.svg', 'sj.svg', 'sz.svg', 'se.svg', 'ch.svg', 'sy.svg', 'tw.svg', 'tj.svg', 'tz.svg', 'th.svg', 'tl.svg',
+    'tg.svg', 'tk.svg', 'to.svg', 'tt.svg', 'tn.svg', 'tr.svg', 'tm.svg', 'tc.svg', 'tv.svg', 'ug.svg', 'ua.svg', 'ae.svg', 'gb.svg',
+    'us.svg', 'um.svg', 'uy.svg', 'uz.svg', 'vu.svg', 've.svg', 'vn.svg', 'vg.svg', 'vi.svg', 'wf.svg', 'eh.svg', 'ye.svg', 'zm.svg',
+    'zw.svg', 'xk.svg'
 ];
+
 
 const flagToCountry = {
     'ad.svg': 'Andorra',

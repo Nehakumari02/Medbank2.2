@@ -540,11 +540,19 @@
         "payments": "Payments",
         "archive": "Archive",
         "settings": "Settings",
-        "logout": "Logout"
+        "logout": "Logout",
+        "Msg1":"Would you like to place a new order?",
+        "yes":"Yes",
+        "no":"No"
     },
     "TopNavBar": {
         "welcomeMsg": "Welcome User!",
         "newOrder": "New Order",
+        "Msg1":"Would you like to place a new order?",
+        "yes":"Yes",
+        "no":"No",
+
+
 	"settings": "Settings",
         "logout": "Logout"
     },

@@ -539,11 +539,18 @@
         "payments": "お支払い",
         "archive": "アーカイブ",
         "settings": "設定",
-        "logout": "ログアウト"
+        "logout": "ログアウト",
+        "Msg1":"新規オーダーを作成しますか？",
+        "yes":"はい",
+        "no":"いいえ"
     },
     "TopNavBar": {
         "welcomeMsg": "ようこそ",
         "newOrder": "新しい発注",
+        "Msg1":"新規オーダーを作成しますか？",
+        "yes":"はい",
+        "no":"いいえ",
+
 	"settings": "設定",
         "logout": "ログアウト"
     },
@@ -1200,7 +1207,7 @@
         "finish": "終了"
     },
     "quotation": {
-        "title": "領収書",
+        "title": "お見積書",
         "sampleNumber": "サンプルID",
         "sampleName": "サンプル名",
         "sampleCheckPrice": "クオリティチェック費用",

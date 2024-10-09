@@ -12,7 +12,7 @@ export async function POST(req) {
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_SIGNUP,
+    from: process.env.EMAIL_USER,
     to: email, // Your email address
     subject: "MEDBANK 【登録完了】Registeration completed",
     text: `Dear ${name}

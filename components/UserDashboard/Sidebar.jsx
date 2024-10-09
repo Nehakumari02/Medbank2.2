@@ -33,6 +33,7 @@ const Sidebar = ({newMessage}) => {
   const userIdDB = usePathname().split("/")[2];
   const [disabled, setDisabled] = useState(false);
   const [showNewOrderPopUp,setShowNewOrderPopUp] = useState(false);
+  
 
   const t = useTranslations("UserSideBar");
 
@@ -202,13 +203,13 @@ const Sidebar = ({newMessage}) => {
         </div>
       </div>
       {showNewOrderPopUp &&  <Dialog open={showNewOrderPopUp} onOpenChange={setShowNewOrderPopUp}>
-        <DialogContent className="bg-white w-[90%]">
+          <DialogContent className="bg-white w-[90%] md:h-[180px]">
               <DialogHeader className="">
-                <DialogTitle>{language==="en"?"Would you like to place a new order?":"新規オーダーを作成しますか？"}</DialogTitle>
+                <DialogTitle className='font-DM-Sans font-medium text-[18px] md:text-[24px]'>{language==="en"?"Would you like to place a new order?":"新規オーダーを作成しますか？"}</DialogTitle>
               </DialogHeader>
-              <DialogFooter>
-                <Button onClick={()=>setShowNewOrderPopUp(false)} variant="ghost">{language==="en"?"NO":"いいえ"}</Button>
-                <Button onClick={handleNewOrder} variant="outline">{language==="en"?"YES":"はい"}</Button>
+              <DialogFooter className='flex flex-row gap-[12px] items-end justify-end'>
+                <Button className='h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] text-[#333333] font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]' onClick={()=>setShowNewOrderPopUp(false)} variant="ghost">{language==="en"?"NO":"いいえ"}</Button>
+                <Button className={`${disabled?"opacity-75":""} h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`} onClick={handleNewOrder} variant="outline">{language==="en"?"YES":"はい"}</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>

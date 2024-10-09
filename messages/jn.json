@@ -564,6 +564,11 @@
     },
     "Settings": {
         "settings": "設定",
+        "error":"エラー",
+        "requiredFieldsError":"すべての必須フィールド（*）を入力してください。",
+        "success":"成功",
+        "userUpdatedSuccess":"詳細が更新されました。",
+        "serverError":"詳細は更新されていません。再試行してください。",
         "personalInfo": {
             "personalInfo": "ユーザー情報",
             "userName": "ユーザーネーム",

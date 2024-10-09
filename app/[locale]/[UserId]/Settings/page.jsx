@@ -7,6 +7,7 @@ import { useModal } from '@/contexts/ModalContext'
 import { usePathname } from 'next/navigation'
 import { toast } from '@/hooks/use-toast';
 import Loading from './loading'
+import { CgAsterisk } from "react-icons/cg";
 
 const Settings = () => {
   const userId = usePathname().split("/")[2]
@@ -38,6 +39,26 @@ const Settings = () => {
   const updateUserDetals=async(e)=>{
     e.preventDefault();
     try{
+      if (
+        !Username ||
+        !name ||
+        !school ||
+        !service ||
+        !country ||
+        !phone ||
+        !email ||
+        !confirmEmail ||
+        !Perfecture ||
+        !postalCode ||
+        !city
+      ) {
+        toast({
+          variant:"error",
+          title: t('error'),
+          description: t('requiredFieldsError')
+        })
+        return;
+      }
     const response = await fetch('/api/updateUserDetails', {
       method: 'POST',
       headers: {
@@ -47,20 +68,21 @@ const Settings = () => {
     });
     const data = await response.json();
     console.log(data.message)
+    toast({
+      variant: "success",
+      title: t('success'),
+      description: t('userUpdatedSuccess')
+    });
   }catch(error){
     console.log(error)
     toast({
       variant: "error",
-      title: "Error",
-      description: "Your details have'nt been updated, Please try again."
+      title: t('error'),
+      description: t('serverError')
     });
   }
   finally{
-    toast({
-      variant: "success",
-      title: "Success",
-      description: "Your details have been updated."
-    });
+    
   }
   }
   useEffect(() => {
@@ -119,8 +141,8 @@ const Settings = () => {
           </div>
           <div className='px-[24px] py-[12px] md:py-[29px] w-full flex flex-col gap-[6px] md:gap-[16px]'>
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("personalInfo.userName")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("personalInfo.userName")} <CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -136,8 +158,8 @@ const Settings = () => {
               </div>
             </div>
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("personalInfo.name")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("personalInfo.name")}<CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -154,8 +176,8 @@ const Settings = () => {
             </div>
 
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("personalInfo.school")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("personalInfo.school")}<CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -171,7 +193,7 @@ const Settings = () => {
               </div>
             </div>
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
               {t("personalInfo.faculty")}
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
@@ -188,7 +210,7 @@ const Settings = () => {
               </div>
             </div>
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
               {t("personalInfo.field")}
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
@@ -205,7 +227,7 @@ const Settings = () => {
               </div>
             </div>
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
               {t("personalInfo.others")}
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
@@ -222,8 +244,8 @@ const Settings = () => {
               </div>
             </div>
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("personalInfo.invoice")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("personalInfo.invoice")}<CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -248,8 +270,8 @@ const Settings = () => {
           <div className='px-[24px] py-[12px] md:py-[29px] w-full flex flex-col gap-[6px] md:gap-[16px]'>
             <div className='flex gap-[21px] '>
               <div className="flex flex-col w-[82px] h-[46px]">
-                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-                {t("contactInfo.country")}
+                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+                {t("contactInfo.country")}<CgAsterisk className='text-red-500' />
                 </label>
                 <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                   <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -258,8 +280,8 @@ const Settings = () => {
                 </div>
               </div>
               <div className="flex flex-col w-full mb-2 md:mb-0">
-                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-                {t("contactInfo.phone")}
+                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+                {t("contactInfo.phone")}<CgAsterisk className='text-red-500' />
                 </label>
                 <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                   <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -276,8 +298,8 @@ const Settings = () => {
               </div>
             </div>
             <div className="flex flex-col mb-3 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("contactInfo.email")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("contactInfo.email")}<CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -294,8 +316,8 @@ const Settings = () => {
             </div>
  
             <div className="flex flex-col mb-3 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("contactInfo.confirmEmail")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("contactInfo.confirmEmail")}<CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -312,8 +334,8 @@ const Settings = () => {
             </div>
             <div className='flex gap-[21px] mb-2 md:mb-0'>
               <div className="flex flex-col w-[82px] h-[46px]">
-                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-                {t("contactInfo.country")}
+                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+                {t("contactInfo.country")}<CgAsterisk className='text-red-500' />
                 </label>
                 <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                   <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -323,8 +345,8 @@ const Settings = () => {
                 </div>
               </div>
               <div className="flex flex-col w-full mb-2 md:mb-0">
-                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-                {t("contactInfo.postalCode")}
+                <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+                {t("contactInfo.postalCode")}<CgAsterisk className='text-red-500' />
                 </label>
                 <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                   <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -341,8 +363,8 @@ const Settings = () => {
               </div>
             </div>
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("contactInfo.perfecture")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("contactInfo.perfecture")}<CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >
@@ -359,8 +381,8 @@ const Settings = () => {
             </div>
            
             <div className="flex flex-col mb-2 md:mb-0">
-              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4">
-              {t("contactInfo.city")}
+              <label htmlFor="name" className="font-DM-Sans font-medium text-[10px] md:text-sm mb-[6px] md:mb-4 flex">
+              {t("contactInfo.city")}<CgAsterisk className='text-red-500' />
               </label>
               <div className='group w-full h-[35px] md:h-[46px] flex items-center justify-center flex-col'>
                 <div className={`w-full rounded-[7px] bg-gray-200 group-focus-within:gradient-primary`} >

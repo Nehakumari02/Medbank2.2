@@ -566,6 +566,11 @@
     },
     "Settings": {
         "settings": "Settings",
+        "error":"Error",
+        "success":"Success",
+        "userUpdatedSuccess":"Your details have been updated.",
+        "serverError":"Your details haven't been updated, Please try again.",
+        "requiredFieldsError":"All fields marked with an asterisk (*) are required.",
         "personalInfo": {
             "personalInfo": "Personal Information",
             "userName": "Username",

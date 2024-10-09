@@ -9,6 +9,17 @@ import Logo from "../../public/Images/Home/logo.png";
 import { toast } from '@/hooks/use-toast';
 import { Loader2} from 'lucide-react';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Button } from '@/components/ui/button';
+
 const TopNav = () => {
   const path = usePathname().split("/")[3];
   const pathToRedirect = usePathname().split("/").slice(2).join("/");
@@ -18,6 +29,7 @@ const TopNav = () => {
   const t = useTranslations("TopNavBar");
   const [disabled, setDisabled] = useState(false);
   const [menu,setMenu] = useState(false);
+  const [showNewOrderPopUp,setShowNewOrderPopUp] = useState(false);
 
   const updateLanguage = (newLanguage) => {
     const newPath = `/${newLanguage}/${pathToRedirect}`;
@@ -68,6 +80,7 @@ const TopNav = () => {
     }
     finally{
       setDisabled(false);
+      setShowNewOrderPopUp(false);
     }
   }
 
@@ -94,7 +107,7 @@ const TopNav = () => {
             <span className={`${language == "en" ? "border-b-[2px] border-[#003E5C99] text-black" : "text-[#333333]"} font-sans font-normal pb-[4px]`}>EN</span>
           </button>
         </div>
-        <button disabled={disabled} onClick={handleNewOrder} id='highlight-step-2' className={`h-[40px] w-[133px] rounded-[6px] hidden md:flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[14px] leading-[20px] ${disabled?"opacity-75":""}`}>  {disabled?<Loader2 className="animate-spin" /> : <>{plusIcon} {t("newOrder")}</>}</button>
+        <button disabled={disabled} onClick={()=>setShowNewOrderPopUp(true)} id='highlight-step-2' className={`h-[40px] w-[133px] rounded-[6px] hidden md:flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[14px] leading-[20px] ${disabled?"opacity-75":""}`}>  {disabled?<Loader2 className="animate-spin" /> : <>{plusIcon} {t("newOrder")}</>}</button>
         <div>
           <button onClick={() => handleMenu()} className='h-full flex items-center justify-center md:hidden pt-[2px]'>{hamburderMenuIcon}</button>
           {menu && <div className='absolute right-0 z-10 top-[40px] w-[168px] bg-white p-[12px] shadow-md'>
@@ -126,8 +139,21 @@ const TopNav = () => {
       <div>
         {path=="Dashboard"?<span className='font-DM-Sans font-bold text-[18px] leading-[24px] '>{t("welcomeMsg")}</span>:<></>}
       </div>
-      <button disabled={disabled} onClick={handleNewOrder} className={`h-[40px] w-[117px] rounded-[6px] flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] leading-[20px] ${disabled?"opacity-75":""}`}>{plusIcon}{t("newOrder")}</button>
+      <button disabled={disabled} onClick={()=>setShowNewOrderPopUp(true)} className={`h-[40px] w-[117px] rounded-[6px] flex items-center justify-center gap-[10px] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] leading-[20px] ${disabled?"opacity-75":""}`}>{plusIcon}{t("newOrder")}</button>
     </div>
+
+    {showNewOrderPopUp &&  <Dialog open={showNewOrderPopUp} onOpenChange={setShowNewOrderPopUp}>
+          <DialogContent className="bg-white w-[90%]">
+              <DialogHeader className="">
+                <DialogTitle>{language==="en"?"Would you like to place a new order?":"新規オーダーを作成しますか？"}</DialogTitle>
+              </DialogHeader>
+              <DialogFooter>
+                <Button onClick={()=>setShowNewOrderPopUp(false)} variant="ghost">{language==="en"?"NO":"いいえ"}</Button>
+                <Button onClick={handleNewOrder} variant="outline">{language==="en"?"YES":"はい"}</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+      }
     </>
   )
 }

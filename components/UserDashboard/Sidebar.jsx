@@ -8,6 +8,17 @@ import { useSidebarContext } from "@/contexts/SidebarContext";
 import { useTranslations } from "next-intl";
 import { toast } from '@/hooks/use-toast';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Button } from "../ui/button";
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -21,6 +32,7 @@ const Sidebar = ({newMessage}) => {
   const language = usePathname().split("/")[1];
   const userIdDB = usePathname().split("/")[2];
   const [disabled, setDisabled] = useState(false);
+  const [showNewOrderPopUp,setShowNewOrderPopUp] = useState(false);
 
   const t = useTranslations("UserSideBar");
 
@@ -77,6 +89,7 @@ const Sidebar = ({newMessage}) => {
       console.log(error)
     }finally{
       setDisabled(false);
+      setShowNewOrderPopUp(false);
     }
   }
 
@@ -127,7 +140,8 @@ const Sidebar = ({newMessage}) => {
   
   const handleMenuItemClick = async(menuPath)=>{
     if(menuPath==="NewOrder"){
-      handleNewOrder();
+      // handleNewOrder();
+      setShowNewOrderPopUp(true);
     }
     else{
     // const body = document.querySelector("body");
@@ -187,6 +201,18 @@ const Sidebar = ({newMessage}) => {
             </button>
         </div>
       </div>
+      {showNewOrderPopUp &&  <Dialog open={showNewOrderPopUp} onOpenChange={setShowNewOrderPopUp}>
+        <DialogContent className="bg-white w-[90%]">
+              <DialogHeader className="">
+                <DialogTitle>{language==="en"?"Would you like to place a new order?":"新規オーダーを作成しますか？"}</DialogTitle>
+              </DialogHeader>
+              <DialogFooter>
+                <Button onClick={()=>setShowNewOrderPopUp(false)} variant="ghost">{language==="en"?"NO":"いいえ"}</Button>
+                <Button onClick={handleNewOrder} variant="outline">{language==="en"?"YES":"はい"}</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+      }
     </div>
   );
 };

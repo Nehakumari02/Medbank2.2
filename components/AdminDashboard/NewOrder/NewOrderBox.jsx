@@ -66,15 +66,15 @@ const NewOrderBox = () => {
   }
 
   const updateSampleInDB = async (sampleData) => {
-    const saveApiResponse = await fetch('/api/updateSample', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
-    });
+    // const saveApiResponse = await fetch('/api/updateSample', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
+    // });
 
-    console.log(saveApiResponse)
+    // console.log(saveApiResponse)
   }
 
   const updateDataInDB1 = async (samples) => {
@@ -142,9 +142,10 @@ const NewOrderBox = () => {
   };
 
   const calculateTotal1 = (sample) => {
-    const qualityFees = parseFloat(sample.qualityFees || 0);
-    const libraryFees = parseFloat(sample.libraryFees || 0);
-    const analysisFees = parseFloat(sample.analysisFees || 0);
+    const qualityFees = parseFloat(sample.qualityCheckStatus == "isAdminCompleted" || sample.qualityCheckStatus == "isCompleted" ? sample.qualityFees : 0);
+    const libraryFees = parseFloat(sample.libraryPrepStatus == "isAdminCompleted" || sample.libraryPrepStatus == "isCompleted" ? sample.libraryFees : 0);
+    const analysisFees = parseFloat(sample.analysisSpecificationStatus == "isAdminCompleted" ||sample.analysisSpecificationStatus == "isCompleted" ? sample.analysisFees : 0);
+    console.log("fees",sample,sample.qualityCheckStatus !== "inAdminProgress" ? sample.qualityFees : 0,qualityFees,libraryFees,analysisFees)
     const others = parseFloat(sample.others || 0);
     const tax = parseFloat(sample.tax || 0);
     const subtotal = qualityFees + libraryFees + analysisFees + others;
@@ -624,14 +625,18 @@ const NewOrderBox = () => {
         const costEstimationSamples = await response.json();
         console.log(costEstimationSamples)
 
-    const updatedSamples = costEstimationSamples.data.map((costEstimationSample, index) => {
+    const updatedSamples1 = costEstimationSamples.data.map((costEstimationSample, index) => {
       // console.log(costEstimationSample)
+      const tempTotal = calculateTotal1(costEstimationSample)
+      console.log(costEstimationSample)
+      console.log(tempTotal)
       return { 
-        _id: costEstimationSample._id, name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityFees, libraryFees: costEstimationSample.libraryFees, analysisFees: costEstimationSample.analysisFees, tax: costEstimationSample.tax, others: costEstimationSample.others, total: costEstimationSample.total };
+        _id: costEstimationSample._id, name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityCheckStatus == "isAdminCompleted" || costEstimationSample.qualityCheckStatus == "isCompleted" ? costEstimationSample.qualityFees : 0, libraryFees: libraryPrepStatus == "isAdminCompleted" || libraryPrepStatus == "isCompleted" ? costEstimationSample.libraryFees : 0, analysisFees: costEstimationSample.analysisSpecificationStatus == "isAdminCompleted" || costEstimationSample.analysisSpecificationStatus == "isCompleted" ? costEstimationSample.analysisFees : 0, tax: costEstimationSample.tax, others: costEstimationSample.others, total: tempTotal };
     });
 
-    setSamples1(updatedSamples);
-    const grandTotal1 = calculateGrandTotal(updatedSamples);
+    setSamples1(updatedSamples1);
+    const grandTotal1 = calculateGrandTotal(updatedSamples1);
+    console.log(updatedSamples1,grandTotal1)
     setGrandTotal1(grandTotal1);
   };
 

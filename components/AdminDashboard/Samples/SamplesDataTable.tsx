@@ -48,6 +48,38 @@ export type PaymentList = {
   school: string
 }
 
+const updateDataInSamples = async (orderData:any,sampleIdDB:string) => {
+  const saveApiResponse = await fetch('/api/updateSampleById', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ orderData: orderData, sampleIdDB: sampleIdDB }),
+  });
+
+  console.log(saveApiResponse)
+}
+
+const updateQualityCheckDetails = (sampleId:string,setStatus:(state: string) => void)=>{
+  console.log("quality check update request ")
+  console.log(sampleId)
+  updateDataInSamples({qualityCheckStatus: "isAdminCompleted"},sampleId);
+  setStatus("isAdminCompleted");
+}
+
+const updateLibraryPrepDetails = (sampleId:string,setStatus:(state: string) => void)=>{
+  console.log("library prep update request ")
+  console.log(sampleId)
+  updateDataInSamples({libraryPrepStatus: "isAdminCompleted"},sampleId);
+  setStatus("isAdminCompleted")
+}
+const updateAnalysisReportDetails = (sampleId:string,setStatus:(state: string) => void)=>{
+  console.log("analysis report update request ")
+  console.log(sampleId)
+  updateDataInSamples({analysisSpecificationStatus: "isAdminCompleted"},sampleId);
+  setStatus("isAdminCompleted")
+}
+
 export const columns: ColumnDef<PaymentList>[] = [
   {
     accessorKey: "id",
@@ -122,7 +154,8 @@ export const columns: ColumnDef<PaymentList>[] = [
       })}</span>)
     },
     cell: function Cell({ row }) {
-      const status = row.getValue("qualityCheckStatus");
+      const [status,setStatus] = React.useState<string>(row.getValue("qualityCheckStatus"));
+      // const status = row.getValue("qualityCheckStatus");
       const t = useTranslations("AdminDashboard");
       let statusColor = "";
       let textColor = "";
@@ -156,12 +189,14 @@ export const columns: ColumnDef<PaymentList>[] = [
       }
 
       return (
-        <div
-          className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
+        <button
+          disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200 flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: statusColor, color: textColor}}
+          onClick={()=>updateQualityCheckDetails(row.original._id,setStatus)}
         >
           {status === 'isCompleted' ? t("sampleList.qualityCompleted") : t("sampleList.qualityPending")}
-        </div>
+        </button>
       );
     },
     size: 140,
@@ -176,7 +211,8 @@ export const columns: ColumnDef<PaymentList>[] = [
       return(<span>{t("sampleList.libraryPrep")}</span>)
     },
     cell: function Cell({ row }) {
-      const status = row.getValue("libraryPrepStatus");
+      const [status,setStatus] = React.useState<string>(row.getValue("libraryPrepStatus"));
+      // const status = row.getValue("libraryPrepStatus");
       const t = useTranslations("AdminDashboard");
       let statusColor = "";
       let textColor = "";
@@ -210,12 +246,14 @@ export const columns: ColumnDef<PaymentList>[] = [
       }
 
       return (
-        <div
-          className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
+        <button
+          disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200 flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: statusColor, color: textColor }}
+          onClick={()=>updateLibraryPrepDetails(row.original._id,setStatus)}
         >
           {status === 'isCompleted' ? t("sampleList.libraryCompleted") : t("sampleList.libraryPending")}
-        </div>
+        </button>
       );
     },
     size: 140,
@@ -230,7 +268,8 @@ export const columns: ColumnDef<PaymentList>[] = [
       return(<span>{t("sampleList.analysisReport")}</span>)
     },
     cell: function Cell({ row }) {
-      const status = row.getValue("analysisSpecificationStatus");
+      const [status,setStatus] = React.useState<string>(row.getValue("analysisSpecificationStatus"));
+      // const status = row.getValue("analysisSpecificationStatus");
       const t = useTranslations("AdminDashboard");
       let statusColor = "";
       let textColor = "";
@@ -264,12 +303,14 @@ export const columns: ColumnDef<PaymentList>[] = [
       }
 
       return (
-        <div
-          className="h-[36px] flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
+        <button
+          disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200 flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: statusColor, color: textColor }}
+          onClick={()=>updateAnalysisReportDetails(row.original._id,setStatus)}
         >
          {status === 'isCompleted' ? t("sampleList.analysisCompleted") : t("sampleList.analysisPending")}
-        </div>
+        </button>
       );
     },
     size: 140,

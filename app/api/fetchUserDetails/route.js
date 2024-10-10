@@ -18,8 +18,12 @@ export async function POST(req) {
         status: 200,
       });
     }
-    res.status(400).json("no user found");
+    // res.status(400).json("no user found");
+    return new NextResponse(JSON.stringify({ message: "no user found"}), {
+      status: 400,
+    });
   } catch (error) {
+    console.log(error)
     return new NextResponse(JSON.stringify({ error: 'Unable to fetch user detail' }), {
       status: 500,
     });

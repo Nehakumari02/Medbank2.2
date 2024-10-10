@@ -14,7 +14,7 @@ const Chats = () => {
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState(""); // State for the input message
   const [messages, setMessages] = useState([]); // State for storing chat messages
-  const [emails,setEmails] = useState(["test@gmail.com","medbank.team@gmail.com"]);
+  const [emails,setEmails] = useState([]);
   const [chatId,setChatId] = useState();
   const userIdDB = usePathname().split("/")[2];
   const conversationIdRef = useRef(""); // Use ref to persist conversationId
@@ -23,6 +23,7 @@ const Chats = () => {
   const [tempEmailInput, setTempEmailInput] = useState("");
   const adminIdDB = "6704b59a50180ae667b87b4a";
   const { token, notificationPermissionStatus } = useFcmToken("6704b59a50180ae667b87b4a");
+  const [userEmail,setUserEmail] = useState(null);
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -55,6 +56,18 @@ const Chats = () => {
           },
           body: JSON.stringify({conversationId:data.conversationId, userId:userIdDB}),
         });
+        const fetchUserCCEmails = await fetch('/api/fetchUserDetails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({userId:userIdDB}),
+        });
+        const userDetailsResult = await fetchUserCCEmails.json();
+        console.log("response from api ",userDetailsResult.user.ccEmails)
+        setEmails(userDetailsResult.user?.ccEmails);
+        setUserEmail(userDetailsResult.user.email)
+        console.log(userDetailsResult.user.email)
         const data1 = await chatUpdateResponse.json();
         console.log(chatUpdateResponse,data1)
       }catch(error){
@@ -213,16 +226,34 @@ const Chats = () => {
     }
   };
 
-  const removeEmail = (index) => {
-    setEmails((prevEmails) => prevEmails.filter((_, i) => i !== index));
+  const removeEmail = async(index) => {
+    const tempCCEmails = emails.filter((_, i) => i !== index)
+    setEmails(tempCCEmails);
+    console.log("after removal ",tempCCEmails)
+    const response = await fetch('/api/updateUserDetails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ccEmails:tempCCEmails,email:userEmail,confirmEmail:userEmail}),
+    });
   };
   
-  const handleAddEmail = ()=> {
+  const handleAddEmail = async()=> {
+    let tempCCEmails;
     if(tempEmailInput!==""){
-      setEmails((prevEmails) => [...prevEmails,tempEmailInput]);
+      tempCCEmails = [...emails,tempEmailInput]
+      setEmails(tempCCEmails);
     }
     setTempEmailInput("");
     setAddEmailShow(false);
+    const response = await fetch('/api/updateUserDetails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ccEmails:tempCCEmails,email:userEmail,confirmEmail:userEmail}),
+    });
   }
 
   const handleBackClick = () => {

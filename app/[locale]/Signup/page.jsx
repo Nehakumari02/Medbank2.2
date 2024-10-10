@@ -31,7 +31,7 @@ const SignUp = () => {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
   const [loading,setLoading] = useState(false);
-  const specialCharacters = ['!', '@', '#', '$', '%', '_', '^', '&', '*', '(', ')', ',', '.', '?', '"', ':', '{', '}', '|', '<', '>'];
+  const specialCharacters = ['【', '!', '@', '#', '$', '%', '_', '^', '&', '*', '(', ')', ',', '.', '?', '"', ':', '{', '}', '|', '<', '>', '】'];
   const specialCharactersString = specialCharacters.join(' ');
 
   const handleBackClick = () => {
@@ -113,13 +113,13 @@ const SignUp = () => {
       })
       return;
     }
-    const response1 = await fetch('/api/sendEmailSignup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({name,email}),
-    });
+    // const response1 = await fetch('/api/sendEmailSignup', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({name,email}),
+    // });
 
     toast({
       variant:'success',

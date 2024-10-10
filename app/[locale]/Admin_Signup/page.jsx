@@ -27,7 +27,7 @@ const SignUp = () => {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
   const [loading,setLoading] = useState(false);
-  const specialCharacters = ['!', '@', '#', '$', '%', '_', '^', '&', '*', '(', ')', ',', '.', '?', '"', ':', '{', '}', '|', '<', '>'];
+  const specialCharacters = ['【', '!', '@', '#', '$', '%', '_', '^', '&', '*', '(', ')', ',', '.', '?', '"', ':', '{', '}', '|', '<', '>', '】'];
   const specialCharactersString = specialCharacters.join(' ');
 
   const handleBackClick = () => {

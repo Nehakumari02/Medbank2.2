@@ -634,6 +634,8 @@ const NewOrderBox = () => {
         _id: costEstimationSample._id, name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityCheckStatus == "isAdminCompleted" || costEstimationSample.qualityCheckStatus == "isCompleted" ? costEstimationSample.qualityFees : 0, libraryFees: libraryPrepStatus == "isAdminCompleted" || libraryPrepStatus == "isCompleted" ? costEstimationSample.libraryFees : 0, analysisFees: costEstimationSample.analysisSpecificationStatus == "isAdminCompleted" || costEstimationSample.analysisSpecificationStatus == "isCompleted" ? costEstimationSample.analysisFees : 0, tax: costEstimationSample.tax, others: costEstimationSample.others, total: tempTotal };
     });
 
+    updatedSamples1.sort((a,b)=>a.id-b.id)
+
     setSamples1(updatedSamples1);
     const grandTotal1 = calculateGrandTotal(updatedSamples1);
     console.log(updatedSamples1,grandTotal1)

@@ -25,7 +25,7 @@ export async function POST(req) {
           select: 'Username school' // Select only the Username and school fields
         }
       })
-      .sort({ createdAt: -1 }) // Sort by latest first
+      .sort({ id: -1 }) // Sort by latest first
       .skip(skip)
       .limit(limit);
 

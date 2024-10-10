@@ -102,6 +102,10 @@ const userSchema = new Schema(
         ref: "Order",
       },
     ],
+    ccEmails: {
+      type: [String], // An array of strings
+      default: ["test@gmail.com", "medbank.team@gmail.com"], // Default values
+    },
   },
   { timestamps: true }
 );

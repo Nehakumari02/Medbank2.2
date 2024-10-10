@@ -30,7 +30,7 @@ const OrderCreationPage = () => {
   const orderIdDB = usePathname().split("/")[3];
   const t = useTranslations("UserDashboard");
   let userIdDB = usePathname().split('/')[2];
-  const { token, notificationPermissionStatus } = useFcmToken()
+  const { token, notificationPermissionStatus } = useFcmToken(userIdDB)
   const adminIdDB="6704b59a50180ae667b87b4a";
 
   useEffect(()=>{

@@ -22,7 +22,7 @@ const Chats = () => {
   const [addEmailShow,setAddEmailShow] = useState(false);
   const [tempEmailInput, setTempEmailInput] = useState("");
   const adminIdDB = "6704b59a50180ae667b87b4a";
-  const { token, notificationPermissionStatus } = useFcmToken("6704b59a50180ae667b87b4a");
+  const { token, notificationPermissionStatus } = useFcmToken(userIdDB);
   const [userEmail,setUserEmail] = useState(null);
 
   const generateRandomId = () => {

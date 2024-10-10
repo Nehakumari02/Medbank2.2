@@ -285,7 +285,7 @@ const NewOrderBox = () => {
     else {
       updatedSamples[index][field] = value;
     }
-    updatedSamples[index].total = calculateTotal1(updatedSamples[index]);
+    updatedSamples[index].total = calculateTotal(updatedSamples[index]);
     updatedSamples[index][field] = value;
     setSamples1(updatedSamples);
     const grandTotal1 = calculateGrandTotal(updatedSamples);

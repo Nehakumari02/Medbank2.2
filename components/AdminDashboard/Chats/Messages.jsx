@@ -7,7 +7,8 @@ import { FC, useEffect, useRef, useState } from 'react'
 
 const Messages= ({
   messages,
-  userIdDB
+  userIdDB,
+  typing
 }) => {
 
   const scrollDownRef = useRef(null)
@@ -30,9 +31,16 @@ const Messages= ({
   return (
     <div
       id='messages'
-      className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
+      className='flex h-full flex-1 flex-col-reverse gap-4 px-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
       <div ref={scrollDownRef} />
-
+      {typing&&
+        <div className='flex space-x-2 justify-start items-center'>
+          <span className='sr-only'>Loading...</span>
+            <div className='h-[13px] w-[10px] bg-[#3e8da7] rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+          <div className='h-[17px] w-[10px] bg-[#3e8da7] rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+          <div className='h-[10px] w-[10px] bg-[#3e8da7] rounded-full animate-bounce'></div>
+        </div>
+      }
       {messages && messages.map((message, index) => {
         const isCurrentUser = message.senderId === userIdDB
 

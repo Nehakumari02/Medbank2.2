@@ -7,12 +7,18 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Logo from "../../../../public/Images/Home/logo.png"
 import Messages from "../../../../components/AdminDashboard/Chats/Messages";
+import { toast } from "@/hooks/use-toast";
 
 const Chats = () => {
-  const [conversations,setConversations] = useState([]);
-  const [searchQuery,setSearchQuery] = useState("");
+  const [isConnected, setIsConnected] = useState(false);
+  const [transport, setTransport] = useState("N/A");
+  const [conversations, setConversations] = useState([]);
+  const userIdDB = "66e055de6ddc7825fbd8a103";
+  const [searchQuery, setSearchQuery] = useState("");
   const path = usePathname();
   const router = useRouter();
+  const [onlineUserList, setOnlineUserList] = useState([]);
+  const [typing, setTyping] = useState([]);
 
   const formatTimestamp = (timestamp) => {
     return format(timestamp, 'HH:mm')
@@ -29,19 +35,103 @@ const Chats = () => {
           body: JSON.stringify(),
         });
         const data = await response.json();
-        if(data.error){
+        if(data.error) {
           setConversations([]);
         }
-        console.log("data",data.data)
-        setConversations(data.data||[])
+        console.log("data", data.data)
+        setConversations(data.data || [])
       } catch (error) {
         console.log("Error fetching all conversations: ", error)
       }
     }
 
     fetchAllConversations();
+
+    if (socket.connected) {
+      onConnect();
+    }
+
+    function onConnect() {
+      setIsConnected(true);
+      setTransport(socket.io.engine.transport.name);
+
+      socket.io.engine.on("upgrade", (transport) => {
+        setTransport(transport.name);
+      });
+      socket.emit("addUser", userIdDB);
+      socket.on("getUsers", (users) => {
+        setOnlineUserList(users.map((u) => u.userId))
+        console.log(users.map((u) => u.userId))
+        console.log(users);
+      });
+    }
+
+    function onDisconnect() {
+      setIsConnected(false);
+      setTransport("N/A");
+    }
+
+    // Listen for incoming messages and update conversations
+    socket.on("getMessage", async (payload) => {
+      console.log(payload);
+
+      if (payload.message) {
+        toast({
+          variant: "default",
+          title: "New message",
+          description: payload.message.text,
+        });
+
+        setConversations((prevConversations) =>
+          prevConversations.map((conversation) =>
+            conversation._id === payload.message.conversationId
+              ? {
+                  ...conversation,
+                  lastMessage: {
+                    lastMessageTs: payload.message.createdAt,
+                    seen: false,
+                    senderId: payload.message.senderId,
+                    text: payload.message.text,
+                  },
+                }
+              : conversation
+          )
+        );
+      }
+    });
+
+    socket.on("sendTyping", async (payload) => {
+      setTyping((prevTyping) => {
+        // If typing is true, add the senderId to the array if it's not already there
+        if (payload.typing) {
+          if (!prevTyping.includes(payload.senderId)) {
+            return [...prevTyping, payload.senderId];
+          }
+        } else {
+          // If typing is false, remove the senderId from the array
+          return prevTyping.filter((id) => id !== payload.senderId);
+        }
+
+        // Return the previous state if no changes
+        return prevTyping;
+      });
+    });
+
+
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      socket.off("getMessage"); // Clean up listener on component unmount
+      socket.off("getUsers");
+      socket.off("sendTyping");
+    };
+
   }, [])
-  
+
   const handleSendMessage = () => {
     router.push(`${path}/${userIdDB}`)
   }
@@ -111,21 +201,34 @@ const Chats = () => {
       </div> */}
       <div>
         <div className=''>
-            <span className='font-DM-Sans font-bold text-[14px] md:text-[20px] leading-[28px]'>Chats</span>
-            <div className="flex flex-col gap-[4px]">
-              {conversations.map((conversation, index) =>{
-              const hasNewMessage = 
-              !!(conversation.lastMessage && 
-              !conversation.lastMessage.seen && 
-              conversation.lastMessage.senderId !== "66e055de6ddc7825fbd8a103");            
-              console.log(hasNewMessage ,conversation)
-                return (
-                <div key={index} onClick={()=>handleChat(conversation.participants[0]._id)} className="flex items-center justify-start cursor-pointer py-[4px] md:py-[16px] px-[12px] h-[80px] gap-[18px] bg-gray-100 rounded-xl">
+          <span className='font-DM-Sans font-bold text-[14px] md:text-[20px] leading-[28px]'>Chats</span>
+          <div className="flex flex-col gap-[4px]">
+            {conversations.map((conversation, index) => {
+              const hasNewMessage =
+                !!(conversation.lastMessage &&
+                  !conversation.lastMessage.seen &&
+                  conversation.lastMessage.senderId !== "66e055de6ddc7825fbd8a103");
+              // console.log(hasNewMessage ,conversation)
+              return (
+                <div key={index} onClick={() => handleChat(conversation.participants[0]._id)} className="flex items-center justify-start cursor-pointer py-[4px] md:py-[16px] px-[12px] h-[80px] gap-[18px] bg-gray-100 rounded-xl">
                   <div className="h-[56px] w-[56px] rounded-full bg-gray-400 flex items-center justify-center text-white">
-                  {conversation.participants[0]?.name?getInitials(conversation.participants[0]?.name):getInitials("NA")}
+                    {conversation.participants[0]?.name ? getInitials(conversation.participants[0]?.name) : getInitials("NA")}
                   </div>
                   <div className="flex flex-col justify-between">
-                    <span className="font-DM-Sans font-medium text-[14px] leading-[24px] flex items-center gap-[10px]">{conversation.participants[0]?.name?conversation.participants[0]?.name:"User Unknown"} 
+                    <span className="font-DM-Sans font-medium text-[14px] leading-[24px] flex items-center gap-[10px]">{conversation.participants[0]?.name ? conversation.participants[0]?.name : "User Unknown"}
+                      {onlineUserList.some(
+                        (user) => user === conversation.participants[0]?._id
+                      ) ? <span className="px-1 text-green-400">Online</span> : ""
+                      }
+                      {typing.some(
+                        (user) => user === conversation.participants[0]?._id
+                      ) ? <div className='bg-white rounded-full p-2 flex space-x-1 justify-center items-center'>
+                        <span className='sr-only'>Loading...</span>
+                        <div className='h-[4px] w-[4px] bg-[#3e8da7] rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+                        <div className='h-[4px] w-[4px] bg-[#3e8da7] rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+                        <div className='h-[4px] w-[4px] bg-[#3e8da7] rounded-full animate-bounce'></div>
+                      </div> : ""
+                      }
                       {hasNewMessage && (
                         <div
                           className="w-[10px] h-[10px] rounded-full bg-green-500"

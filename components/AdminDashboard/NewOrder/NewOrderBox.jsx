@@ -66,15 +66,15 @@ const NewOrderBox = () => {
   }
 
   const updateSampleInDB = async (sampleData) => {
-    // const saveApiResponse = await fetch('/api/updateSample', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
-    // });
+    const saveApiResponse = await fetch('/api/updateSample', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
+    });
 
-    // console.log(saveApiResponse)
+    console.log(saveApiResponse)
   }
 
   const updateDataInDB1 = async (samples) => {
@@ -949,9 +949,9 @@ const NewOrderBox = () => {
               body: JSON.stringify({ order: orderData, orderIdDB }),
             });
   
-            updateSampleInDB({
-              qualityCheckStatus: "isAdminCompleted",
-            });
+            // updateSampleInDB({
+            //   qualityCheckStatus: "isAdminCompleted",
+            // });
   
             if (saveApiResponse.status === 200) {
               // Send notification and chat update in parallel
@@ -1101,9 +1101,9 @@ const NewOrderBox = () => {
               body: JSON.stringify({ order: orderData, orderIdDB }),
             });
   
-            updateSampleInDB({
-              libraryPrepStatus: "isAdminCompleted"
-            });
+            // updateSampleInDB({
+            //   libraryPrepStatus: "isAdminCompleted"
+            // });
   
             if (saveApiResponse.status === 200) {
               // Send notification and chat update in parallel
@@ -1429,9 +1429,9 @@ const NewOrderBox = () => {
               body: JSON.stringify({ order: orderData, orderIdDB }),
             });
   
-            updateSampleInDB({
-              analysisSpecificationStatus: "isAdminCompleted"
-            });
+            // updateSampleInDB({
+            //   analysisSpecificationStatus: "isAdminCompleted"
+            // });
   
             if (saveApiResponse.status === 200) {
               // Send chat and notification concurrently

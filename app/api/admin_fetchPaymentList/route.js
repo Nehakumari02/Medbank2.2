@@ -26,7 +26,7 @@ export async function POST(req) {
     })
       .populate({
         path: 'userId',
-        select: 'school Username' // Select only the fields you want from the User model
+        select: '_id school Username' // Select only the fields you want from the User model
       })
       .select('_id orderId orderTitle grandTotal1 paymentStatus') // Select only the fields you want from the Order model
       .sort({ createdAt: -1 })
@@ -37,6 +37,7 @@ export async function POST(req) {
         const { userId, ...orderData } = order.toObject(); // Convert mongoose document to plain object
         return {
           ...orderData,
+          userIdDB: userId?._id || '',
           Username: userId?.Username || '', // Directly include user data
           school: userId?.school|| '', // Assuming 'affiliation' was meant to be 'school'
         };

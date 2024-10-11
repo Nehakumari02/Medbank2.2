@@ -38,10 +38,12 @@ import {
 } from "@/components/ui/table"
 import PaymentsSkeleton from "./PaymentsSkeleton"
 import { usePathname, useRouter } from "next/navigation"
+import { toast } from "@/hooks/use-toast"
 
 export type PaymentList = {
   _id: string
   userId: string
+  userIdDB: string
   orderId: string
   orderTitle: string
   paymentStatus: string
@@ -89,7 +91,8 @@ const OrderTitleCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderT
   );
 };
 
-const updateDataInDB = async (orderData:any,orderIdDB:string) => {
+const updateDataInDB = async (orderData:any,orderIdDB:string,userIdDB:string) => {
+  const t = useTranslations();
   const saveApiResponse = await fetch('/api/updateOrder', {
     method: 'POST',
     headers: {
@@ -97,14 +100,45 @@ const updateDataInDB = async (orderData:any,orderIdDB:string) => {
     },
     body: JSON.stringify({ order: orderData, orderIdDB: orderIdDB }),
   });
+  if (saveApiResponse.status === 200) {
+    toast({
+      variant: "success",
+      title: "Payment reciept sent",
+      description: "Payment reciept has been sent to the user.",
+    });
+    const response2 = await fetch('/api/send-notification', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userIdDB: userIdDB,
+        title: "MedBank",
+        message: t("notification.payment"),
+        link: "/Dashboard",
+      }),
+    });
+
+    const res = await fetch("/api/sendUpdateInChat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: userIdDB,
+        message: `(${orderIdDB}) ${t("chatMessage.payment")} `,
+      }),
+    });
+
+  }
 
   console.log(saveApiResponse)
 }
 
-const updateOrderDetails = (orderId:string,setDisabled:(state: boolean) => void)=>{
+const updateOrderDetails = (orderId:string,setDisabled:(state: boolean) => void,userIdDB:string)=>{
   console.log("order update request ")
   console.log(orderId)
-  updateDataInDB({paymentStatus: "isAdminCompleted"},orderId);
+  updateDataInDB({paymentStatus: "isAdminCompleted"},orderId,userIdDB);
   setDisabled(true);
 }
 
@@ -216,7 +250,7 @@ export const columns: ColumnDef<PaymentList>[] = [
           disabled={disabled}
           className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200 flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: bgColor }}
-          onClick={()=>updateOrderDetails(row.original._id,setDisabled)}
+          onClick={()=>updateOrderDetails(row.original._id,setDisabled,row.original.userIdDB)}
         >
           {disabled ? t("paymentList.receiptCompleted") : t("paymentList.receiptPending")}
         </button>

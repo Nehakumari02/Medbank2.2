@@ -93,55 +93,16 @@ const OrderTitleCell: React.FC<OrderTitleCellProps> = ({ userId, orderId, orderT
   );
 };
 
-const updateDataInDB = async (orderData:any,orderIdDB:string,userIdDB:string) => {
-  const t = useTranslations();
-  const saveApiResponse = await fetch('/api/updateOrder', {
+const updateSampleInDB = async (sampleData:any,orderIdDB:string) => {
+  const saveApiResponse = await fetch('/api/updateSample', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ order: orderData, orderIdDB: orderIdDB }),
+    body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
   });
-  if (saveApiResponse.status === 200) {
-    toast({
-      variant: "success",
-      title: "Payment reciept sent",
-      description: "Payment reciept has been sent to the user.",
-    });
-    const response2 = await fetch('/api/send-notification', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userIdDB: userIdDB,
-        title: "MedBank",
-        message: t("notification.payment"),
-        link: "/Dashboard",
-      }),
-    });
-
-    const res = await fetch("/api/sendUpdateInChat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: userIdDB,
-        message: `(${orderIdDB}) ${t("chatMessage.payment")} `,
-      }),
-    });
-
-  }
 
   console.log(saveApiResponse)
-}
-
-const updateOrderDetails = (orderId:string,setDisabled:(state: boolean) => void,userIdDB:string)=>{
-  console.log("order update request ")
-  console.log(orderId)
-  updateDataInDB({paymentStatus: "isAdminCompleted"},orderId,userIdDB);
-  setDisabled(true);
 }
 
 export const columns: ColumnDef<PaymentList>[] = [
@@ -246,6 +207,61 @@ export const columns: ColumnDef<PaymentList>[] = [
       const t = useTranslations("AdminDashboard");
       const [disabled,setDisabled] = React.useState(status === 'isAdminCompleted' || status === 'isCompleted');
       const bgColor = disabled? '#5CE1E6' : '#FF914D';
+      
+      const updateDataInDB = async (orderData:any,orderIdDB:string,userIdDB:string) => {
+        const saveApiResponse = await fetch('/api/updateOrder', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ order: orderData, orderIdDB: orderIdDB }),
+        });
+        updateSampleInDB({
+          qualityCheckStatus: "isCompleted",
+          libraryPrepStatus: "isCompleted",
+          analysisSpecificationStatus: "isCompleted"
+        },orderIdDB)
+        if (saveApiResponse.status === 200) {
+          toast({
+            variant: "success",
+            title: "Payment reciept sent",
+            description: "Payment reciept has been sent to the user.",
+          });
+          const response2 = await fetch('/api/send-notification', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userIdDB: userIdDB,
+              title: "MedBank",
+              message: t("notification.payment"),
+              link: "/Dashboard",
+            }),
+          });
+      
+          const res = await fetch("/api/sendUpdateInChat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userId: userIdDB,
+              message: `(${orderIdDB}) ${t("chatMessage.payment")} `,
+            }),
+          });
+      
+        }
+      
+        console.log(saveApiResponse)
+      }
+      
+      const updateOrderDetails = (orderId:string,setDisabled:(state: boolean) => void,userIdDB:string)=>{
+        console.log("order update request ")
+        console.log(orderId)
+        updateDataInDB({paymentStatus: "isAdminCompleted"},orderId,userIdDB);
+        setDisabled(true);
+      }
 
       return (
         <button

@@ -1585,6 +1585,11 @@ const NewOrderBox = () => {
           paymentStatus: "isAdminCompleted",
         };
 
+        updateSampleInDB({
+          qualityCheckStatus: "isCompleted",
+          libraryPrepStatus: "isCompleted",
+          analysisSpecificationStatus: "isCompleted"
+        })
         // Save order data
         const saveApiResponse = await fetch("/api/updateOrder", {
           method: "POST",

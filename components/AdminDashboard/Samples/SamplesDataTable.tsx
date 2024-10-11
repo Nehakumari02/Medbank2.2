@@ -90,7 +90,7 @@ const updateAnalysisReportDetails = (sampleId:string,setStatus:(state: string) =
   console.log(sampleId)
   if(status=="inAdminProgress"){
     updateDataInSamples({analysisSpecificationStatus: "isAdminCompleted"},sampleId);
-    setStatus("isAdminComplete")
+    setStatus("isAdminCompleted")
   }
   else if(status == "isAdminCompleted" || status == "isCompleted"){
     updateDataInSamples({analysisSpecificationStatus: "inAdminProgress"},sampleId);

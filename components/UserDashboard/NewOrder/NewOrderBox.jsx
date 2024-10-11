@@ -684,7 +684,7 @@ const NewOrderBox = () => {
           libraryPrepStatus: 'inAdminProgress'
         })
         updateSampleInDB({
-          qualityCheckStatus: "isCompleted",
+          // qualityCheckStatus: "isCompleted",
           libraryPrepStatus: "inAdminProgress"
         })
       }
@@ -731,9 +731,9 @@ const NewOrderBox = () => {
           libraryPrepStatus: "isCompleted",
           analysisProgressStatus: 'inAdminProgress'
         })
-        updateSampleInDB({
-          libraryPrepStatus: "isCompleted"
-        })
+        // updateSampleInDB({
+        //   libraryPrepStatus: "isCompleted"
+        // })
       }
       catch {
 
@@ -815,9 +815,9 @@ const NewOrderBox = () => {
       updateDataInDB({
         analysisSpecificationStatus: "isCompleted"
       })
-      updateSampleInDB({
-        analysisSpecificationStatus: "isCompleted"
-      })
+      // updateSampleInDB({
+      //   analysisSpecificationStatus: "isCompleted"
+      // })
     }
   }
 

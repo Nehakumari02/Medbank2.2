@@ -128,7 +128,7 @@ const QuotationTablePaymenet = ({ orderIdDB, orderId, userId, onTableLoad2 }) =>
       {/* Table Section */}
       <table className="w-full table-fixed border-collapse mt-4 break-words">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-gray-200" style={{ pageBreakInside: 'avoid' }}>
             <th className="border px-4 py-3 text-left">{t("sampleNumber")}</th>
             <th className="border px-4 py-3 text-left">{t("sampleName")}</th>
             <th className="border px-4 py-3 text-left">{t("sampleCheckPrice")}</th>
@@ -141,7 +141,7 @@ const QuotationTablePaymenet = ({ orderIdDB, orderId, userId, onTableLoad2 }) =>
         </thead>
         <tbody className="text-xs break-words">
           {samples1.map((sample1, index) => (
-            <tr key={index} className="hover:bg-gray-50">
+            <tr key={index} className="hover:bg-gray-50" style={{ pageBreakInside: 'avoid' }}>
               <td className="border px-4 py-3">{sample1.id}</td>
               <td className="border px-4 py-3">{sample1.name}</td>
               <td className="border px-4 py-3">{sample1.qualityFees || 'N/A'}</td>
@@ -152,7 +152,7 @@ const QuotationTablePaymenet = ({ orderIdDB, orderId, userId, onTableLoad2 }) =>
               <td className="border px-4 py-3">{sample1.total || 'N/A'}</td>
             </tr>
           ))}
-          <tr className="bg-gray-200 font-bold">
+          <tr className="bg-gray-200 font-bold" style={{ pageBreakInside: 'avoid' }}>
             <td colSpan="6" className="border px-4 py-3 text-left">{t("overAllTotal")}</td>
             <td className="border px-4 py-3">{currency1}</td>
             <td className="border px-4 py-3">{grandTotal1}</td>
@@ -161,7 +161,7 @@ const QuotationTablePaymenet = ({ orderIdDB, orderId, userId, onTableLoad2 }) =>
       </table>
       
       {/* Footer Section */}
-      <div className="mt-8 pt-4 border-t flex flex-col items-start justify-start">
+      <div className="mt-8 pt-4 border-t flex flex-col items-start justify-start" style={{ pageBreakInside: 'avoid' }}>
        
       <p className="mt-8 text-center text-lg font-bold">
           Terms and Conditions

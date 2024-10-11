@@ -18,6 +18,7 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
   const { grandTotal, setGrandTotal } = useOrder();
   const { currency, setCurrency } = useOrder();
   const t = useTranslations("quotation");
+ 
 
   useEffect(() => {
     const fetchSamples = async () => {
@@ -133,9 +134,9 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
       </div>
 
 
-      <table className="w-full table-fixed  border-collapse  break-words">
+      <table className="w-full table-fixed  border-collapse  break-words" >
         <thead className='text-sm'>
-          <tr className="bg-gray-100">
+          <tr className="bg-gray-100 nobreak" style={{ pageBreakInside: 'avoid' }} >
             <th className="border px-2 py-2 text-left">{t("sampleNumber")}</th>
             <th className="border px-2 py-2 text-left">{t("sampleName")}</th>
             <th className="border px-2 py-2 text-left">{t("sampleCheckPrice")}</th>
@@ -148,7 +149,7 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
         </thead>
         <tbody className='text-xs break-words'>
           {samples.map((sample, index) => (
-            <tr key={index} className="hover:bg-gray-50">
+            <tr key={index} className="hover:bg-gray-50" style={{ pageBreakInside: 'avoid' }}>
               <td className="border px-2 py-2">{sample.id}</td>
               <td className="border px-2 py-2">{sample.name}</td>
               <td className="border px-2 py-2">{sample.qualityFees || 'N/A'}</td>
@@ -159,7 +160,7 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
               <td className="border px-2 py-2">{sample.total || 'N/A'}</td>
             </tr>
           ))}
-          <tr className="bg-gray-100 font-bold">
+          <tr className="bg-gray-100 font-bold" style={{ pageBreakInside: 'avoid' }}>
             <td colSpan="6" className="border px-2 py-2 text-left">{t("overAllTotal")}</td>
             <td className="border px-2 py-2">{currency}</td>
             <td className="border px-2 py-2">{grandTotal}</td>

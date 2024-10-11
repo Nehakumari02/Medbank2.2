@@ -6,7 +6,7 @@ import User from "../../../models/user";  // Assuming you have a User model
 import nodemailer from 'nodemailer';
 
 export async function POST(req) {
-  const { adminIdDB, message } = await req.json();  // Only require userId and message in the request body
+  const { adminIdDB, message ,cc} = await req.json();  // Only require userId and message in the request body
   const hardcodedSenderId = "66e055de6ddc7825fbd8a103"; // Replace with actual hardcoded sender ID
 
   try {
@@ -33,6 +33,7 @@ export async function POST(req) {
     const mailOptions = {
       from: process.env.EMAIL_SIGNUP,
       to: email,
+      cc:cc,
       subject: "MEDBANK 【遺伝子解析について】Genetic Analysis",
       text: `Dear Admin
 

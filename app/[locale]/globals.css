@@ -121,6 +121,10 @@ body {
   z-index: 1;
   border-radius: 16px;
 }
+.nobreak {
+  page-break-inside: avoid; /* Prevent page break inside */
+  page-break-after: avoid; /* Prevent breaks after headings and paragraphs */
+}
 
 /* globals.css or styles.css */
 input:-webkit-autofill,

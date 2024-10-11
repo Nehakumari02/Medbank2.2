@@ -120,7 +120,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
       {/* Table Section */}
       <table className="w-full  table-fixed border-collapse mt-4 break-words">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-gray-200" style={{ pageBreakInside: 'avoid' }}>
             <th className="border px-4 py-3 text-left text-sm">{t("sampleNumber")}</th>
             <th className="border px-4 py-3 text-left text-sm">{t("sampleName")}</th>
             <th className="border px-4 py-3 text-left text-sm">{t("sampleCheckPrice")}</th>
@@ -133,7 +133,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
         </thead>
         <tbody className="text-xs break-words">
           {samples1.map((sample1, index) => (
-            <tr key={index} className="hover:bg-gray-50">
+            <tr key={index} className="hover:bg-gray-50" style={{ pageBreakInside: 'avoid' }}>
               <td className="border px-4 py-3">{sample1.id}</td>
               <td className="border px-4 py-3">{sample1.name}</td>
               <td className="border px-4 py-3">{sample1.qualityFees || 'N/A'}</td>
@@ -144,7 +144,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
               <td className="border px-4 py-3">{sample1.total || 'N/A'}</td>
             </tr>
           ))}
-          <tr className="bg-gray-200 font-bold">
+          <tr className="bg-gray-200 font-bold" style={{ pageBreakInside: 'avoid' }}>
             <td colSpan="6" className="border px-4 py-3 text-left">{t("overAllTotal")}</td>
             <td className="border px-4 py-3">{currency1}</td>
             <td className="border px-4 py-3">{grandTotal1}</td>
@@ -153,7 +153,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
       </table>
 
       {/* Footer Section */}
-      <div className="mt-8 pt-4 border-t">
+      <div className="mt-8 pt-4 border-t" style={{ pageBreakInside: 'avoid' }}>
         <div className="flex justify-between items-center mb-4">
           <div>
             <h4 className="font-bold text-lg">Remittance Information</h4>

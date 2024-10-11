@@ -55,15 +55,15 @@ const NewOrderBox = () => {
   }
 
   const updateSampleInDB = async (sampleData) => {
-    // const saveApiResponse = await fetch('/api/updateSample', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
-    // });
+    const saveApiResponse = await fetch('/api/updateSample', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
+    });
 
-    // console.log(saveApiResponse)
+    console.log(saveApiResponse)
   }
 
   const {

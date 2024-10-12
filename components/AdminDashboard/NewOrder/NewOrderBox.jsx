@@ -283,7 +283,10 @@ const NewOrderBox = () => {
   const handleInputChangeInvoice = (index, field, value) => {
     const updatedSamples = [...samples1];
     if (field === 'tax') {
-      updatedSamples.forEach(sample => sample.tax = value);
+      updatedSamples.forEach(sample => {
+        sample.tax = value;
+        sample.total = calculateTotal(sample);}
+      );
     }
     else {
       updatedSamples[index][field] = value;

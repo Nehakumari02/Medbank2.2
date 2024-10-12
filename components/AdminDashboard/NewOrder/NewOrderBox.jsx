@@ -1989,7 +1989,7 @@ const NewOrderBox = () => {
                       {t("deletePopup.message3")}</span>
                     <button disabled={disabled} className={`${disabled ? "opacity-75" : ""}
                       w-full h-[40px] md:h-[48px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`}
-                      onClick={handleConfirmOk}
+                      onClick={handleDeleteOk}
                     >
                       {t("deletePopup.button")}
                     </button>

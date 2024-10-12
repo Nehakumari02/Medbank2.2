@@ -117,7 +117,7 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
       {userDetails ? (
         <div className="mb-8 text-base font-medium">
           <div className="">
-            <p> <strong>{t("name")}:</strong> {userDetails.name}</p>
+            <p> <strong>{t("name")}:</strong> {userDetails.service}</p>
             <div> <strong>{t("city")}:</strong> {userDetails.city}</div>
             <span><strong>{t("postalCode")}:</strong>  {userDetails.postalCode}</span>
             <div className='pt-[8px]'><strong>{t("quotationNumber")}:</strong> {orderId}</div>

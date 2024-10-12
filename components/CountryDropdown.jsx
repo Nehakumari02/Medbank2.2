@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select"
 
 const flags = [
-    'jp.svg','af.svg', 'ax.svg', 'al.svg', 'dz.svg', 'as.svg', 'ad.svg', 'ao.svg', 'ai.svg', 'aq.svg', 'ag.svg', 'ar.svg', 'am.svg', 'aw.svg',
+    'af.svg', 'ax.svg', 'al.svg', 'dz.svg', 'as.svg', 'ad.svg', 'ao.svg', 'ai.svg', 'aq.svg', 'ag.svg', 'ar.svg', 'am.svg', 'aw.svg',
     'au.svg', 'at.svg', 'az.svg', 'bs.svg', 'bh.svg', 'bd.svg', 'bb.svg', 'by.svg', 'be.svg', 'bz.svg', 'bj.svg', 'bm.svg', 'bt.svg',
     'bo.svg', 'bq.svg', 'ba.svg', 'bw.svg', 'bv.svg', 'br.svg', 'io.svg', 'bn.svg', 'bg.svg', 'bf.svg', 'bi.svg', 'cv.svg', 'kh.svg',
     'cm.svg', 'ca.svg', 'ky.svg', 'cf.svg', 'td.svg', 'cl.svg', 'cn.svg', 'cx.svg', 'cc.svg', 'co.svg', 'km.svg', 'cg.svg', 'cd.svg',
@@ -18,7 +18,7 @@ const flags = [
     'sv.svg', 'gq.svg', 'er.svg', 'ee.svg', 'et.svg', 'fk.svg', 'fo.svg', 'fj.svg', 'fi.svg', 'fr.svg', 'gf.svg', 'pf.svg', 'tf.svg',
     'ga.svg', 'gm.svg', 'ge.svg', 'de.svg', 'gh.svg', 'gi.svg', 'gr.svg', 'gl.svg', 'gd.svg', 'gp.svg', 'gu.svg', 'gt.svg', 'gg.svg',
     'gn.svg', 'gw.svg', 'gy.svg', 'ht.svg', 'hm.svg', 'hn.svg', 'hk.svg', 'hu.svg', 'is.svg', 'in.svg', 'id.svg', 'ir.svg', 'iq.svg',
-    'ie.svg', 'im.svg', 'il.svg', 'it.svg', 'ci.svg', 'jm.svg',  'je.svg', 'jo.svg', 'kz.svg', 'ke.svg', 'ki.svg', 'kp.svg',
+    'ie.svg', 'im.svg', 'il.svg', 'it.svg', 'ci.svg',  'jm.svg','jp.svg',  'je.svg', 'jo.svg', 'kz.svg', 'ke.svg', 'ki.svg', 'kp.svg', 
     'kr.svg', 'kw.svg', 'kg.svg', 'la.svg', 'lv.svg', 'lb.svg', 'ls.svg', 'lr.svg', 'ly.svg', 'li.svg', 'lt.svg', 'lu.svg', 'mo.svg',
     'mg.svg', 'mw.svg', 'my.svg', 'mv.svg', 'ml.svg', 'mt.svg', 'mh.svg', 'mq.svg', 'mr.svg', 'mu.svg', 'yt.svg', 'mx.svg', 'fm.svg',
     'md.svg', 'mc.svg', 'mn.svg', 'me.svg', 'ms.svg', 'ma.svg', 'mz.svg', 'mm.svg', 'na.svg', 'nr.svg', 'np.svg', 'nl.svg', 'nc.svg',

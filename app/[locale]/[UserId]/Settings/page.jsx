@@ -18,7 +18,7 @@ const Settings = () => {
   const [field, setField] = useState("");
   const [others, setOthers] = useState("");
   const [service, setService] = useState("");
-  const [country, setCountry] = useState("Andorra");
+  const [country, setCountry] = useState("Afgan");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");

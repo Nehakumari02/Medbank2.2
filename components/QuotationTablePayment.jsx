@@ -110,7 +110,7 @@ const QuotationTablePaymenet = ({ orderIdDB, orderId, userId, onTableLoad2 }) =>
           <h4 className="text-lg font-bold">Bill To</h4>
           {userDetails ? (
             <>
-              <p><strong>{t("name")}:</strong> {userDetails.name}</p>
+              <p><strong>{t("name")}:</strong> {userDetails.service}</p>
               <p><strong>{t("city")}:</strong> {userDetails.city}</p>
               <p><strong>{t("postalCode")}:</strong> {userDetails.postalCode}</p>
             </>

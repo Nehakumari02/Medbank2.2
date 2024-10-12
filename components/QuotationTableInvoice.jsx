@@ -109,7 +109,7 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
       {userDetails ? (
         <div className="mb-8 text-base font-medium">
           <h4 className="text-lg font-bold">Bill To</h4>
-          <p><strong>{t("name")}:</strong> {userDetails.name}</p>
+          <p><strong>{t("name")}:</strong> {userDetails.service}</p>
           <p><strong>{t("city")}:</strong> {userDetails.city}</p>
           <p><strong>{t("postalCode")}:</strong> {userDetails.postalCode}</p>
         </div>

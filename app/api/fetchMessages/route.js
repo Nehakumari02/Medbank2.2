@@ -19,7 +19,7 @@ export async function POST(req) {
     const userDetails = await User.findOne({
       _id:userId
     })
-    .select(['name','email'])
+    .select(['name','email','ccEmails'])
     .exec();
 
     if (!conversation) {

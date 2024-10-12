@@ -58,6 +58,7 @@ const Chats = () => {
         setChatId(data.conversationId)
         conversationIdRef.current = data.conversationId; // Persist conversationId
         userIdRecieverRef.current = data.userDetails._id
+        setEmails(data.userDetails?.ccEmails)
         if (socket.connected) {
           onConnect(data.userDetails._id);
         }
@@ -81,7 +82,7 @@ const Chats = () => {
         });
         const userDetailsResult = await fetchUserCCEmails.json();
         console.log("response from api ",userDetailsResult.user.ccEmails)
-        setEmails(userDetailsResult.user?.ccEmails);
+        // setEmails(userDetailsResult.user?.ccEmails);
         setUserEmail(userDetailsResult.user.email)
         console.log(userDetailsResult.user.email)
         const data1 = await chatUpdateResponse.json();

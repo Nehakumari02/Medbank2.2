@@ -349,7 +349,7 @@ const Chats = () => {
           </div>
 
           <div className="h-[54px] pb-[10px] flex items-center gap-[10px]">
-            <input
+            <textarea
               type="text"
               // onKeyDown={(e) => {
               //   if (e.key === 'Enter' && !e.shiftKey) {
@@ -362,7 +362,7 @@ const Chats = () => {
               onBlur={handleTypingStop}
               onChange={handleChange}
               placeholder={t("typeMsg")}
-              className="w-full h-[54px] bg-[#EFF4FB] outline-none px-3 rounded-md border-[1px] border-[#E2E8F0]"
+              className="w-full h-[54px] bg-[#EFF4FB] outline-none px-3 py-2 rounded-md border-[1px] border-[#E2E8F0] resize-none appearance-none box-border"
             />
             <button onClick={handleSendMessage} className="h-[48px] w-[48px] p-[12.5px] rounded-md bg-[#3E8DA7]">{sendIcon}</button>
           </div>

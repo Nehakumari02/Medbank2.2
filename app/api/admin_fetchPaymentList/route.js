@@ -18,7 +18,8 @@ export async function POST(req) {
         { invoiceStatus: "isCompleted" },
         {
           $or: [
-            { orderTitle: { $regex: searchRegex } }
+            { orderTitle: { $regex: searchRegex } },
+            { orderId: { $regex: searchRegex } },
             // Add more fields if you need to search in additional fields
           ]
         }
@@ -51,7 +52,8 @@ export async function POST(req) {
         { invoiceStatus: "isCompleted" },
         {
           $or: [
-            { orderTitle: { $regex: searchRegex } }
+            { orderTitle: { $regex: searchRegex } },
+            { orderId: { $regex: searchRegex } },
             // Add more fields if you need to search in additional fields
           ]
         }

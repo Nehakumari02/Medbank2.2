@@ -59,6 +59,7 @@ const Chats = () => {
         conversationIdRef.current = data.conversationId; // Persist conversationId
         userIdRecieverRef.current = data.userDetails._id
         setEmails(data.userDetails?.ccEmails)
+        setUserEmail(data.userDetails?.email)
         if (socket.connected) {
           onConnect(data.userDetails._id);
         }
@@ -73,18 +74,18 @@ const Chats = () => {
           },
           body: JSON.stringify({conversationId:data.conversationId, userId:userIdDB}),
         });
-        const fetchUserCCEmails = await fetch('/api/fetchUserDetails', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({userId:"6704b59a50180ae667b87b4a"}),
-        });
-        const userDetailsResult = await fetchUserCCEmails.json();
-        console.log("response from api ",userDetailsResult.user.ccEmails)
+        // const fetchUserCCEmails = await fetch('/api/fetchUserDetails', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({userId:"6704b59a50180ae667b87b4a"}),
+        // });
+        // const userDetailsResult = await fetchUserCCEmails.json();
+        // console.log("response from api ",userDetailsResult.user.ccEmails)
         // setEmails(userDetailsResult.user?.ccEmails);
-        setUserEmail(userDetailsResult.user.email)
-        console.log(userDetailsResult.user.email)
+        // setUserEmail(userDetailsResult.user.email)
+        // console.log(userDetailsResult.user.email)
         const data1 = await chatUpdateResponse.json();
         console.log(chatUpdateResponse,data1)
       }catch(error){
@@ -391,7 +392,7 @@ const Chats = () => {
           </div>
 
           <div className="h-[54px] pb-[10px] flex items-center gap-[10px]">
-            <input
+            <textarea
               type="text"
               // onKeyDown={(e) => {
               //   if (e.key === 'Enter' && !e.shiftKey) {
@@ -404,7 +405,7 @@ const Chats = () => {
               onBlur={handleTypingStop}
               onChange={handleChange}
               placeholder= {t("typeMsg")}
-              className="w-full h-[54px] bg-[#EFF4FB] outline-none px-3 rounded-md border-[1px] border-[#E2E8F0]"
+              className="w-full h-[54px] bg-[#EFF4FB] outline-none px-3 py-2 rounded-md border-[1px] border-[#E2E8F0] resize-none appearance-none box-border"
             />
             <button onClick={handleSendMessage} className="h-[48px] w-[48px] p-[12.5px] rounded-md bg-[#3E8DA7]">{sendIcon}</button>
           </div>

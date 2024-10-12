@@ -15,7 +15,9 @@ export async function POST(req) {
 
     // Fetch latest samples with pagination and populate user fields
     const samples = await Sample.find({ 
-      name: { $regex: searchRegex } // Adjust query based on your schema
+      $or: [
+      {name: { $regex: searchRegex }}, // Adjust query based on your schema
+      ]
     })
       .populate({
         path: 'orderId', // Populate the orderId field

@@ -17,6 +17,7 @@ export async function POST(req) {
       paymentStatus: 'isCompleted',
       $or: [
         { orderTitle: { $regex: searchRegex } },
+        { orderId: { $regex: searchRegex } },
         // Add more fields if you need to search in additional fields
       ]
     })
@@ -32,6 +33,7 @@ export async function POST(req) {
       paymentStatus: 'isCompleted',
       $or: [
         { orderTitle: { $regex: searchRegex } },
+        { orderId: { $regex: searchRegex } },
       ]
     }).exec();
 

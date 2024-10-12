@@ -15,6 +15,7 @@ export async function POST(req) {
     const orders = await Order.find({ 
       $or: [
         { orderTitle: { $regex: searchRegex } },
+        { orderId: { $regex: searchRegex } },
         // Add more fields if you need to search in additional fields
       ]
     })
@@ -30,6 +31,7 @@ export async function POST(req) {
     const totalOrders = await Order.countDocuments({ 
       $or: [
         { orderTitle: { $regex: searchRegex } },
+        { orderId: { $regex: searchRegex } },
       ]
     });
 

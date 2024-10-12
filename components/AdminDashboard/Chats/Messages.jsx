@@ -64,7 +64,7 @@ const Messages= ({
                   }
                 )}>
                 <span
-                  className={cn('px-4 py-2 rounded-lg inline-block', {
+                  className={cn('px-4 py-2 rounded-lg inline-block whitespace-pre-wrap', {
                     'bg-[#3E8DA7] text-white': isCurrentUser,
                     'bg-[#EFF4FB] text-gray-900': !isCurrentUser,
                     'rounded-br-none':

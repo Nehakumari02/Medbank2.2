@@ -24,6 +24,8 @@ const Chats = () => {
   const adminIdDB = "6704b59a50180ae667b87b4a";
   const { token, notificationPermissionStatus } = useFcmToken(userIdDB);
   const [userEmail,setUserEmail] = useState(null);
+  const [userIsOnline,setUserIsOnline] = useState(false);
+  const [typing,setTyping] = useState(false);
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -88,6 +90,18 @@ const Chats = () => {
       socket.io.engine.on("upgrade", (transport) => {
         setTransport(transport.name);
       });
+      socket.emit("addUser",userIdDB);
+      socket.on("getUsers", (users) => {
+        // setOnlineUsers(
+        //   user.followings.filter((f) => users.some((u) => u.userId === f))
+        // );
+        let userInOnlineList = users.find((user) => user.userId === "66e055de6ddc7825fbd8a103");
+        setUserIsOnline(
+          userInOnlineList?true:false
+        );
+        console.log(userInOnlineList?true:false)
+        console.log(users);
+      });
     }
 
     function onDisconnect() {
@@ -96,13 +110,13 @@ const Chats = () => {
     }
 
     // Listen for incoming messages
-    socket.on("chat message", async (message) => {
-      console.log(message)
-      if(message.conversationId==conversationIdRef.current){
+    socket.on("getMessage", async (payload) => {
+      console.log(payload.message,payload.message.conversationId==conversationIdRef.current,payload.message.conversationId,conversationIdRef.current)
+      if(payload.message.conversationId==conversationIdRef.current){
         setMessages((prevMessages) => {
           if(prevMessages.length)
-            return [...prevMessages, message];
-          else return [message];
+            return [...prevMessages, payload.message];
+          else return [payload.message];
         })
         setTimeout(async() => {
           const chatUpdateResponse = await fetch('/api/updateSeen', {
@@ -118,13 +132,20 @@ const Chats = () => {
       }
     });
 
+    socket.on("sendTyping", async (payload) => {
+      console.log(payload.senderId,payload.typing)
+      setTyping(payload.typing)
+    });
+
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
 
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
-      socket.off("chat message"); // Clean up listener on component unmount
+      socket.off("getMessage", onDisconnect); // Clean up listener on component unmount
+      socket.off("getUsers", onDisconnect);
+      socket.off("sendTyping", onDisconnect);
     };
   }, []);
 
@@ -146,13 +167,33 @@ const Chats = () => {
 
     if (message.trim()) {
       try {
-        socket.emit("chat message", {
+        setMessages((prevMessages) => {
+          if(prevMessages.length)
+            return [...prevMessages, {
+              id: generateRandomId(),
+              senderId: userIdDB,
+              text: message,
+              conversationId: conversationIdRef.current,
+              createdAt: new Date().toISOString()
+            }];
+          else return [{
+            id: generateRandomId(),
+            senderId: userIdDB,
+            text: message,
+            conversationId: conversationIdRef.current,
+            createdAt: new Date().toISOString()
+          }];
+        })
+        socket.emit("sendMessage", {
+          senderId:userIdDB,
+          receiverId:"66e055de6ddc7825fbd8a103",
+          message:{
           id: generateRandomId(),
           senderId: userIdDB,
           text: message,
           conversationId: conversationIdRef.current,
           createdAt: new Date().toISOString()
-        });
+        }});
 
         setMessage(""); // Clear the input field after sending
         const response = await fetch('/api/sendMessage', {
@@ -260,7 +301,21 @@ const Chats = () => {
     router.back();
   };
 
+  const handleTypingStart =()=>{
+    socket.emit("sendTyping", {
+      senderId:userIdDB,
+      receiverId:"66e055de6ddc7825fbd8a103",
+      typing:true  
+    });
+  }
   
+  const handleTypingStop =()=>{
+    socket.emit("sendTyping", {
+      senderId:userIdDB,
+      receiverId:"66e055de6ddc7825fbd8a103",
+      typing:false
+    });
+  }
 
   return (
     <div className="w-full h-full p-[13px] text-[#333333]">
@@ -275,7 +330,7 @@ const Chats = () => {
               <Image src={Logo} alt="logo" className="h-[35px] md:h-[46px] w-[35px] md:w-[46px]"></Image>
               <div className="flex flex-col items-start justify-between">
                 <span className="font-DM-Sans font-medium text-[14px] md:text-[16px] leading-[24px]">MedBank Team</span>
-                <span className="font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[22px] text-[#333333CC]">{t("online")}</span>
+                <span className="font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[22px] text-[#333333CC]">{userIsOnline &&  t("online")}</span>
               </div>
             </div>
           </div>
@@ -290,7 +345,7 @@ const Chats = () => {
         </div>
         <div className="flex-grow flex flex-col px-[5px] md:px-[70px]">
           <div className="flex-grow overflow-auto h-[10px] md:px-4 py-2">
-            <Messages messages={messages} userIdDB={userIdDB}/>
+            <Messages messages={messages} userIdDB={userIdDB} typing={typing} />
           </div>
 
           <div className="h-[54px] pb-[10px] flex items-center gap-[10px]">
@@ -303,6 +358,8 @@ const Chats = () => {
               //   }
               // }}
               value={message}
+              onFocus={handleTypingStart}
+              onBlur={handleTypingStop}
               onChange={handleChange}
               placeholder={t("typeMsg")}
               className="w-full h-[54px] bg-[#EFF4FB] outline-none px-3 rounded-md border-[1px] border-[#E2E8F0]"

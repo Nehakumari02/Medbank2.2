@@ -1453,7 +1453,7 @@ const NewOrderBox = () => {
               <Image src={Logo} alt="logo" className="h-[46px] w-[46px]"></Image>
               <div className="flex flex-col items-start justify-between">
                 <span className="font-DM-Sans font-medium text-[16px] leading-[24px]">MedBank Team</span>
-                <span className="font-DM-Sans font-medium text-[14px] leading-[22px] text-[#333333CC]">Online</span>
+                {/* <span className="font-DM-Sans font-medium text-[14px] leading-[22px] text-[#333333CC] hidden">Online</span> */}
               </div>
             </div>
             <button onClick={handleSendMessage} className="h-[48px] w-[48px] p-[12.5px] rounded-md bg-[#3E8DA7]">{sendIcon}</button>

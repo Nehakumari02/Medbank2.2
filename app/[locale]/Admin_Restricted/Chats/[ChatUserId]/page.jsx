@@ -17,12 +17,15 @@ const Chats = () => {
   const clientUserId = usePathname().split("/")[4]
   const [chatId,setChatId] = useState("");
   const conversationIdRef = useRef(""); // Use ref to persist conversationId
+  const userIdRecieverRef = useRef(""); // Use ref to persist conversationId
   const userIdDB = "66e055de6ddc7825fbd8a103";
   const [name,setName] = useState("")
   const [addEmailShow,setAddEmailShow] = useState(false);
   const [tempEmailInput, setTempEmailInput] = useState("");
   const orderIdDB = usePathname().split("/")[4]
   const [userEmail,setUserEmail] = useState(null);
+  const [userIsOnline,setUserIsOnline] = useState(false);
+  const [typing,setTyping] = useState(false);
 
   const generateRandomId = () => {
     const timestamp = Date.now().toString(36); // Convert current timestamp to base-36
@@ -51,6 +54,10 @@ const Chats = () => {
         const data = await response.json();
         setChatId(data.conversationId)
         conversationIdRef.current = data.conversationId; // Persist conversationId
+        userIdRecieverRef.current = data.userDetails._id
+        if (socket.connected) {
+          onConnect(data.userDetails._id);
+        }
         setMessages(data.messages)
         setName(data.userDetails.name)
         const UserEmail = data.userDetails.email;
@@ -85,16 +92,29 @@ const Chats = () => {
 
     fetchMessages();
 
-    if (socket.connected) {
-      onConnect();
-    }
+    // if (socket.connected) {
+    //   onConnect();
+    // }
 
-    function onConnect() {
+    function onConnect(receiverUserIdDB) {
       setIsConnected(true);
       setTransport(socket.io.engine.transport.name);
 
       socket.io.engine.on("upgrade", (transport) => {
         setTransport(transport.name);
+      });
+      socket.emit("addUser",userIdDB);
+      socket.on("getUsers", (users) => {
+        // setUserIsOnline(
+        //   users.find((user) => user.userId === userIdDB).userId
+        // );
+        console.log("client id for chat ",userIdRecieverRef.current,receiverUserIdDB,users[0].userId)
+        let userInOnlineList = users.find((user) => user.userId == receiverUserIdDB);
+        setUserIsOnline(
+          userInOnlineList?true:false
+        );
+        console.log(userInOnlineList?true:false)
+        console.log(users);
       });
     }
 
@@ -104,13 +124,12 @@ const Chats = () => {
     }
 
     // Listen for incoming messages
-    socket.on("chat message", async (message) => {
-      console.log(message)
-      if(message.conversationId==conversationIdRef.current){
+    socket.on("getMessage", async (payload) => {
+      if(payload.message.conversationId==conversationIdRef.current){
         setMessages((prevMessages) => {
           if(prevMessages.length)
-            return [...prevMessages, message];
-          else return [message];
+            return [...prevMessages, payload.message];
+          else return [payload.message];
         })
         setTimeout(async() => {
           const chatUpdateResponse = await fetch('/api/updateSeen', {
@@ -126,13 +145,20 @@ const Chats = () => {
       }
     });
 
+    socket.on("sendTyping", async (payload) => {
+      console.log(payload.senderId,payload.typing)
+      if(payload.senderId==userIdRecieverRef.current)setTyping(payload.typing)
+    });
+
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
 
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
-      socket.off("chat message"); // Clean up listener on component unmount
+      socket.off("getMessage", onDisconnect); // Clean up listener on component unmount
+      socket.off("getUsers", onDisconnect);
+      socket.off("sendTyping", onDisconnect);
     };
   }, []);
 
@@ -145,13 +171,33 @@ const Chats = () => {
   const handleSendMessage = async() => {
     if (message.trim()) {
       try {
-        socket.emit("chat message", {
+        setMessages((prevMessages) => {
+          if(prevMessages.length)
+            return [...prevMessages, {
+              id: generateRandomId(),
+              senderId: userIdDB,
+              text: message,
+              conversationId: conversationIdRef.current,
+              createdAt: new Date().toISOString()
+            }];
+          else return [{
+            id: generateRandomId(),
+            senderId: userIdDB,
+            text: message,
+            conversationId: conversationIdRef.current,
+            createdAt: new Date().toISOString()
+          }];
+        })
+        socket.emit("sendMessage", {
+          senderId:"66e055de6ddc7825fbd8a103",
+          receiverId:userIdRecieverRef.current,
+          message:{
           id: generateRandomId(),
           senderId: userIdDB,
           text: message,
           conversationId: conversationIdRef.current,
           createdAt: new Date().toISOString()
-        });
+        }});
 
         setMessage(""); // Clear the input field after sending
         const response = await fetch('/api/sendMessage', {
@@ -261,6 +307,22 @@ const Chats = () => {
     return initials.toUpperCase();
   };
 
+  const handleTypingStart =()=>{
+    socket.emit("sendTyping", {
+      senderId:"66e055de6ddc7825fbd8a103",
+      receiverId:userIdRecieverRef.current,
+      typing:true  
+    });
+  }
+  
+  const handleTypingStop =()=>{
+    socket.emit("sendTyping", {
+      senderId:"66e055de6ddc7825fbd8a103",
+      receiverId:userIdRecieverRef.current,
+      typing:false
+    });
+  }
+
   return (
     <div className="w-full h-full p-[13px] text-[#333333]">
       <div className="bg-white w-full h-full flex flex-col md:border-[1px] py-[20px] md:border-[#E2E8F0] md:rounded-md md:shadow-[0px_8px_13px_-3px_rgba(0,_0,_0,_0.07)]">
@@ -275,7 +337,7 @@ const Chats = () => {
               <div className="h-[35px] md:h-[46px] w-[35px] md:w-[46px] bg-gray-400 rounded-full text-center text-white flex items-center justify-center">{getInitials(name)}</div>
               <div className="flex flex-col items-start justify-between">
                 <span className="font-DM-Sans font-medium text-[14px] md:text-[16px] leading-[24px]">{name}</span>
-                <span className="font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[22px] text-[#333333CC]">Online</span>
+                <span className="font-DM-Sans font-medium text-[12px] md:text-[14px] leading-[22px] text-[#333333CC]">{userIsOnline? "Online" : ""}</span>
               </div>
             </div>
           </div>
@@ -290,7 +352,7 @@ const Chats = () => {
         </div>
         <div className="flex-grow flex flex-col px-[5px] md:px-[70px]">
           <div className="flex-grow overflow-auto h-[10px] md:px-4 py-2">
-            <Messages messages={messages} userIdDB={userIdDB}/>
+            <Messages messages={messages} userIdDB={userIdDB} typing={typing}/>
           </div>
 
           <div className="h-[54px] pb-[10px] flex items-center gap-[10px]">
@@ -303,6 +365,8 @@ const Chats = () => {
               //   }
               // }}
               value={message}
+              onFocus={handleTypingStart}
+              onBlur={handleTypingStop}
               onChange={handleChange}
               placeholder="Type your message"
               className="w-full h-[54px] bg-[#EFF4FB] outline-none px-3 rounded-md border-[1px] border-[#E2E8F0]"

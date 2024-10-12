@@ -562,13 +562,29 @@ const NewOrderBox = () => {
   const handleCostEstimateClick = async() => {
     setOrderPopVisible(true);
     setActivePopup('costEstimate');
-    const namesArray = await fetchSampleNames(requestSheetLink);
-    console.log("samples",namesArray)
-    const updatedSamples = namesArray.map((_, index) => {
-        return { 
-          name: namesArray[index] || "" , qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
-    });
-    setSamples(updatedSamples);
+    if(costEstimateStatus == "isCompleted"){
+      const response = await fetch('/api/fetchQuotation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ orderId: orderIdDB }),
+      });
+
+      const costEstimationSamples = await response.json();
+
+      setSamples(costEstimationSamples.data);
+      console.log(costEstimationSamples.data)
+      setGrandTotal(calculateGrandTotal(costEstimationSamples.data));
+    }else{
+      const namesArray = await fetchSampleNames(requestSheetLink);
+      console.log("samples",namesArray)
+      const updatedSamples = namesArray.map((_, index) => {
+          return { 
+            name: namesArray[index] || "" , qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
+      });
+      setSamples(updatedSamples);
+    }
   };
 
   const handleFormalRequestClick = () => {
@@ -637,15 +653,23 @@ const NewOrderBox = () => {
       console.log(costEstimationSample)
       console.log(tempTotal)
       return { 
-        _id: costEstimationSample._id, name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityCheckStatus == "isAdminCompleted" || costEstimationSample.qualityCheckStatus == "isCompleted" ? costEstimationSample.qualityFees : 0, libraryFees: costEstimationSample.libraryPrepStatus == "isAdminCompleted" || costEstimationSample.libraryPrepStatus == "isCompleted" ? costEstimationSample.libraryFees : 0, analysisFees: costEstimationSample.analysisSpecificationStatus == "isAdminCompleted" || costEstimationSample.analysisSpecificationStatus == "isCompleted" ? costEstimationSample.analysisFees : 0, tax: costEstimationSample.tax, others: costEstimationSample.others, total: tempTotal };
-    });
+          _id: costEstimationSample._id, name: costEstimationSample.name , id: costEstimationSample.id, qualityFees: costEstimationSample.qualityCheckStatus == "isAdminCompleted" || costEstimationSample.qualityCheckStatus == "isCompleted" ? costEstimationSample.qualityFees : 0, libraryFees: costEstimationSample.libraryPrepStatus == "isAdminCompleted" || costEstimationSample.libraryPrepStatus == "isCompleted" ? costEstimationSample.libraryFees : 0, analysisFees: costEstimationSample.analysisSpecificationStatus == "isAdminCompleted" || costEstimationSample.analysisSpecificationStatus == "isCompleted" ? costEstimationSample.analysisFees : 0, tax: costEstimationSample.tax, others: costEstimationSample.others, total: tempTotal };
+      });
 
     updatedSamples1.sort((a,b)=>a.id-b.id)
 
-    setSamples1(updatedSamples1);
-    const grandTotal1 = calculateGrandTotal(updatedSamples1);
-    console.log(updatedSamples1,grandTotal1)
-    setGrandTotal1(grandTotal1);
+    if(invoiceStatus == "isCompleted"){
+      setSamples1(costEstimationSamples.data)
+      setGrandTotal1(costEstimationSamples.data.grandTotal1)
+      const grandTotal1 = calculateGrandTotal(costEstimationSamples.data);
+      console.log(grandTotal1)
+      setGrandTotal1(grandTotal1);
+    }else{
+      setSamples1(updatedSamples1);
+      const grandTotal1 = calculateGrandTotal(updatedSamples1);
+      console.log(updatedSamples1,grandTotal1)
+      setGrandTotal1(grandTotal1);
+    }
   };
 
   const handlePaymentClick = () => {
@@ -1840,7 +1864,7 @@ const NewOrderBox = () => {
                                 className="border rounded-md lg:w-full p-2"
                                 // onChange={(e) => handleInputChange(index, 'id', e.target.value)}
                                 // value={samples[index].id}
-                                value={sampleCount+index+1}
+                                value={samples[index].sampleId || sampleCount+index+1}
                                 placeholder={`10${index + 1}`}
                               />
                             </td>
@@ -1860,6 +1884,7 @@ const NewOrderBox = () => {
                                     type="text"
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChange(index, 'qualityFees', e.target.value)}
+                                    value={samples[index].qualityFees}
                                     placeholder=""
                                   />
                                 </div>
@@ -1882,6 +1907,7 @@ const NewOrderBox = () => {
                                     type="text"
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChange(index, 'libraryFees', e.target.value)}
+                                    value={samples[index].libraryFees}
                                     placeholder=""
                                   />
                                 </div>
@@ -1904,6 +1930,7 @@ const NewOrderBox = () => {
                                     type="text"
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChange(index, 'analysisFees', e.target.value)}
+                                    value={samples[index].analysisFees}
                                     placeholder=""
                                   />
                                 </div>
@@ -1933,6 +1960,7 @@ const NewOrderBox = () => {
                                 type="text"
                                 className="border rounded-md lg:w-full p-2 bg-[#33333314]"
                                 onChange={(e) => handleInputChange(index, 'others', e.target.value)}
+                                value={samples[index].others}
                                 placeholder=""
                               />
                             </td>

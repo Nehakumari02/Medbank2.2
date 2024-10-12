@@ -1678,39 +1678,39 @@ const NewOrderBox = () => {
     };
   }, [uploadedFile]);
 
-  useEffect(() => {
-    const updatedSamples = [...samples];
+  // useEffect(() => {
+  //   const updatedSamples = [...samples];
 
-    // Check if any of the tax fields have changed
-    const taxValue = updatedSamples[0]?.tax || '';  // Assuming tax should be the same for all rows
+  //   // Check if any of the tax fields have changed
+  //   const taxValue = updatedSamples[0]?.tax || '';  // Assuming tax should be the same for all rows
 
-    updatedSamples.forEach(sample => {
-      sample.tax = taxValue;
-      sample.total = calculateTotal(sample);  // Update the total when tax changes
-    });
+  //   updatedSamples.forEach(sample => {
+  //     sample.tax = taxValue;
+  //     sample.total = calculateTotal(sample);  // Update the total when tax changes
+  //   });
 
-    setSamples(updatedSamples);
+  //   setSamples(updatedSamples);
 
-    const grandTotal = calculateGrandTotal(updatedSamples);
-    setGrandTotal(grandTotal);
-  }, [samples]);  // Re-run when samples change
+  //   const grandTotal = calculateGrandTotal(updatedSamples);
+  //   setGrandTotal(grandTotal);
+  // }, [samples]);  // Re-run when samples change
 
-  useEffect(() => {
-    const updatedSamples1 = [...samples1];
+  // useEffect(() => {
+  //   const updatedSamples1 = [...samples1];
 
-    // Check if any of the tax fields have changed
-    const taxValue = updatedSamples1[0]?.tax || '';  // Assuming tax should be the same for all rows
+  //   // Check if any of the tax fields have changed
+  //   const taxValue = updatedSamples1[0]?.tax || '';  // Assuming tax should be the same for all rows
 
-    updatedSamples1.forEach(sample1 => {
-      sample1.tax = taxValue;
-      sample1.total = calculateTotal(sample1);  // Update the total when tax changes
-    });
+  //   updatedSamples1.forEach(sample1 => {
+  //     sample1.tax = taxValue;
+  //     sample1.total = calculateTotal(sample1);  // Update the total when tax changes
+  //   });
 
-    setSamples1(updatedSamples1);
+  //   setSamples1(updatedSamples1);
 
-    const grandTotal1 = calculateGrandTotal(updatedSamples1);
-    setGrandTotal1(grandTotal1);
-  }, [samples1]);  // Re-run when samples change
+  //   const grandTotal1 = calculateGrandTotal(updatedSamples1);
+  //   setGrandTotal1(grandTotal1);
+  // }, [samples1]);  // Re-run when samples change
 
 
   useEffect(() => {

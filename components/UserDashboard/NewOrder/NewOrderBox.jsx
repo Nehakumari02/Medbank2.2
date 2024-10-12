@@ -55,15 +55,15 @@ const NewOrderBox = () => {
   }
 
   const updateSampleInDB = async (sampleData) => {
-    // const saveApiResponse = await fetch('/api/updateSample', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
-    // });
+    const saveApiResponse = await fetch('/api/updateSample', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sample: sampleData, orderId: orderIdDB }),
+    });
 
-    // console.log(saveApiResponse)
+    console.log(saveApiResponse)
   }
 
   const {
@@ -684,7 +684,7 @@ const NewOrderBox = () => {
           libraryPrepStatus: 'inAdminProgress'
         })
         updateSampleInDB({
-          qualityCheckStatus: "isCompleted",
+          // qualityCheckStatus: "isCompleted",
           libraryPrepStatus: "inAdminProgress"
         })
       }
@@ -731,9 +731,9 @@ const NewOrderBox = () => {
           libraryPrepStatus: "isCompleted",
           analysisProgressStatus: 'inAdminProgress'
         })
-        updateSampleInDB({
-          libraryPrepStatus: "isCompleted"
-        })
+        // updateSampleInDB({
+        //   libraryPrepStatus: "isCompleted"
+        // })
       }
       catch {
 
@@ -815,9 +815,9 @@ const NewOrderBox = () => {
       updateDataInDB({
         analysisSpecificationStatus: "isCompleted"
       })
-      updateSampleInDB({
-        analysisSpecificationStatus: "isCompleted"
-      })
+      // updateSampleInDB({
+      //   analysisSpecificationStatus: "isCompleted"
+      // })
     }
   }
 

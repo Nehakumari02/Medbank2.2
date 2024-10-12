@@ -158,24 +158,42 @@ const updateDataInSamples = async (orderData:any,sampleIdDB:string) => {
   console.log(saveApiResponse)
 }
 
-const updateQualityCheckDetails = (sampleId:string,setStatus:(state: string) => void)=>{
+const updateQualityCheckDetails = (sampleId:string,setStatus:(state: string) => void,status:string)=>{
   console.log("quality check update request ")
   console.log(sampleId)
-  updateDataInSamples({qualityCheckStatus: "isAdminCompleted"},sampleId);
-  setStatus("isAdminCompleted");
+  if(status=="inAdminProgress"){
+    updateDataInSamples({qualityCheckStatus: "isAdminCompleted"},sampleId);
+    setStatus("isAdminCompleted");
+  }
+  else if(status == "isAdminCompleted" || status == "isCompleted"){
+    updateDataInSamples({qualityCheckStatus: "inAdminProgress"},sampleId);
+    setStatus("inAdminProgress");
+  }
 }
 
-const updateLibraryPrepDetails = (sampleId:string,setStatus:(state: string) => void)=>{
+const updateLibraryPrepDetails = (sampleId:string,setStatus:(state: string) => void,status:string)=>{
   console.log("library prep update request ")
   console.log(sampleId)
-  updateDataInSamples({libraryPrepStatus: "isAdminCompleted"},sampleId);
-  setStatus("isAdminCompleted")
+  if(status=="inAdminProgress"){
+    updateDataInSamples({libraryPrepStatus: "isAdminCompleted"},sampleId);
+    setStatus("isAdminCompleted")
+  }
+  else if(status == "isAdminCompleted" || status == "isCompleted"){
+    updateDataInSamples({libraryPrepStatus: "inAdminProgress"},sampleId);
+    setStatus("inAdminProgress")
+  }
 }
-const updateAnalysisReportDetails = (sampleId:string,setStatus:(state: string) => void)=>{
+const updateAnalysisReportDetails = (sampleId:string,setStatus:(state: string) => void,status:string)=>{
   console.log("analysis report update request ")
   console.log(sampleId)
-  updateDataInSamples({analysisSpecificationStatus: "isAdminCompleted"},sampleId);
-  setStatus("isAdminCompleted")
+  if(status=="inAdminProgress"){
+    updateDataInSamples({analysisSpecificationStatus: "isAdminCompleted"},sampleId);
+    setStatus("isAdminComplete")
+  }
+  else if(status == "isAdminCompleted" || status == "isCompleted"){
+    updateDataInSamples({analysisSpecificationStatus: "inAdminProgress"},sampleId);
+    setStatus("inAdminProgress")
+  }
 }
 
 export const columns: ColumnDef<OrderList>[] = [
@@ -288,10 +306,11 @@ export const columns: ColumnDef<OrderList>[] = [
 
       return (
         <button
-          disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          // disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          disabled={status == "isCompleted" || status == "isPending"}
           className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200 flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: statusColor, color: textColor}}
-          onClick={()=>updateQualityCheckDetails(row.original._id,setStatus)}
+          onClick={()=>updateQualityCheckDetails(row.original._id,setStatus,status)}
         >
           {status === 'isCompleted' ? t("sampleList.qualityCompleted") : t("sampleList.qualityPending")}
         </button>
@@ -345,10 +364,11 @@ export const columns: ColumnDef<OrderList>[] = [
 
       return (
         <button
-          disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          // disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          disabled={status == "isCompleted" || status == "isPending"}
           className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200 flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: statusColor, color: textColor }}
-          onClick={()=>updateLibraryPrepDetails(row.original._id,setStatus)}
+          onClick={()=>updateLibraryPrepDetails(row.original._id,setStatus,status)}
         >
           {status === 'isCompleted' ? t("sampleList.libraryCompleted") : t("sampleList.libraryPending")}
         </button>
@@ -402,10 +422,11 @@ export const columns: ColumnDef<OrderList>[] = [
 
       return (
         <button
-          disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          // disabled={status == "isAdminCompleted" || status == "isCompleted"}
+          disabled={status == "isCompleted" || status == "isPending"}
           className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200 flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: statusColor, color: textColor }}
-          onClick={()=>updateAnalysisReportDetails(row.original._id,setStatus)}
+          onClick={()=>updateAnalysisReportDetails(row.original._id,setStatus,status)}
         >
          {status === 'isCompleted' ? t("sampleList.analysisCompleted") : t("sampleList.analysisPending")}
         </button>

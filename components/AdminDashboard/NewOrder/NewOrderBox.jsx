@@ -575,7 +575,7 @@ const NewOrderBox = () => {
 
       setSamples(costEstimationSamples.data);
       console.log(costEstimationSamples.data)
-      setGrandTotal(calculateGrandTotal(costEstimationSamples.data));
+      setGrandTotal(grandTotal);
     }else{
       const namesArray = await fetchSampleNames(requestSheetLink);
       console.log("samples",namesArray)
@@ -1785,6 +1785,7 @@ const NewOrderBox = () => {
         setName(orderData.userId.name)
         setUsername(orderData.userId.Username);
         setSchool(orderData.userId.school);
+        setGrandTotal(orderData.grandTotal)
         console.log(orderData)
         const response2 = await fetch('/api/fetchLatestSampleCount',{
           method: 'POST',
@@ -1884,7 +1885,7 @@ const NewOrderBox = () => {
                                     type="text"
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChange(index, 'qualityFees', e.target.value)}
-                                    value={samples[index].qualityFees}
+                                    value={samples[index].costEstimation_qualityFees}
                                     placeholder=""
                                   />
                                 </div>
@@ -1907,7 +1908,7 @@ const NewOrderBox = () => {
                                     type="text"
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChange(index, 'libraryFees', e.target.value)}
-                                    value={samples[index].libraryFees}
+                                    value={samples[index].costEstimation_libraryFees}
                                     placeholder=""
                                   />
                                 </div>
@@ -1930,7 +1931,7 @@ const NewOrderBox = () => {
                                     type="text"
                                     className="border rounded-md w-full p-2"
                                     onChange={(e) => handleInputChange(index, 'analysisFees', e.target.value)}
-                                    value={samples[index].analysisFees}
+                                    value={samples[index].costEstimation_analysisFees}
                                     placeholder=""
                                   />
                                 </div>
@@ -1951,7 +1952,7 @@ const NewOrderBox = () => {
                                 type="text"
                                 className="border rounded-md w-full p-2 bg-[#33333314]"
                                 onChange={(e) => handleInputChange(index, 'tax', e.target.value)}
-                                value={samples[index].tax}
+                                value={samples[index].costEstimation_tax}
                                 placeholder=""
                               />
                             </td>
@@ -1960,7 +1961,7 @@ const NewOrderBox = () => {
                                 type="text"
                                 className="border rounded-md lg:w-full p-2 bg-[#33333314]"
                                 onChange={(e) => handleInputChange(index, 'others', e.target.value)}
-                                value={samples[index].others}
+                                value={samples[index].costEstimation_others}
                                 placeholder=""
                               />
                             </td>
@@ -1970,7 +1971,7 @@ const NewOrderBox = () => {
                                 className="border rounded-md lg:w-full p-2"
                                 onChange={(e) => handleInputChange(index, 'total1', e.target.value)}
                                 placeholder=""
-                                value={samples[index].total}
+                                value={samples[index].costEstimation_total}
                               />
                             </td>
                           </tr>
@@ -2429,7 +2430,7 @@ const NewOrderBox = () => {
                   </p>
                   <div className='w-full flex items-end justify-end gap-[12px] pb-4'>
                     <button onClick={() => { setOrderPopVisible(false) }} className="h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] text-[#333333] font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]">{t("invoice.back")}</button>
-                    <button onClick={handleClick1} disabled={disabled} className={`${disabled?"opacity-75":""} h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`}>{t("invoice.generate")}</button>
+                    {invoiceStatus !== "isCompleted" &&<button onClick={handleClick1} disabled={disabled} className={`${disabled?"opacity-75":""} h-[40px] md:h-[48px] w-[96px] md:w-[126px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`}>{t("invoice.generate")}</button>}
                   </div>
                 </div>
               )}

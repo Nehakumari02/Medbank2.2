@@ -25,6 +25,12 @@ export async function POST(req) {
         const sampleWithDefaults = { 
           ...defaultValues, 
           ...sampleData,
+          costEstimation_qualityFees: sampleData.qualityFees,
+          costEstimation_libraryFees: sampleData.libraryFees,
+          costEstimation_analysisFees: sampleData.analysisFees,
+          costEstimation_tax: sampleData.tax,
+          costEstimation_others: sampleData.others,
+          costEstimation_total: sampleData.total,
           orderId: orderIdDB // Add orderId to the new sample
         };
         const sample = new Sample(sampleWithDefaults);

@@ -152,12 +152,12 @@ const QuotationTable = ({ orderIdDB, orderId, userId, onTableLoad }) => {
             <tr key={index} className="hover:bg-gray-50" style={{ pageBreakInside: 'avoid' }}>
               <td className="border px-2 py-2">{sample.id}</td>
               <td className="border px-2 py-2">{sample.name}</td>
-              <td className="border px-2 py-2">{sample.qualityFees || 'N/A'}</td>
-              <td className="border px-2 py-2">{sample.libraryFees || 'N/A'}</td>
-              <td className="border px-2 py-2">{sample.analysisFees || 'N/A'}</td>
-              <td className="border px-2 py-2">{sample.tax || 'N/A'}</td>
-              <td className="border px-2 py-2">{sample.others || 'N/A'}</td>
-              <td className="border px-2 py-2">{sample.total || 'N/A'}</td>
+              <td className="border px-2 py-2">{sample.costEstimation_qualityFees || 'N/A'}</td>
+              <td className="border px-2 py-2">{sample.costEstimation_libraryFees || 'N/A'}</td>
+              <td className="border px-2 py-2">{sample.costEstimation_analysisFees || 'N/A'}</td>
+              <td className="border px-2 py-2">{sample.costEstimation_tax || 'N/A'}</td>
+              <td className="border px-2 py-2">{sample.costEstimation_others || 'N/A'}</td>
+              <td className="border px-2 py-2">{sample.costEstimation_total || 'N/A'}</td>
             </tr>
           ))}
           <tr className="bg-gray-100 font-bold" style={{ pageBreakInside: 'avoid' }}>

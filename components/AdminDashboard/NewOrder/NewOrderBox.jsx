@@ -265,7 +265,10 @@ const NewOrderBox = () => {
   const handleInputChange = (index, field, value) => {
     const updatedSamples = [...samples];
     if (field === 'tax') {
-      updatedSamples.forEach(sample => sample.tax = value);
+      updatedSamples.forEach(sample => {sample.tax = value;
+        sample.total = calculateTotal(sample);
+      });
+      
     }
     else {
       updatedSamples[index][field] = value;
@@ -1677,6 +1680,8 @@ const NewOrderBox = () => {
       }
     };
   }, [uploadedFile]);
+
+  
 
   // useEffect(() => {
   //   const updatedSamples = [...samples];

@@ -22,6 +22,9 @@ const sampleSchema = new Schema(
     tax: { type: String },
     others: { type: String },
     total: { type: String },
+    costEstimation_tax: { type: String },
+    costEstimation_others: { type: String },
+    costEstimation_total: { type: String },
     qualityCheckStatus: {
       type: String,
       enum: ["isPending", "inUserProgress", "inAdminProgress", "isAdminCompleted", "isUserCompleted", "isCompleted"],

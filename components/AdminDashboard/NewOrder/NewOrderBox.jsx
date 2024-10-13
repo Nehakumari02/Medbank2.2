@@ -2062,7 +2062,7 @@ const NewOrderBox = () => {
                     <span className='text-[22px] w-full font-DM-Sans font-bold md:text-[32px] md:leading-[40px] text-[#333333]'>{t("deletePopup.title")}</span>
                     <span className='w-full font-DM-Sans font-normal md:text-[20px] md:leading-[34px] text-[#333333] text-[14px]'>{t("deletePopup.message")}<br></br>
                       {t("deletePopup.message1")}<br></br>
-                      {t("deletePopup.message2")} <br></br>
+                      {/* {t("deletePopup.message2")} <br></br> */}
                       {t("deletePopup.message3")}</span>
                     <button disabled={disabled} className={`${disabled ? "opacity-75" : ""}
                       w-full h-[40px] md:h-[48px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`}
@@ -2079,7 +2079,7 @@ const NewOrderBox = () => {
                     <span className='text-[22px] w-full font-DM-Sans font-bold md:text-[32px] md:leading-[40px] text-[#333333]'>{t("confirmPopup.title")}</span>
                     <span className='w-full font-DM-Sans font-normal md:text-[20px] md:leading-[34px] text-[#333333] text-[14px]'>{t("confirmPopup.message")}<br></br>
                       {t("confirmPopup.message1")}<br></br>
-                      {t("confirmPopup.message2")} <br></br>
+                      {/* {t("confirmPopup.message2")} <br></br> */}
                       {t("confirmPopup.message3")}</span>
                     <button disabled={disabled} className={`${disabled ? "opacity-75" : ""}
                       w-full h-[40px] md:h-[48px] rounded-[6px] flex items-center justify-center gap-[10px] border-[2px] border-[#E2E8F0] [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-medium text-[12px] md:text-[16px] text-center leading-[24px]`}

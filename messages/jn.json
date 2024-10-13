@@ -945,7 +945,7 @@
         "deletePopup": {
             "title": "サンプル受領のご連絡",
             "message": "Dear User,",
-            "message1": "サンプルは問題なく受領しております。直ちに分析作業を開始いたします。",
+            "message1": "お世話になります。受領させていただきましたサンプルに関しまして、ご確認させていただきたい事項がございます。",
             "message2": "ありがとうございました。",
             "message3": "MEDBANK 遺伝子解析チーム",
             "button": "Ok"
@@ -953,7 +953,7 @@
         "confirmPopup": {
             "title": "サンプルに関するご連絡",
             "message": "Dear User,",
-            "message1": "サンプルを受け取りましたが、確認事項があります。お手数ですが、弊社までご連絡ください。",
+            "message1": "お世話になります。問題なくサンプルの受領が完了しました。これから、クオリティチェックを実施してまいります。クオリティチェック終了後に、またご連絡させていただきます。",
             "message2": "ご送付ありがとうございます。",
             "message3": "MEDBANK遺伝子解析チーム",
             "button": "Ok"
@@ -1250,7 +1250,7 @@
         "invoiceNumber": "登録番号",
         "quotationNumber":"見積書番号",
         "userDetails":"ユーザーの詳細",
-        "name": "氏名",
+        "name": " 請求先",
         "companyName1": "MEDBANK 株式会社",
         "companyAddress1": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",
         "payee1": "DBS Bank code7171 Account number 0721214571",

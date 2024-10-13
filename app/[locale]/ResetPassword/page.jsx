@@ -146,7 +146,7 @@ const ResetPassword = () => {
                   <span className='font-normal text-center md:text-left w-full text-[14px] md:text-[18px] leading-[18px] md:leading-[24px]'>{t.rich("subTitle2")}</span>
                 </div>
                 <div className='flex flex-col gap-[6px] md:gap-[16px]'>
-                  <button type="submit" disabled={redirectLoading} onClick={handleRedirecToLogin} className='h-[38px] md:h-[50px] rounded-[6px] md:flex items-center justify-center border text-black font-DM-Sans font-bold text-[18px] leading-[24px] '> {redirectLoading?<Loader2 className="animate-spin" /> :t('login')}</button>
+                  <button type="submit" disabled={redirectLoading} onClick={handleRedirecToLogin} className='h-[38px] md:h-[50px] rounded-[6px] flex items-center justify-center border text-black font-DM-Sans font-bold text-[18px] leading-[24px] '> {redirectLoading?<Loader2 className="animate-spin" /> :t('login')}</button>
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@ const ResetPassword = () => {
                   </div>
 
                 <div className='flex flex-col gap-[6px] md:gap-[16px]'>
-                  <button type="submit" disabled={loading} onClick={handleEmailForForgotPassword} className={`h-[38px] md:h-[50px] rounded-[6px] md:flex items-center justify-center [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-bold text-[18px] leading-[24px] ${loading?"opacity-75":""} `}> {loading?<Loader2 className="animate-spin" /> : t('resetPassword')}</button>
+                  <button type="submit" disabled={loading} onClick={handleEmailForForgotPassword} className={`h-[38px] md:h-[50px] rounded-[6px] flex items-center justify-center [background:linear-gradient(180deg,_#60b7cf_10%,_#3e8da7_74.5%,_rgba(0,_62,_92,_0.6))] text-white font-DM-Sans font-bold text-[18px] leading-[24px] ${loading?"opacity-75":""} `}> {loading?<Loader2 className="animate-spin" /> : t('resetPassword')}</button>
                 </div>
               </div>
             </div>

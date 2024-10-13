@@ -23,7 +23,8 @@ export async function POST(req) {
         // ['createdAt', -1],
         // ['lastMessage.seen', -1],
         ['lastMessage.lastMessageTs', -1]
-      ]);
+      ])
+      .limit(100);
       // .sort([['lastMessage.seen', 1], ['createdAt', -1]])
 
 

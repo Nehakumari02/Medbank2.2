@@ -75,7 +75,7 @@ export async function POST(req) {
 
       マイページログインはこちら
       Click here to log in to Admin
-      meduon.jp/en/Admin_Login
+      medbank.sg/en/Admin_Login
       
       —----------------------------------------------
       ${message}

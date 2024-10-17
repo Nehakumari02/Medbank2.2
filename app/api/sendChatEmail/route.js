@@ -45,7 +45,7 @@ export async function POST(req) {
       
       マイページログインはこちら
       Click here to log in to My Page
-      meduon.jp/en/Login
+      medbank.sg/en/Login
       
       —----------------------------------------------
       ${message}

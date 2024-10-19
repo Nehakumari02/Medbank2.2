@@ -52,7 +52,9 @@ const OrderCreationPage = () => {
   };
   
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: {
+    'text/csv': ['.csv'], // Only accept CSV files
+  }, });
 
   const handleNext = () => {
     setCurrentStep((prev) => prev + 1);
@@ -316,11 +318,12 @@ const OrderCreationPage = () => {
               <div className="container mx-auto md:px-4 w-auto md:max-w-[490px] md:h-[203px]">
                 <div className="border-dashed border-[0.4px]  border-[#60b7cf] rounded-lg p-4 md:p-10 mt-[12px] md:mt-8 text-center">
                   <div {...getRootProps()} className="cursor-pointer">
-                    <input {...getInputProps()} />
+                  <input {...getInputProps({ accept: ".csv" })} />
                     <Image src={folder1} alt="Upload Icon" className="mx-auto mb-4 w-[51px] h-[51px]" />
                     <p className="text-[10px] md:text-sm font-normal">
                     {t("requestSheet.step2.drag")}<span  className="text-transparent bg-clip-text bg-gradient-to-b from-[#60b7cf] via-[#3e8da7] to-[rgba(0,62,92,0.6)] underline"> {t("requestSheet.step2.drag1")}</span> {t("requestSheet.step2.drag2")}
                     </p>
+                    
                     {uploadedFile && (
                       <div className="mt-2">
                         {/* <p className="text-sm md:text-base text- [#606060] font-normal"> {t("requestSheet.step2.file")}</p> */}

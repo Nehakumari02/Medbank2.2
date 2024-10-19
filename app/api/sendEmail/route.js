@@ -20,7 +20,7 @@ export async function POST(req) {
 
   const mailOptions1 = {
     from: email,
-    to: process.env.EMAIL_RECEIVER, // Your email address
+    to: email, // Your email address
     subject: "お問い合わせありがとうございます（Thank you very much for your inquiry）",
     text: `
           <p>この度はMEDBANKの遺伝子解析サービスへのお問い合わせありがとうございました。</p>

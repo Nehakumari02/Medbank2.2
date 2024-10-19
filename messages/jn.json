@@ -114,8 +114,8 @@
             "email": "メールアドレス",
             "confirmEmail": "メールアドレスの確認",
             "query": "お問い合わせ内容",
-            "confirmation": "プライバシーポリシー、個人情報の取り扱いについて同意します。",
-            "termOfService": "個人情報の取り扱いについて",
+            "confirmation": "サイトポリシー、個人情報の取り扱いについて同意します。",
+            "termOfService": "サイトポリシー",
             "privacyPolicy": " プライバシーポリシー",
             "getGuide": "送信",
              "img1": "/Images/Home/contactUsBg.jpg"
@@ -291,7 +291,7 @@
         "tempRange": "輸送温度範囲",
         "tempRangeDes": "サンプルは冷蔵または冷凍の状態で発送してください。",
         "shippingCost": "送料",
-        "shippingCostDes": "送料はお客様ご負担（送料着払い）となり、配送方法、配送先により異なります。",
+        "shippingCostDes": "送料はお客様ご負担となり、配送方法、配送先により異なります。",
         "contactInfo": "連絡先",
         "contactInfoDes": "サンプル発送に関するご質問やご不明な点は、マイページのチャット欄よりお問合せください。"
     },

@@ -50,7 +50,7 @@ const Services = ({params:{locale}}) => {
           </div>
 
         </div>
-        <div className="px-[10px] w-[100vw] md:w-full mx-[-31px] md:mx-0 md:px-0 overflow-x-scroll md:overflow-x-auto mt-[40px] md:mt-[80px]">
+        <div id="pricetable" className="px-[10px] w-[100vw] md:w-full mx-[-31px] md:mx-0 md:px-0 overflow-x-scroll md:overflow-x-auto mt-[40px] md:mt-[80px]">
           <table className="w-full">
           <thead className="w-[100vw]">
             <tr className="gradient-table-head rounded-tl-[10px] rounded-tr-[10px] h-[60px] md:h-[80px] flex items-center justify-between w-[690px] md:w-auto px-[20px]">

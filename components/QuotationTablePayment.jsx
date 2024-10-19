@@ -161,7 +161,7 @@ const QuotationTablePaymenet = ({ orderIdDB, orderId, userId, onTableLoad2 }) =>
       </table>
       
       {/* Footer Section */}
-      <div className="mt-8 pt-4 border-t flex flex-col items-start justify-start" style={{ pageBreakInside: 'avoid' }}>
+      {/* <div className="mt-8 pt-4 border-t flex flex-col items-start justify-start" style={{ pageBreakInside: 'avoid' }}>
        
       <p className="mt-8 text-center text-lg font-bold">
           Terms and Conditions
@@ -172,7 +172,7 @@ const QuotationTablePaymenet = ({ orderIdDB, orderId, userId, onTableLoad2 }) =>
         <p className="mt-2 text-center text-sm">
          Please make check payable to {getCompanyNameByCurrency()}
         </p> 
-      </div>
+      </div> */}
     
 
      

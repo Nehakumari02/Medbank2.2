@@ -292,7 +292,7 @@
         "tempRange": "Transportation Temperature Range",
         "tempRangeDes": "Customers are reminded to ship samples under refrigerated or frozen conditions",
         "shippingCost": "Shipping Costs",
-        "shippingCostDes": "Shipping charges are prepaid by the customer (payment upon shipping) and may vary depending on the shipping method and destination.",
+        "shippingCostDes": "Shipping charges are prepaid by the customer and may vary depending on the shipping method and destination.",
         "contactInfo": "Contact Information",
         "contactInfoDes": "Customers are encouraged to contact Setolabo's customer support team for any questions or concerns related to sample shipping."
     },

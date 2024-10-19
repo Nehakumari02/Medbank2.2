@@ -208,7 +208,7 @@ export const columns: ColumnDef<PaymentList>[] = [
       const [disabled,setDisabled] = React.useState(status === 'isAdminCompleted' || status === 'isCompleted');
       const bgColor = disabled? '#5CE1E6' : '#FF914D';
       
-      const updateDataInDB = async (orderData:any,orderIdDB:string,userIdDB:string) => {
+      const updateDataInDB = async (orderData:any,orderIdDB:string,userIdDB:string,orderId:string) => {
         const saveApiResponse = await fetch('/api/updateOrder', {
           method: 'POST',
           headers: {
@@ -247,7 +247,7 @@ export const columns: ColumnDef<PaymentList>[] = [
             },
             body: JSON.stringify({
               userId: userIdDB,
-              message: `(${orderIdDB}) ${t("chatMessage.payment")} `,
+              message: `(${orderId}) ${t("chatMessage.payment")} `,
             }),
           });
       
@@ -256,10 +256,10 @@ export const columns: ColumnDef<PaymentList>[] = [
         console.log(saveApiResponse)
       }
       
-      const updateOrderDetails = (orderId:string,setDisabled:(state: boolean) => void,userIdDB:string)=>{
+      const updateOrderDetails = (orderIdDB:string,setDisabled:(state: boolean) => void,userIdDB:string,orderId:string)=>{
         console.log("order update request ")
         console.log(orderId)
-        updateDataInDB({paymentStatus: "isAdminCompleted"},orderId,userIdDB);
+        updateDataInDB({paymentStatus: "isAdminCompleted"},orderIdDB,userIdDB,orderId);
         setDisabled(true);
       }
 
@@ -268,7 +268,7 @@ export const columns: ColumnDef<PaymentList>[] = [
           disabled={disabled}
           className="h-[36px] w-full hover:opacity-80 transition-colors-opacity duration-200  flex items-center justify-center text-white px-[2px] py-[4px] rounded-[2px] font-DM-Sans font-medium text-[10px] leading-[15px] text-center"
           style={{ backgroundColor: bgColor }}
-          onClick={()=>updateOrderDetails(row.original._id,setDisabled,row.original.userIdDB)}
+          onClick={()=>updateOrderDetails(row.original._id,setDisabled,row.original.userIdDB,row.original.orderId)}
         >
           {disabled ? t("paymentList.receiptCompleted") : t("paymentList.receiptPending")}
         </button>

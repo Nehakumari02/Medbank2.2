@@ -24,6 +24,14 @@ const ContactUs = () => {
   };
 
   const handleSubmit = async () => {
+    const isFormValid = () => {
+      return Object.values(formData).every(value => value.trim() !== "");
+    };
+
+    if (!isFormValid()) {
+      alert("Form is invalid, some fields are empty.");
+      return false;
+    }
     if (formData.email !== confirmEmail) {
       alert("Email doesn't match");
       return;

@@ -104,7 +104,6 @@ const userSchema = new Schema(
     ],
     ccEmails: {
       type: [String], // An array of strings
-      default: ["test@gmail.com", "medbank.team@gmail.com"], // Default values
     },
   },
   { timestamps: true }

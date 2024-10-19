@@ -25,6 +25,7 @@ export async function POST(req) {
         const sampleWithDefaults = { 
           ...defaultValues, 
           ...sampleData,
+          id: sampleData.id,
           costEstimation_qualityFees: sampleData.qualityFees,
           costEstimation_libraryFees: sampleData.libraryFees,
           costEstimation_analysisFees: sampleData.analysisFees,

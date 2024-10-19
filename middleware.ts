@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const locales = ["en", "jn"];
+const locales = ["jn", "en"];
 const publicPages = [
   '/',
   '/Login',
@@ -46,7 +46,7 @@ export async function middleware(req: NextRequest) {
 
   // Redirect to /en if the path is /
   if (pathname === '/') {
-    return NextResponse.redirect(new URL('/en', req.url));
+    return NextResponse.redirect(new URL('/jn', req.url));
   }
 
   // Check for admin restricted access

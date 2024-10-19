@@ -581,7 +581,7 @@ const NewOrderBox = () => {
       console.log("samples",namesArray)
       const updatedSamples = namesArray.map((_, index) => {
           return { 
-            name: namesArray[index] || "" , qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
+            id: sampleCount+index+1 ,name: namesArray[index] || "" , qualityFees: '', libraryFees: '', analysisFees: '', tax: '', others: '', total: '' };
       });
       setSamples(updatedSamples);
     }

@@ -54,7 +54,7 @@ const sampleSchema = new Schema(
 );
 
 // Apply the auto-increment plugin to the `id` field
-sampleSchema.plugin(AutoIncrement, { inc_field: 'id' });
+sampleSchema.plugin(AutoIncrement, { inc_field: 'id', start_seq: 1, disable_hooks: true });
 
 const Sample = models.Sample || mongoose.model("Sample", sampleSchema);
 export default Sample;

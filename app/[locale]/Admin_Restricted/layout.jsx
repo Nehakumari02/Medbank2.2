@@ -56,7 +56,7 @@ export default function Layout({ children, params }) {
     
         // Call immediately, and then every 8 seconds
         fetchNewMessages();
-        const interval = setInterval(fetchNewMessages, 8000);
+        const interval = setInterval(fetchNewMessages, 30000);
     
         return () => clearInterval(interval); // Cleanup interval on unmount
       }, [adminId]);

@@ -22,7 +22,8 @@ export async function POST(req) {
     from: email,
     to: email, // Your email address
     subject: "お問い合わせありがとうございます（Thank you very much for your inquiry）",
-    text: `
+    html: `
+        <div>
           <p>この度はMEDBANKの遺伝子解析サービスへのお問い合わせありがとうございました。</p>
           <p>Thank you very much for your inquiry to our gene sequencing service.</p>
 
@@ -40,6 +41,7 @@ export async function POST(req) {
           <p>Our reply to your inquiry will be within 2 days. If you have any questions about each order or if you are in a hurry, please contact us through the chat on My Page.</p>
 
           <p>Best regards,<br>The MEDBANK Team</p>
+        </div>
         `
     
   }

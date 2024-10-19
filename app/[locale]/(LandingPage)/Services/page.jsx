@@ -21,7 +21,7 @@ const Services = ({params:{locale}}) => {
               
               <div className='font-bold text-[16px] md:text-[28px] lg:text-[28px] leading-[24px]'>
                 DNA Sequencing
-              </div >
+              </div>
 
               <div className='font-normal text-[12px] md:text-[18px] lg:text-[20px] leading-[36px]'>
               {t("service1")}

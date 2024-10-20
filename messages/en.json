@@ -1259,7 +1259,9 @@
         "payee1": "DBS Bank code7171 Account number 0721214571",
         "companyName2": "MEDBANK PTE.LTD.",
         "companyAddress2": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",
-        "payee2": "OCBC Bank code7339 Account number 601892219001"
+        "payee2": "OCBC Bank code7339 Account number 601892219001",
+        "note":"note",
+        "noteMsg":"All incoming transfers are processed based on the above details. You do not need to provide a branch name / branch code. DBS/POSB Bank does not have an IBAN, Routing Number or Sort Code."
     },
     "quotationInvoice": {
         "title": "Receipt",

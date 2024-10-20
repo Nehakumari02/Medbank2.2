@@ -1256,6 +1256,9 @@
         "payee1": "DBS Bank code7171 Account number 0721214571",
         "companyName2": "MEDBANK 株式会社",
         "companyAddress2": "8 BURN ROAD #04-04 TRIVEX SINGAPORE (369977)",
-        "payee2": "DBS Bank code7171 Account number 0721214571"
+        "payee2": "DBS Bank code7171 Account number 0721214571",
+        "note":"注",
+        "noteMsg":"上記詳細に基づきまして送金処理されます。支店名・支店コードは不要です。DBS/POSB銀行にはIBAN、ルーティング番号、ソートコードはありません。"
+
     }
 }

@@ -154,11 +154,15 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
 
       {/* Footer Section */}
       <div className="mt-8 pt-4 border-t" style={{ pageBreakInside: 'avoid' }}>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 gap-[2px]">
           <div>
             <h4 className="font-bold text-lg">Remittance Information</h4>
-            <p><strong>Bank Name:</strong> DBS Bank code7171</p>
+            <p><strong>Bank Name:</strong> DBS Bank code7171</p>  
             <p><strong>Account Number:</strong> 0721214571</p>
+            <p><strong>Address of Bank:</strong> 12 Marina Boulevard, DBS Asia Central, <br></br>
+            Marina Bay Financial Centre Tower 3, Singapore 018982</p>  
+            <p><strong>Country:</strong> Singapore</p>
+            <p><strong>SWIFT Address/Code:</strong> DBSSSGSG</p>
           </div>
           <div className="text-right">
             <p className="text-base"><strong>Due Date:</strong> {formattedDueDate}</p>
@@ -166,9 +170,9 @@ const QuotationTableInvoice = ({ orderIdDB, orderId, userId, onTableLoad1 }) => 
             <p className="text-base pt-4"><strong>....................................</strong></p> */}
           </div>
         </div>
-         {/* <p className="mt-8 text-center text-sm">
-          If you have any questions, please contact Yuki Okada at xxxxx.
-        </p>  */}
+         <p className="mt-8 text-center text-sm">
+         <strong>{t("note")} :  </strong>{t("noteMsg")}
+        </p> 
       </div>
     </div>
   );

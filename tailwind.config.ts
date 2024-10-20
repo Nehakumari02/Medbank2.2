@@ -108,6 +108,21 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes:{
+        fadeIn:{
+          '100%':{opacity:'1'},
+        },
+        slideIn:{
+          '100%':{
+            opacity:'1',
+            transform:'translateY(0)',
+          }
+        }
+      },
+      animation:{
+        fadeIn:'fadeIn 1s forwards',
+        slideIn:'slideIn 1s forwards',
+      }
     },
   },
   plugins: [],

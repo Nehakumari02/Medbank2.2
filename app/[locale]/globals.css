@@ -65,6 +65,14 @@ body {
   }
 }
 
+/* Text shadow for recent announcements */
+.text-shadow{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.button-custom-transition{
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
 .gradient-border-text{
   color: white;

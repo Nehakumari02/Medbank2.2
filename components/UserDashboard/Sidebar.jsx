@@ -75,17 +75,7 @@ const Sidebar = ({newMessage}) => {
         });
         return;
       }      
-
-      // const body = document.querySelector("body");
-
-      // body?.classList.add("page-transition");
-
-      // await sleep(500);
       router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
-      // await sleep(500);
-
-      // body?.classList.remove("page-transition");
-      // router.push(`/${language}/${userIdDB}/${data.data._id}/NewOrder`)
     }catch(error){
       console.log(error)
     }finally{
@@ -145,16 +135,7 @@ const Sidebar = ({newMessage}) => {
       setShowNewOrderPopUp(true);
     }
     else{
-    // const body = document.querySelector("body");
-
-    // body?.classList.add("page-transition");
-
-    // await sleep(500);
     router.push(`/${language}/${userIdDB}/${menuPath}`)
-    // await sleep(500);
-
-    // body?.classList.remove("page-transition");
-      // router.push(`/${language}/${userIdDB}/${menuPath}`)
     }
   }
   return (

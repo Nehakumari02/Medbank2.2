@@ -56,7 +56,7 @@ export default function Layout({ children, params }) {
         };
     
         // Set up a timer to run every 15 seconds
-        const intervalId = setInterval(checkNewMessages, 30000); // 8 seconds = 15000 milliseconds
+        const intervalId = setInterval(checkNewMessages, 30000); 
     
         // Run the function once when the component mounts
         checkNewMessages();

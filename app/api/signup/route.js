@@ -30,9 +30,11 @@ export async function POST(req) {
   console.log("name",name,"\n","email",email,"\n","password",password,"\n","confirmPassword",confirmPassword,language)
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: "smtp.mail.us-east-1.awsapps.com",
+    port: 465, // Use 465 for SSL or 587 for TLS
+    secure: true,
     auth: {
-      user: process.env.EMAIL_USER, // Use environment variables
+      user: process.env.EMAIL_SIGNUP, // Use environment variables
       pass: process.env.EMAIL_PASS,
     },
   });
@@ -64,7 +66,7 @@ export async function POST(req) {
   // `;
 
   const mailOptions = {
-    from: process.env.EMAIL_USER, // Use your email user here
+    from: process.env.EMAIL_SIGNUP, // Use your email user here
     to: email,
     subject: "MEDBANK 【登録完了】Registeration completed",
     // text: text, // Use text instead of html

@@ -12,7 +12,7 @@ export async function POST(req) {
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_RECEIVER,
+    from: process.env.EMAIL_USER,
     to: email, // Your email address
     subject: `New Inquiry from`,
     text: `Email: ${email}`,

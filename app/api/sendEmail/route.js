@@ -4,7 +4,11 @@ export async function POST(req) {
   const { name, phoneNumber, email, inquiryDetails } = await req.json();
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    
+    host: "smtp.mail.us-east-1.awsapps.com",
+    port: 465, // Use 465 for SSL or 587 for TLS
+    secure: true,
+    
     auth: {
       user: process.env.EMAIL_USER, // Use environment variables
       pass: process.env.EMAIL_PASS,
@@ -12,14 +16,14 @@ export async function POST(req) {
   });
 
   const mailOptions = {
-    from: email,
-    to: process.env.EMAIL_RECEIVER, // Your email address
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER, // Your email address
     subject: `New Inquiry from ${name}`,
     text: `Name: ${name}\nPhone Number: ${phoneNumber}\nEmail: ${email}\nInquiry Details: ${inquiryDetails}`,
   };
 
   const mailOptions1 = {
-    from: email,
+    from:process.env.EMAIL_USER,
     to: email, // Your email address
     subject: "お問い合わせありがとうございます（Thank you very much for your inquiry）",
     html: `

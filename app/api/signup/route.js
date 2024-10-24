@@ -35,7 +35,7 @@ export async function POST(req) {
     secure: true,
     auth: {
       user: process.env.EMAIL_SIGNUP, // Use environment variables
-      pass: process.env.EMAIL_PASS,
+      pass: process.env.EMAIL_PASS1,
     },
   });
 

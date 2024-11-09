@@ -68,7 +68,7 @@ const RecentAnnouncement = () => {
         <div className="banner-text">
             <h1>AVITIに関する最新情報をブログにてお届けしています</h1>
             <p>Check out our blog for the latest information about AVITI!</p>
-            <a href="https://medbankorders22.blogspot.com/" className="button">Check Our Blog</a>
+            <a href="https://aviti.jp/" className="button">Check Our Blog</a>
         </div>
     </div>
   );
